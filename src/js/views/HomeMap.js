@@ -1,8 +1,9 @@
 import React from 'react';
-import 'materialize-css/dist/css/materialize.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import SimpleMap from '../Components/HomeMapa/Mapa';
 import MapNavBar from '../Components/HomeMapa/MapNavBar';
 import SideNav from '../Components/HomeMapa/SideNav';
+
 
 
 function HomeMap() {
@@ -11,6 +12,7 @@ function HomeMap() {
       <MapNavBar />
       <SimpleMap />
       <SideNav />
+
     </div>
   );
 }
