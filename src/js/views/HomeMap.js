@@ -12,6 +12,7 @@ function HomeMap() {
       <MapNavBar />
       <SimpleMap />
       <SideNav />
+     
 
     </div>
   );
