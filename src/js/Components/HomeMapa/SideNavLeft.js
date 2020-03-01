@@ -112,8 +112,6 @@ export default function SideNavLeft() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <br/>
-      <br/>
       <Drawer
         className={classes.drawer}
         variant="persistent"
