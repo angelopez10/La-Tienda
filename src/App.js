@@ -4,9 +4,9 @@ import HomeMap from './js/views/HomeMap'
 
 
 
-import 'materialize-css/dist/css/materialize.min.css';
+
 import Home from './js/views/Home';
-import SimpleMap from './js/Components/Home_mapa/Mapa';
+
 
 
 function App() {
@@ -16,9 +16,6 @@ function App() {
     <div className="App">
 
       <Home />
-      <SimpleMap />
-
-      <HomeMap />
 
     </div>
   );

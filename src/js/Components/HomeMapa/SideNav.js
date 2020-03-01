@@ -85,9 +85,37 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function SideNav() {
+
+    return (
+        <div class="wrapper d-flex align-items-stretch">
+            <nav id="sidebar" class="order-last">
+                <div class="custom-menu">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary"></button>
+                </div>
+                <div class="">
+                    <h1><a href="index.html" class="logo" >Kenitic <span>Blog Agency</span></a></h1>
+                    <ul class="list-unstyled components mb-5">
+                        <li class="active">
+                            <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-user mr-3"></span> About</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Blog</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-cogs mr-3"></span> Services</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Contacts</a>
+                        </li>
+                    </ul>
+
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+
 
     const handleDrawerOpen = () => {
         setOpen(true);
