@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function SideNav() {
     return (
         <div class="wrapper d-flex align-items-stretch">
-            <nav id="sidebar" class="order-last" style="background-image: url(images/bg_1.jpg);">
+            <nav id="sidebar" class="order-last">
                 <div class="custom-menu">
                     <button type="button" id="sidebarCollapse" class="btn btn-primary"></button>
                 </div>
