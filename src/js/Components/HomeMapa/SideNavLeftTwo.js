@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SideNavLeft() {
+export default function SideNavLeftTwo() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -92,7 +92,7 @@ export default function SideNavLeft() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{width:"7%", transform: 'translateY(104px)'}}
+        style={{width:"7%", transform: 'translateY(169px)'}}
         
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,

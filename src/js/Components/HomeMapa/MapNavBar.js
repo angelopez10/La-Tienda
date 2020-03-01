@@ -14,12 +14,6 @@ export default function MapNavBar() {
                  </form>
             </nav>
 
-<nav className="navbar navbar-light  col-10">
-<p href= "#!" className="navbar-brand"></p>
-<form className="form-inline">
-    <input className="form-control mr-sm-2" style={{width:'350px'}} id ="input" type="search" placeholder="Search" aria-label="Search" />
-    <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
- </form>
-</nav>
+
             )
         }
