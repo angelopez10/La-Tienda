@@ -16,6 +16,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import StorefrontIcon from '@material-ui/icons/Storefront';
 
 const drawerWidth = 240;
 
@@ -108,7 +109,7 @@ export default function SideNavLeft() {
             onClick={handleDrawerOpen}
             className={clsx(open && classes.hide)}
           >
-            <MenuIcon />
+            <StorefrontIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
