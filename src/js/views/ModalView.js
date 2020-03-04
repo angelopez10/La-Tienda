@@ -10,7 +10,7 @@ import ButtonToolbar from 'react-bootstrap/Button'
 
 
 
-function Modall() {
+function ModalView() {
 	const [modalShow, setModalShow] = React.useState(false);
   
 	return (
@@ -28,4 +28,4 @@ function Modall() {
   }
   
 
-export default Modall;
+export default ModalView;
