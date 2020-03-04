@@ -1,5 +1,6 @@
 import React from 'react';
-import HomeMap from './js/views/HomeMap'
+import Modall from './js/views/ModalView';
+
 
 
 
@@ -9,7 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      <HomeMap />
+      <Modall />
     </div>
   );
 }
