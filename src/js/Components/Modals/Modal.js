@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import Checkout from "./CheckOut";
+import RegistrationForm from '../RegistrationForm/RegistrationForm';
 
 
 
@@ -24,7 +24,7 @@ export default function MyVerticallyCenteredModal(props) {
 		  <h4>Centered Modal</h4>
 		  <p>
 			  
-			  <Checkout />
+			  <RegistrationForm />
 		  </p>
 		</Modal.Body>
 		<Modal.Footer>
