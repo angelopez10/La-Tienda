@@ -20,7 +20,11 @@ function App() {
       <ModalView />
 
       
+
+      <Home/>
+
       <Tienda />
+
 
     </div>
   );
