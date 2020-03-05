@@ -13,7 +13,7 @@ export default function Tienda() {
             <NavbarTienda />
             <Producto />
             <SideNavLeftTwo />
-            <SideNavLeft />
+            
         </div>
     )
 }
