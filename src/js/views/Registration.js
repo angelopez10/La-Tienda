@@ -9,7 +9,6 @@ import SignIn from '../Components/Modals/SigIn';
 function Registration() {
   return (
     <div className="App">
-      <SignIn />
     </div>
   );
 }
