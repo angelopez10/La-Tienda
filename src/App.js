@@ -18,7 +18,6 @@ function App() {
     <div className="App">
 
       <ModalView />
-      <SignIn />
 
 
     </div>
