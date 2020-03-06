@@ -23,7 +23,6 @@ export default function MyVerticallyCenteredModal(props) {
 		<Modal.Body>
 		  <h4>Centered Modal</h4>
 		  <p>
-			  
 			  <RegistrationForm />
 		  </p>
 		</Modal.Body>
