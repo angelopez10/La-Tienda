@@ -38,22 +38,26 @@ export default function MyVerticallyCenteredModal(props) {
 
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Form from 'react-bootstrap/Form'
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+
+import SignIn from "./SigIn";
 
 export default function MyVerticallyCenteredModal(props) {
   return (
-	<Router>
     <Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">Sign in</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+
+        <p>
+          <SignIn />
+        </p>
+
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
@@ -75,17 +79,11 @@ export default function MyVerticallyCenteredModal(props) {
             Sign In
           </Button>
         </Form>
+
       </Modal.Body>
       <Modal.Footer>
-	 	<Link href="#" variant="body2">
-                Forgot password?
-        </Link>
-	  	<Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-        </Link>
         <Button onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
-	</Router>
   );
 }
