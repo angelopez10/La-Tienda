@@ -11,20 +11,19 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
+    "animejs": "^3.1.0",
     "bootstrap": "^4.4.1",
     "google-map-react": "^1.1.6",
     "jquery": "^3.4.1",
     "materialize-css": "^1.0.0-rc.2",
     "popper.js": "^1.16.1",
     "react": "^16.13.0",
+    "react-anime": "^3.0.3",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-burger-menu": "^2.6.13",
     "react-dom": "^16.13.0",
-
     "react-hook-form": "^4.10.1",
-
     "react-router-dom": "^5.1.2",
-
     "react-scripts": "3.4.0",
     "react-sidebar": "^3.0.2"
   },
