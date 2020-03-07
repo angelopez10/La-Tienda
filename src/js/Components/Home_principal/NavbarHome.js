@@ -1,13 +1,19 @@
 import React from "react";
+import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/Button'
+import MyVerticallyCenteredModal from '../Modales/ModalLogin';
 
 export default function NavbarHome() {
+  const [modalShow, setModalShow] = React.useState(false);
+
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class='container'>
-          <a class="navbar-brand" href="#">
+          <Link class="navbar-brand" href="#">
             <img src="http://placehold.it/150x50?text=Logo" alt="" />
-          </a>
+          </Link>
           <button
             class="navbar-toggler"
             type="button"
@@ -22,15 +28,21 @@ export default function NavbarHome() {
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <ButtonToolbar>
+                  <Button variant="primary" onClick={() => setModalShow(true)}>
                   Login
-                  <span class="sr-only">(current)</span>
-                </a>
+		              </Button>
+
+                  <MyVerticallyCenteredModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
+                </ButtonToolbar>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <Link class="nav-link" >
                   Sign Up
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

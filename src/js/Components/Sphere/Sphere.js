@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Anime from 'react-anime';
+
 
 class CascadingList extends Component {
   constructor(props) {
@@ -20,9 +20,7 @@ class CascadingList extends Component {
     };
 
     return (
-      <Anime {...animeProps}>
-        {list.map((v, i) => <div key={i}>{v}</div>)}
-      </Anime>
+      <div></div>
     );
   }
 }
