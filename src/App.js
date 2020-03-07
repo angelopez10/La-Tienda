@@ -4,8 +4,8 @@ import ModalView from './js/views/ModalView';
 
 import SignIn from './js/Components/Modals/SigIn'
 import HomeMap from './js/views/HomeMap'
-import Home from './js/views/Home';
-import Tienda from './js/views/Tienda';
+import TiendaAdminView from './js/views/TiendaAdminView';
+
 
 
 
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
 
-      <ModalView />
+      <TiendaAdminView />
 
 
     </div>
