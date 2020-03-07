@@ -39,11 +39,6 @@ export default function NavbarHome() {
                   />
                 </ButtonToolbar>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" >
-                  Sign Up
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
