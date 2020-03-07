@@ -17,6 +17,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import StorefrontIcon from '@material-ui/icons/Storefront';
+import { Link } from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -128,7 +129,9 @@ export default function SideNavLeft() {
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemIcon>{index % 2 === 0 ? <Link to='/tienda' >
+              <InboxIcon />
+                </Link>: <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
