@@ -25,7 +25,7 @@ export default function NavbarAdmin() {
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-              <button type="button" class="btn btn-success">Agregar Producto</button>
+              <button type="button" class="btn btn-success">Agregar Productos</button>
               </li>
             </ul>
           </div>
