@@ -1,6 +1,19 @@
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/Button'
+import ModalIngresoTienda from "../Modales/ModalIngresoTienda";
+
+
+
+
+
 
 export default function FooterHome() {
+  const [modalShow, setModalShow] = React.useState(false);
+
+
+
   return (
     <div>
       <footer id="footer" className="footer-1">
@@ -52,9 +65,17 @@ export default function FooterHome() {
                     Trabaja con nosotros<span></span>
                   </h5>
                   <p>Accede a nuestra red de tiendas e incrementa tus ganancias</p>
-                  <a className="btn" href="#." target="_blank">
-                    Registrate Ahora!
-                  </a>
+                  <ButtonToolbar>
+                    <Button variant="primary" onClick={() => setModalShow(true)}>
+                      Trabaja con Nosotros
+		                </Button>
+
+                    <ModalIngresoTienda
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
+                  </ButtonToolbar>
+
                 </div>
               </div>
 
@@ -76,7 +97,7 @@ export default function FooterHome() {
                         target="_blank"
                         href="https://www.youtube.com/"
                       >
-                        
+
                       </a>
                     </li>
                     <li className="">
@@ -85,7 +106,7 @@ export default function FooterHome() {
                         target="_blank"
                         title="Facebook"
                       >
-                       
+
                       </a>
                     </li>
                     <li className="">

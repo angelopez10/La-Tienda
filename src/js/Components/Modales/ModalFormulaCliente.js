@@ -1,12 +1,13 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
-import SignIn from '../ComponentesParaModal/SignIn';
+import RegistFormCliente from "../RegistrationForm/RegistFormCliente";
 
 
 
 
 
-export default function ModalLogin(props) {
+
+export default function MyVerticallyCenteredModal(props) {
 	return (
 	  <Modal
 		{...props}
@@ -18,7 +19,7 @@ export default function ModalLogin(props) {
 		</Modal.Header>
 		<Modal.Body>
             <p>
-			  <SignIn />
+			  <RegistFormCliente />
 		    </p>
 		</Modal.Body>
 	  </Modal>

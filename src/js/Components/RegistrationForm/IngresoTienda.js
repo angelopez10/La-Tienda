@@ -12,6 +12,12 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom'
+import ModalFormuTienda from '../Modales/ModalFormuTienda';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ButtonToolbar from 'react-bootstrap/Button'
+
+
+
 
 
 
@@ -49,8 +55,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegistFormTienda() {
+export default function IngresoTienda() {
   const classes = useStyles();
+  const [modalShow, setModalShow] = React.useState(false);
+
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -60,44 +69,9 @@ export default function RegistFormTienda() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Formulario de Registro Cliente
+          Ingreso Tienda
         </Typography>
         <form className={classes.form} noValidate>
-        <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Nombre_tienda"
-            label="Nombre de la Tienda"
-            name="Nombre"
-            autoComplete="Nombre"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Rut"
-            label="Rut"
-            name="Rut"
-            autoComplete="Rut"
-            autoFocus
-          />
-           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Telefono"
-            label="Telefono"
-            name="Telefono"
-            autoComplete="Telefono"
-            autoFocus
-          />
-
-
           <TextField
             variant="outlined"
             margin="normal"
@@ -114,32 +88,10 @@ export default function RegistFormTienda() {
             margin="normal"
             required
             fullWidth
-            id="Direccion"
-            label="Direccion"
-            name="Direccion"
-            autoComplete="Direccion"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
             name="password"
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="confirm_password"
-            label="confirm Password"
-            type="password"
-            id="confirm password"
             autoComplete="current-password"
           />
           <FormControlLabel
@@ -153,7 +105,7 @@ export default function RegistFormTienda() {
             color="primary"
             className={classes.submit}
           >
-            <Link to='/mapa'>Registrate</Link>
+            <Link to='/mapa'>Sign In</Link>
           </Button>
           <Grid container>
             <Grid item xs>
@@ -163,9 +115,21 @@ export default function RegistFormTienda() {
             </Grid>
             <Grid item>
               <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+                <ButtonToolbar>
+                    <Button  onClick={() => setModalShow(true)}>
+                      Trabaja con Nosotros
+		                </Button>
+
+                    <ModalFormuTienda
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
+                  </ButtonToolbar>
+
               </Link>
             </Grid>
+
+
           </Grid>
         </form>
       </div>
