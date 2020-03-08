@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/Button'
-import MyVerticallyCenteredModal from '../Modales/ModalLogin';
+import ModalLogin from "../Modales/ModalLogin";
 
 export default function NavbarHome() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -30,10 +30,10 @@ export default function NavbarHome() {
               <li class="nav-item active">
                 <ButtonToolbar>
                   <Button variant="primary" onClick={() => setModalShow(true)}>
-                  Login
+                  Ingresa
 		              </Button>
 
-                  <MyVerticallyCenteredModal
+                  <ModalLogin
                     show={modalShow}
                     onHide={() => setModalShow(false)}
                   />

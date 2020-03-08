@@ -1,12 +1,12 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
-import IngresoCliente from "../RegistrationForm/IngresoCliente";
+import IngresoTienda from "../RegistrationForm/IngresoTienda";
 
 
 
 
 
-export default function ModalLogin(props) {
+export default function ModalIngresoTienda(props) {
 	return (
 	  <Modal
 		{...props}
@@ -18,7 +18,7 @@ export default function ModalLogin(props) {
 		</Modal.Header>
 		<Modal.Body>
             <p>
-			  <IngresoCliente />
+			  <IngresoTienda />
 		    </p>
 		</Modal.Body>
 	  </Modal>
