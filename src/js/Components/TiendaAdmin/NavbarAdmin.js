@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/Button'
+import ModalIngresoProduct from '../Modales/ModalIngresoProduct'
 
 export default function NavbarAdmin() {
+    const [modalShow, setModalShow] = React.useState(false);
+    
     return (
         <div>
             <div>
@@ -25,7 +30,16 @@ export default function NavbarAdmin() {
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-              <button type="button" class="btn btn-success">Agregar Productos</button>
+              <ButtonToolbar>
+                  <Button variant="primary" onClick={() => setModalShow(true)}>
+                  Agregar productos
+		              </Button>
+
+                  <ModalIngresoProduct
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
+                </ButtonToolbar>
               </li>
             </ul>
           </div>

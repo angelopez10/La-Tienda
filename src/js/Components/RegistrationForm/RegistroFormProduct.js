@@ -111,7 +111,7 @@ export default function RegistFormProduct() {
             color="primary"
             className={classes.submit}
           >
-            <Link to='/mapa'>Registrar</Link>
+            <Link >Ingresar</Link>
           </Button>
         </form>
       </div>
