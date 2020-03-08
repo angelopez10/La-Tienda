@@ -6,7 +6,7 @@ import RegistroFormProduct from "../RegistrationForm/RegistroFormProduct";
 
 
 
-export default function ModalIngresoTienda(props) {
+export default function ModalIngresoProduct(props) {
 	return (
 	  <Modal
 		{...props}
