@@ -7,8 +7,6 @@ import ModalIngresoTienda from "../Modales/ModalIngresoTienda";
 
 
 
-
-
 export default function FooterHome() {
   const [modalShow, setModalShow] = React.useState(false);
 

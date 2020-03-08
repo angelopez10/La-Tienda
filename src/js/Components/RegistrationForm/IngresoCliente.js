@@ -3,12 +3,18 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom'
+import ModalFormulaCliente from '../Modales/ModalFormulaCliente';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ButtonToolbar from 'react-bootstrap/Button'
 
 
 
@@ -17,7 +23,7 @@ function Copyright() {
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
         <Link color="inherit" href="https://material-ui.com/">
-          La tienda
+          La Tienda
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -46,8 +52,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegistFormTienda() {
+export default function IngresoCliente() {
   const classes = useStyles();
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -57,44 +64,9 @@ export default function RegistFormTienda() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Formulario de Registro Cliente
+          Ingresa
         </Typography>
         <form className={classes.form} noValidate>
-        <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Nombre_tienda"
-            label="Nombre de la Tienda"
-            name="Nombre"
-            autoComplete="Nombre"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Rut"
-            label="Rut"
-            name="Rut"
-            autoComplete="Rut"
-            autoFocus
-          />
-           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Telefono"
-            label="Telefono"
-            name="Telefono"
-            autoComplete="Telefono"
-            autoFocus
-          />
-
-
           <TextField
             variant="outlined"
             margin="normal"
@@ -111,33 +83,15 @@ export default function RegistFormTienda() {
             margin="normal"
             required
             fullWidth
-            id="Direccion"
-            label="Direccion"
-            name="Direccion"
-            autoComplete="Direccion"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
             name="password"
             label="Clave"
             type="password"
             id="password"
             autoComplete="current-password"
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="confirm_password"
-            label="confirmar Clave"
-            type="password"
-            id="confirm password"
-            autoComplete="current-password"
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
           />
           <Button
             type="submit"
@@ -146,8 +100,36 @@ export default function RegistFormTienda() {
             color="primary"
             className={classes.submit}
           >
-            <Link to='/mapa'>Registrate</Link>
+            <Link to='/mapa'>Ingresa</Link>
           </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+
+            <ButtonToolbar>
+                  <Button variant="primary" onClick={() => setModalShow(true)}>
+                  Registrate
+		              </Button>
+
+                  <ModalFormulaCliente
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
+            </ButtonToolbar>
+
+
+
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+
+
+            </Grid>
+          </Grid>
         </form>
       </div>
       <Box mt={8}>

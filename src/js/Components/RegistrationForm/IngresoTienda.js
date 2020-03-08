@@ -26,7 +26,7 @@ function Copyright() {
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
         <Link color="inherit" href="https://material-ui.com/">
-          Your Website
+          La Tienda
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -78,7 +78,7 @@ export default function IngresoTienda() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Email"
             name="email"
             autoComplete="email"
             autoFocus
@@ -89,7 +89,7 @@ export default function IngresoTienda() {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Clave"
             type="password"
             id="password"
             autoComplete="current-password"
@@ -105,7 +105,7 @@ export default function IngresoTienda() {
             color="primary"
             className={classes.submit}
           >
-            <Link to='/mapa'>Sign In</Link>
+            <Link to='/mapa'>Ingresa</Link>
           </Button>
           <Grid container>
             <Grid item xs>
@@ -115,8 +115,8 @@ export default function IngresoTienda() {
             </Grid>
             <Grid item>
               <Link href="#" variant="body2">
-                <ButtonToolbar>
-                    <Button  onClick={() => setModalShow(true)}>
+            <ButtonToolbar>
+                    <Button variant="primary" onClick={() => setModalShow(true)}>
                       Trabaja con Nosotros
 		                </Button>
 
@@ -125,6 +125,10 @@ export default function IngresoTienda() {
                       onHide={() => setModalShow(false)}
                     />
                   </ButtonToolbar>
+
+           
+
+                {"Don't have an account? Sign Up"}
 
               </Link>
             </Grid>

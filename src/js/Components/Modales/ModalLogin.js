@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
-import SignIn from '../ComponentesParaModal/SignIn';
+import IngresoCliente from "../RegistrationForm/IngresoCliente";
 
 
 
@@ -18,7 +18,7 @@ export default function ModalLogin(props) {
 		</Modal.Header>
 		<Modal.Body>
             <p>
-			  <SignIn />
+			  <IngresoCliente />
 		    </p>
 		</Modal.Body>
 	  </Modal>

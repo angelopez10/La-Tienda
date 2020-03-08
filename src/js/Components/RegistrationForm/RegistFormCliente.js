@@ -20,7 +20,7 @@ function Copyright() {
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
         <Link color="inherit" href="https://material-ui.com/">
-          Your Website
+          La Tienda
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -93,7 +93,7 @@ export default function RegistFormCliente() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Email"
             name="email"
             autoComplete="email"
             autoFocus
@@ -115,7 +115,7 @@ export default function RegistFormCliente() {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Clave"
             type="password"
             id="password"
             autoComplete="current-password"
@@ -126,7 +126,7 @@ export default function RegistFormCliente() {
             required
             fullWidth
             name="confirm_password"
-            label="confirm Password"
+            label="Repetir Clave"
             type="password"
             id="confirm password"
             autoComplete="current-password"
@@ -144,18 +144,6 @@ export default function RegistFormCliente() {
           >
             <Link to='/mapa'>Registrate</Link>
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
       <Box mt={8}>
