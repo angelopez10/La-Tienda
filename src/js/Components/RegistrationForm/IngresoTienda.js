@@ -105,7 +105,7 @@ export default function IngresoTienda() {
             color="primary"
             className={classes.submit}
           >
-            <Link to='/mapa'>Ingresa</Link>
+            <Link to='/admin'>Ingresa</Link>
           </Button>
           <Grid container>
             <Grid item xs>

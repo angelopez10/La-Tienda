@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './js/views/Home';
 import HomeMap from './js/views/HomeMap';
 import Tienda from './js/views/Tienda';
+import TiendaAdminView from './js/views/TiendaAdminView';
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/mapa' exact component={HomeMap} />
           <Route path='/tienda' exact component={Tienda} />
-        </Switch>
+          <Route path='/admin' exact component={TiendaAdminView} />
+        </Switch> 
       
       </Router>
   );
