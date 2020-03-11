@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
-import IngresoCliente from "../RegistrationForm/IngresoCliente";
+
+import Checkout from "../ModalCierre/Checkout";
 
 
 
@@ -18,7 +19,7 @@ export default function ModalLogin(props) {
 		</Modal.Header>
 		<Modal.Body>
             <p>
-			  <IngresoCliente />
+			  <Checkout />
 		    </p>
 		</Modal.Body>
 	  </Modal>

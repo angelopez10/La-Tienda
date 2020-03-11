@@ -54,7 +54,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function IngresoCliente() {
   const classes = useStyles();
-  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -102,39 +101,22 @@ export default function IngresoCliente() {
           >
             <Link to='/mapa'>Ingresa</Link>
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-
-            <ButtonToolbar>
-                  <Button variant="primary" onClick={() => setModalShow(true)}>
-                  Registrate
-		              </Button>
-
-                  <ModalFormulaCliente
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                  />
-            </ButtonToolbar>
-
-
-
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-
-
-            </Grid>
-          </Grid>
+       
+      
         </form>
       </div>
       <Box mt={8}>
         <Copyright />
       </Box>
+      <Button 
+      href="#" 
+      variant = "contained"
+      color="primary"
+      className={classes.button}
+      >
+       Forgot password?
+       </Button>
     </Container>
+    
   );
 }

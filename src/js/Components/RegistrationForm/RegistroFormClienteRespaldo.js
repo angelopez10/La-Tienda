@@ -135,6 +135,15 @@ export default function RegistFormCliente() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            <Link to='/mapa'>Registrate</Link>
+          </Button>
         </form>
       </div>
       <Box mt={8}>
