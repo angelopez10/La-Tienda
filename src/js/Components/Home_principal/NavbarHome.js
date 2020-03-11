@@ -9,9 +9,9 @@ export default function NavbarHome() {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <nav class="navbar navbar-expand-lg static-top">
         <div class='container'>
-          <Link class="navbar-brand" href="#">
+          <Link class="navbar-brand text-link" href="#">
             <img src="http://placehold.it/150x50?text=Logo" alt="" />
           </Link>
           <button
@@ -25,11 +25,8 @@ export default function NavbarHome() {
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <ButtonToolbar>
-                  <Button variant="primary" onClick={() => setModalShow(true)}>
+                <ButtonToolbar className='login-button'>
+                  <Button className='login-button' onClick={() => setModalShow(true)}>
                   Ingresa
 		              </Button>
 
@@ -38,9 +35,6 @@ export default function NavbarHome() {
                     onHide={() => setModalShow(false)}
                   />
                 </ButtonToolbar>
-              </li>
-            </ul>
-          </div>
         </div>
       </nav>
     </div>

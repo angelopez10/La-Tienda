@@ -14,7 +14,7 @@ export default function ModalIngresoTienda(props) {
 		aria-labelledby="contained-modal-title-vcenter"
 		centered
 	  >
-		<Modal.Header closeButton>
+		<Modal.Header >
 		</Modal.Header>
 		<Modal.Body>
             <p>

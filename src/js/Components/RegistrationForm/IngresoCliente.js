@@ -111,14 +111,14 @@ export default function IngresoCliente() {
             <Grid item>
 
             <ButtonToolbar>
-                  <Button variant="primary" onClick={() => setModalShow(true)}>
+                  <Button variant="primary" onClick={() => setModalShow(true)} >
                   Registrate
 		              </Button>
 
                   <ModalFormulaCliente
                     show={modalShow}
                     onHide={() => setModalShow(false)}
-                  />
+                    />
             </ButtonToolbar>
 
 
