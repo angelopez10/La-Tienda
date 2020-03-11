@@ -5,16 +5,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom'
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 
 
@@ -52,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function IngresoCliente() {
+export default function RegistFormCliente() {
   const classes = useStyles();
 
   return (
@@ -63,9 +59,33 @@ export default function IngresoCliente() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Ingreso Tienda
+          Formulario de Registro Cliente
         </Typography>
         <form className={classes.form} noValidate>
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="Nombre"
+            label="Nombre"
+            name="Nombre"
+            autoComplete="Nombre"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="Apellido"
+            label="Apellido"
+            name="Apellido"
+            autoComplete="Apellido"
+            autoFocus
+          />
+
+
           <TextField
             variant="outlined"
             margin="normal"
@@ -82,10 +102,32 @@ export default function IngresoCliente() {
             margin="normal"
             required
             fullWidth
+            id="Direccion"
+            label="Direccion"
+            name="Direccion"
+            autoComplete="Direccion"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
             name="password"
             label="Clave"
             type="password"
             id="password"
+            autoComplete="current-password"
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="confirm_password"
+            label="Repetir Clave"
+            type="password"
+            id="confirm password"
             autoComplete="current-password"
           />
           <FormControlLabel
@@ -99,20 +141,13 @@ export default function IngresoCliente() {
             color="primary"
             className={classes.submit}
           >
-            <Link to='/admin'>Ingresa</Link>
+            <Link to='/mapa'>Registrate</Link>
           </Button>
         </form>
       </div>
       <Box mt={8}>
         <Copyright />
       </Box>
-      <Button 
-      href="#" 
-      color="primary"
-      className={classes.button}
-      >
-       {"Forgot password"}
-       </Button>
     </Container>
   );
 }
