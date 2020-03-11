@@ -109,7 +109,6 @@ export default function IngresoCliente() {
               </Link>
             </Grid>
             <Grid item>
-
             <ButtonToolbar>
                   <Button variant="primary" onClick={() => setModalShow(true)}>
                   Registrate
@@ -120,14 +119,9 @@ export default function IngresoCliente() {
                     onHide={() => setModalShow(false)}
                   />
             </ButtonToolbar>
-
-
-
               <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
-
-
             </Grid>
           </Grid>
         </form>

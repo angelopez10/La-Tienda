@@ -1,17 +1,23 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-
+import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom'
+import ModalFormuTienda from '../Modales/ModalFormuTienda';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ButtonToolbar from 'react-bootstrap/Button'
+
+
+
 
 
 
@@ -49,8 +55,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegistFormCliente() {
+export default function IngresoTienda() {
   const classes = useStyles();
+  const [modalShow, setModalShow] = React.useState(false);
+
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -60,33 +69,9 @@ export default function RegistFormCliente() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Formulario de Registro Cliente
+          Ingreso Tienda
         </Typography>
         <form className={classes.form} noValidate>
-        <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Nombre"
-            label="Nombre"
-            name="Nombre"
-            autoComplete="Nombre"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Apellido"
-            label="Apellido"
-            name="Apellido"
-            autoComplete="Apellido"
-            autoFocus
-          />
-
-
           <TextField
             variant="outlined"
             margin="normal"
@@ -103,38 +88,47 @@ export default function RegistFormCliente() {
             margin="normal"
             required
             fullWidth
-            id="Direccion"
-            label="Direccion"
-            name="Direccion"
-            autoComplete="Direccion"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
             name="password"
             label="Clave"
             type="password"
             id="password"
             autoComplete="current-password"
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="confirm_password"
-            label="Repetir Clave"
-            type="password"
-            id="confirm password"
-            autoComplete="current-password"
-          />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            <Link to='/mapa'>Ingresa</Link>
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+            <ButtonToolbar>
+                    <Button variant="primary" onClick={() => setModalShow(true)}>
+                      Trabaja con Nosotros
+		                </Button>
+
+                    <ModalFormuTienda
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
+              </ButtonToolbar>
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
       <Box mt={8}>

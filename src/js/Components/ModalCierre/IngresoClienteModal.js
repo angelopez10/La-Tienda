@@ -1,30 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-
 import Paper from '@material-ui/core/Paper';
-
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-
-
 import IngresoCliente from '../RegistrationForm/IngresoCliente';
 import RegistFormCliente from '../RegistrationForm/RegistFormCliente';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        La tienda
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
+
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -76,7 +59,7 @@ function getStepContent(step) {
   }
 }
 
-export default function Checkout() {
+export default function IngresoClienteModal() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -89,11 +72,8 @@ export default function Checkout() {
   };
 
   return (
-  
       <main >
         <Paper >
-
-
           <React.Fragment>
             {activeStep === steps.length ? (
 
@@ -118,8 +98,6 @@ export default function Checkout() {
                         Back
                     </Button>
                     )}
-                    
-
                     <Button
                       variant="contained"
                       color="primary"

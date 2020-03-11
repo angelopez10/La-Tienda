@@ -4,8 +4,7 @@ import Home from './js/views/Home';
 import HomeMap from './js/views/HomeMap';
 import Tienda from './js/views/Tienda';
 import TiendaAdminView from './js/views/TiendaAdminView';
-import Checkout from './js/Components/ModalCierre/Checkout';
-import ModalLogin from './js/Components/Modales/ModalLogin';
+
 
 
 

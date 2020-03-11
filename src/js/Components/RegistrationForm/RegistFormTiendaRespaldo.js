@@ -60,7 +60,7 @@ export default function RegistFormCliente() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Formulario de Registro Cliente
+          Formulario de Registro Tienda
         </Typography>
         <form className={classes.form} noValidate>
         <TextField
@@ -68,8 +68,8 @@ export default function RegistFormCliente() {
             margin="normal"
             required
             fullWidth
-            id="Nombre"
-            label="Nombre"
+            id="Nombre_tienda"
+            label="Nombre de la Tienda"
             name="Nombre"
             autoComplete="Nombre"
             autoFocus
@@ -79,10 +79,21 @@ export default function RegistFormCliente() {
             margin="normal"
             required
             fullWidth
-            id="Apellido"
-            label="Apellido"
-            name="Apellido"
-            autoComplete="Apellido"
+            id="Rut"
+            label="Rut"
+            name="Rut"
+            autoComplete="Rut"
+            autoFocus
+          />
+           <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="Telefono"
+            label="Telefono"
+            name="Telefono"
+            autoComplete="Telefono"
             autoFocus
           />
 
@@ -126,11 +137,15 @@ export default function RegistFormCliente() {
             required
             fullWidth
             name="confirm_password"
-            label="Repetir Clave"
+            label="confirmar Clave"
             type="password"
             id="confirm password"
             autoComplete="current-password"
           />
+        
+
+
+        
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"

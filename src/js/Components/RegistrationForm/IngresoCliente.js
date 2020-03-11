@@ -5,16 +5,16 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
+
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom'
-import ModalFormulaCliente from '../Modales/ModalFormulaCliente';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ButtonToolbar from 'react-bootstrap/Button'
+
 
 
 
@@ -63,7 +63,7 @@ export default function IngresoCliente() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Ingresa
+          Ingreso Cliente
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -101,8 +101,6 @@ export default function IngresoCliente() {
           >
             <Link to='/mapa'>Ingresa</Link>
           </Button>
-       
-      
         </form>
       </div>
       <Box mt={8}>
@@ -110,13 +108,11 @@ export default function IngresoCliente() {
       </Box>
       <Button 
       href="#" 
-      variant = "contained"
       color="primary"
       className={classes.button}
       >
-       Forgot password?
+       {"Forgot password"}
        </Button>
     </Container>
-    
   );
 }
