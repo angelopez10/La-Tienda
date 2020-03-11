@@ -1,7 +1,6 @@
 import React from 'react'
-import NavbarTienda from '../Components/Tienda/NavbarTienda';
-import Producto from '../Components/Tienda/Producto';
-import TiendaAdmin from '../Components/TiendaAdmin/TiendaAdmin';
+import NavbarAdmin from '../Components/TiendaAdmin/NavbarAdmin';
+import ProductoAdmin from '../Components/TiendaAdmin/ProductoAdmin';
 
 
 
@@ -9,8 +8,8 @@ import TiendaAdmin from '../Components/TiendaAdmin/TiendaAdmin';
 export default function TiendaAdminView() {
     return (
         <div>
-            <NavbarTienda />
-            <TiendaAdmin />
+            <NavbarAdmin />
+            <ProductoAdmin />
             
         </div>
     )

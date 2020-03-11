@@ -6,8 +6,6 @@ import Tienda from './js/views/Tienda';
 import TiendaAdminView from './js/views/TiendaAdminView';
 
 
-
-
 function App() {
   return (
     <Router>

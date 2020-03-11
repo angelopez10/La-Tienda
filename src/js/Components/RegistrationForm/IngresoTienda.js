@@ -99,7 +99,7 @@ export default function IngresoCliente() {
             color="primary"
             className={classes.submit}
           >
-            <Link to='/mapa'>Ingresa</Link>
+            <Link to='/admin'>Ingresa</Link>
           </Button>
         </form>
       </div>
