@@ -5,15 +5,18 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom'
-
+import ModalFormuTienda from '../Modales/ModalFormuTienda';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ButtonToolbar from 'react-bootstrap/Button'
+
+
 
 
 
@@ -52,8 +55,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function IngresoCliente() {
+export default function IngresoTienda() {
   const classes = useStyles();
+  const [modalShow, setModalShow] = React.useState(false);
+
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -99,20 +105,35 @@ export default function IngresoCliente() {
             color="primary"
             className={classes.submit}
           >
-            <Link to='/admin'>Ingresa</Link>
+            <Link to='/mapa'>Ingresa</Link>
           </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+            <ButtonToolbar>
+                    <Button variant="primary" onClick={() => setModalShow(true)}>
+                      Trabaja con Nosotros
+		                </Button>
+
+                    <ModalFormuTienda
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
+              </ButtonToolbar>
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
       <Box mt={8}>
         <Copyright />
       </Box>
-      <Button 
-      href="#" 
-      color="primary"
-      className={classes.button}
-      >
-       {"Forgot password"}
-       </Button>
     </Container>
   );
 }

@@ -1,8 +1,11 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -17,7 +20,7 @@ function Copyright() {
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
         <Link color="inherit" href="https://material-ui.com/">
-          La tienda
+          La Tienda
         </Link>{' '}
         {new Date().getFullYear()}
         {'.'}
@@ -46,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegistFormTienda() {
+export default function RegistFormCliente() {
   const classes = useStyles();
 
   return (
@@ -60,6 +63,7 @@ export default function RegistFormTienda() {
           Formulario de Registro Cliente
         </Typography>
         <form className={classes.form} noValidate>
+      
         <TextField
             variant="outlined"
             margin="normal"
@@ -139,15 +143,10 @@ export default function RegistFormTienda() {
             id="confirm password"
             autoComplete="current-password"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            <Link to='/mapa'>Registrate</Link>
-          </Button>
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
         </form>
       </div>
       <Box mt={8}>

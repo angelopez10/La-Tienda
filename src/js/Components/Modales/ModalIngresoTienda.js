@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
-import IngresoTienda from "../RegistrationForm/IngresoTienda";
+import IngresoTiendaModal from "../ModalCierre/IngresoTiendaModal";
 
 
 
@@ -18,7 +18,7 @@ export default function ModalIngresoTienda(props) {
 		</Modal.Header>
 		<Modal.Body>
             <p>
-			  <IngresoTienda />
+			  <IngresoTiendaModal />
 		    </p>
 		</Modal.Body>
 	  </Modal>
