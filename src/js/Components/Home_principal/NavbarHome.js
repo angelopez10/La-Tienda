@@ -9,13 +9,13 @@ export default function NavbarHome() {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-lg static-top">
+      <nav class="navbar navbar-expand-lg static-top py-0 bg-color">
         <div class='container'>
-          <Link class="navbar-brand text-link" href="#">
+          <Link class="navbar-brand text-link logo" href="#">
             <img src="http://placehold.it/150x50?text=Logo" alt="" />
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler "
             type="button"
             data-toggle="collapse"
             data-target="#navbarResponsive"
@@ -25,7 +25,7 @@ export default function NavbarHome() {
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-                <ButtonToolbar className='login-button'>
+                <ButtonToolbar className='login-button' >
                   <Button className='login-button' onClick={() => setModalShow(true)}>
                   Ingresa
 		              </Button>

@@ -14,9 +14,9 @@ export default function FooterHome() {
 
   return (
     <div>
-      <footer id="footer">
+      <footer id="footer" className='bg-color'>
         <div className="main-footer widgets-dark typo-light">
-          <div className="container pt-3">
+          <div className="container pt-2">
             <div className="row">
               <div className="col-xs-12 col-sm-6 col-lg-6 ">
                 <div className="widget no-box">
@@ -43,7 +43,7 @@ export default function FooterHome() {
         <div className="footer-copyright">
           <div className="container">
             <div className="row">
-              <div className="col-md-12 text-center">
+              <div className="col-md-12 text-center my-0">
                 <p>Copyright La Tienda © 2020. All rights reserved.</p>
               </div>
             </div>

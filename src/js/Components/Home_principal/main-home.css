@@ -1,7 +1,10 @@
 body {
-  background-color: rgb(235, 235, 235);
-  color: #272525;
+  color: #646464;
   font-family: 'Roboto', sans-serif;
+}
+
+.bg-color {
+  background-color: rgb(255, 249, 249);
 }
 
 .main {
@@ -53,9 +56,11 @@ body {
 }
 
 .login-button {
-  background-color: #ff8d1e;
-  color: #272525;
+  background-color: rgb(255, 141, 30, 0.25);
+  border-left: 1px solid #232424;
+  color: #b8620c;
   border: none;
+
 }
 
 .login-button:hover {
@@ -66,4 +71,10 @@ body {
 
 .footer-button {
   margin-left: 300px;
+}
+
+.logo {
+  border-right: 1px solid #b9bbbb;
+  padding-right: 750px;
+  cursor: pointer;
 }
