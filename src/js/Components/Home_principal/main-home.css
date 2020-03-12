@@ -1,7 +1,6 @@
 body {
-  overflow-y: hidden;
   background-color: rgb(235, 235, 235);
-  color: #555353;
+  color: #272525;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -12,6 +11,8 @@ body {
   background-position: center;
   background-size: cover;
   margin: 0;
+  overflow-y: hidden;
+  opacity: 0.9;
 }
 
 .searchbar {
@@ -53,6 +54,7 @@ body {
 
 .login-button {
   background-color: #ff8d1e;
+  color: #272525;
   border: none;
 }
 
@@ -60,4 +62,8 @@ body {
   background-color: #ff8d1e;
   text-decoration: none;
   border: none;
+}
+
+.footer-button {
+  margin-left: 300px;
 }

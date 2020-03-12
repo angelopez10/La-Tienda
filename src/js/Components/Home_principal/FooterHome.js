@@ -27,8 +27,8 @@ export default function FooterHome() {
                 </div>
               </div>
               <div className='col-xs-12 col-sm-6 col-lg-6  pl-5 '>
-                <ButtonToolbar>
-                  <Button variant="primary" onClick={() => setModalShow(true)}>
+                <ButtonToolbar className='login-button footer-button'>
+                  <Button variant="primary" className='login-button' onClick={() => setModalShow(true)}>
                     Trabaja con Nosotros
 		                </Button>
                   <ModalIngresoTienda
