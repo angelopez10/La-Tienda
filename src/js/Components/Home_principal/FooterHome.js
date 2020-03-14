@@ -1,15 +1,65 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { makeStyles} from '@material-ui/core/styles';
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/Button'
 import ModalIngresoTienda from "../Modales/ModalIngresoTienda";
 
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: '#ff8d1e',
+    border: 0,
+    borderRadius: 5,
+    color: '#f5f3f3',
+    height: 48,
+    padding: '0 30px',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+    },
+    '&:focus': {
+      backgroundColor: '#ff8d1e',
+      boxShadow: 'none'
+    },
+  },
+
+  position: {
+    backgroundColor: '#ff8d1e',
+    border: 0,
+    borderRadius: 50,
+    color: '#f5f3f3',
+    height: 48,
+    padding: '0 30px',
+    marginLeft: '300px',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+    },
+    '&:focus': {
+      backgroundColor: '#ff8d1e',
+      boxShadow: 'none'
+    },
+  },
+  
+});
 
 
 
 export default function FooterHome() {
   const [modalShow, setModalShow] = React.useState(false);
-
+  const classes = useStyles();
 
 
   return (
@@ -27,8 +77,8 @@ export default function FooterHome() {
                 </div>
               </div>
               <div className='col-xs-12 col-sm-6 col-lg-6  pl-5 '>
-                <ButtonToolbar className='login-button footer-button'>
-                  <Button variant="primary" className='login-button' onClick={() => setModalShow(true)}>
+                <ButtonToolbar className={classes.position}>
+                  <Button  className={classes.root} onClick={() => setModalShow(true)}>
                     Trabaja con Nosotros
 		                </Button>
                   <ModalIngresoTienda

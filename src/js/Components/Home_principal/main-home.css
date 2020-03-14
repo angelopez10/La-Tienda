@@ -1,10 +1,10 @@
 body {
-  color: #646464;
+  color: #f5f3f3;
   font-family: 'Roboto', sans-serif;
 }
 
 .bg-color {
-  background-color: rgb(255, 249, 249);
+  background-color: #252525;
 }
 
 .main {
@@ -22,7 +22,7 @@ body {
   margin-bottom: auto;
   margin-top: auto;
   height: 60px;
-  background-color: #ffff;
+  background-color: #252525;
   border-radius: 20px;
   padding: 10px;
 }
@@ -55,26 +55,11 @@ body {
   text-decoration: none;
 }
 
-.login-button {
-  background-color: rgb(255, 141, 30, 0.25);
-  border-left: 1px solid #232424;
-  color: #b8620c;
-  border: none;
 
-}
-
-.login-button:hover {
-  background-color: #ff8d1e;
-  text-decoration: none;
-  border: none;
-}
-
-.footer-button {
-  margin-left: 300px;
-}
-
-.logo {
+.logo-principal {
+  background-image: url(./logo.png);
   border-right: 1px solid #b9bbbb;
   padding-right: 750px;
   cursor: pointer;
+  
 }
