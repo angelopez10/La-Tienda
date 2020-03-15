@@ -1,13 +1,25 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import IngresoCliente from '../RegistrationForm/IngresoCliente';
 import RegistFormCliente from '../RegistrationForm/RegistFormCliente';
+import { Link } from 'react-router-dom'
 
-
-
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        La Tienda
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -31,6 +43,7 @@ const useStyles = makeStyles(theme => ({
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
+      backgroundColor: '#252525'
     },
   },
   stepper: {
@@ -39,10 +52,27 @@ const useStyles = makeStyles(theme => ({
   buttons: {
     display: 'flex',
     justifyContent: 'flex-end',
+    
   },
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
+    backgroundColor: '#ff8d1e',
+    color: '#f5f3f3',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+    },
+    '&:focus': {
+      backgroundColor: '#ff8d1e',
+      boxShadow: 'none'
+    },
   },
 }));
 
@@ -72,7 +102,7 @@ export default function IngresoClienteModal() {
   };
 
   return (
-      <main >
+      <main>
         <Paper >
           <React.Fragment>
             {activeStep === steps.length ? (
@@ -110,6 +140,9 @@ export default function IngresoClienteModal() {
                 </React.Fragment>
               )}
           </React.Fragment>
+          <Box mt={8}>
+            <Copyright />
+          </Box>
         </Paper>
       </main>
   );

@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import logo from '../Home_principal/logo_transparent_background.png';
 
 export default function NavbarTienda() {
     return (
         <div>
             <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-color static-top">
         <div class='container'>
         <Link to='/' >
-        <img src="http://placehold.it/150x50?text=Logo" alt="" />
+        <img src={logo} alt='' className='logo-principal'/>
           
             <button
             class="navbar-toggler"
@@ -26,7 +27,7 @@ export default function NavbarTienda() {
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
                 <a class="nav-link" href="#">
-                  Aqui va el Icon del carrito
+                  Nombre de la tienda
                   <span class="sr-only">(current)</span>
                 </a>
               </li>

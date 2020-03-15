@@ -18,7 +18,7 @@ export default function ModalLogin(props) {
 	  >
 		<Modal.Header closeButton>
 		</Modal.Header>
-		<Modal.Body>
+		<Modal.Body >
             <p>
 			  <IngresoClienteModal />
 		    </p>

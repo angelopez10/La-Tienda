@@ -28,7 +28,7 @@ body {
 }
 
 .search_input {
-  color: white;
+  color: #f5f3f3;
   border: 0;
   outline: 0;
   background: none;
@@ -57,9 +57,7 @@ body {
 
 
 .logo-principal {
-  background-image: url(./logo.png);
   border-right: 1px solid #b9bbbb;
   padding-right: 750px;
   cursor: pointer;
-  
 }
