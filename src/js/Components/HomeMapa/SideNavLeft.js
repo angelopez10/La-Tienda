@@ -75,6 +75,10 @@ const useStyles = makeStyles(theme => ({
     }),
     marginRight: 0,
   },
+  bgColor: {
+    backgroundColor: '#252525',
+    color: '#ff8d1e'
+}
 }));
 
 export default function SideNavLeft() {
@@ -100,17 +104,17 @@ export default function SideNavLeft() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar >
+        <Toolbar className={classes.bgColor}>
           
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="end"
-    
+            
             onClick={handleDrawerOpen}
             className={clsx(open && classes.hide)}
           >
-            <StorefrontIcon />
+            <StorefrontIcon  />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -126,7 +130,7 @@ export default function SideNavLeft() {
       >
        
         <Divider />
-        <List>
+        <List >
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <Link to='/tienda' >

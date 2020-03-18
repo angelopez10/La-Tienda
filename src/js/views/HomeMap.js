@@ -17,7 +17,6 @@ function HomeMap() {
     <div className="App">
       <Sphere />
 
-    <MapNavBar/>
     <Mapa />
     <SideBar />
     <SideNav />

@@ -17,6 +17,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import logo from '../Home_principal/logo_transparent_background.png';
+import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 
 const drawerWidth = 240;
@@ -24,6 +27,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
+        backgroundColor: '#252525'
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -71,6 +75,8 @@ const useStyles = makeStyles(theme => ({
     },
     toolbar: {
         display: 'flex',
+        backgroundColor: '#252525',
+        color: '#ff8d1e',
         alignItems: 'center',
         justifyContent: 'flex-end',
         padding: theme.spacing(0, 1),
@@ -80,6 +86,36 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         padding: theme.spacing(3),
     },
+    button: {
+        backgroundColor: '#ff8d1e',
+        border: 0,
+        borderRadius: 10,
+        color: '#f5f3f3',
+        height: 40,
+        padding: '0 30px',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+    },
+    '&:focus': {
+      backgroundColor: '#ff8d1e',
+      boxShadow: 'none'
+    },
+    },
+    bgColor: {
+        color: '#252525',
+        
+    },
+    Color: {
+        color: '#f7810b',
+    }
+    
 
 }));
 
@@ -113,7 +149,7 @@ export default function SideNav() {
                     [classes.appBarShift]: open,
                 })}
             >
-                <Toolbar> 
+                <Toolbar className={classes.root}> 
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -125,14 +161,16 @@ export default function SideNav() {
                     >
                     <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        La tienda
-                    </Typography>
-                    <nav className="navbar navbar-light  col-10">
+                    <Link to='/' >
+                    <img src={logo} alt=''/>
+                    </Link>
+                    <nav className="navbar navbar-light  bg-color col-10">
                         <p href="#!" className="navbar-brand"></p>
                         <form className="form-inline">
                             <input className="form-control mr-sm-2" style={{ width: '350px' }} id="input" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                            <Button className={classes.button} color='default' type='submit'>
+                                Search
+		                     </Button>
                         </form>
                     </nav> 
                 </Toolbar>
@@ -157,19 +195,19 @@ export default function SideNav() {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>
+                <List className={classes.bgColor}>
                     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemIcon className={classes.Color}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
                 </List>
                 <Divider />
-                <List>
+                <List className={classes.bgColor}>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemIcon className={classes.Color}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}

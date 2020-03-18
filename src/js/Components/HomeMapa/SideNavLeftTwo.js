@@ -74,6 +74,10 @@ const useStyles = makeStyles(theme => ({
     }),
     marginRight: 0,
   },
+  bgColor: {
+    backgroundColor: '#252525',
+    color: '#ff8d1e'
+}
 }));
 
 export default function SideNavLeftTwo() {
@@ -99,7 +103,7 @@ export default function SideNavLeftTwo() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar >
+        <Toolbar className={classes.bgColor}>
           
           <IconButton
             color="inherit"
