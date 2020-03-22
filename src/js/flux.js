@@ -18,8 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			}],
 
-			tiendas: [{
-				tienda1: {
+			tiendas: [ {
 					id: 1,
 					nombre: 'Starbucks',
 					rut: '23232323-3',
@@ -28,23 +27,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					tipo2: 'Café',
 					descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
 					productos: [{
-						producto1: {
+							id: 1,
 							foto: '',
 							nombre: 'Pepsi',
 							stock: '25 u',
 							precio: '$1690'
-						}},
+						},
 						{
-						producto2: {
+							id: 2,
 							foto: '',
 							nombre: 'Coca-Cola',
 							stock: '15 u',
 							precio: '$1890'
 						}
-					}]
-				}},
+					]
+				},
 				{
-				tienda2: {
 					id: 1,
 					nombre: 'Starbucks',
 					rut: '23232323-3',
@@ -53,23 +51,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					tipo2: 'Café',
 					descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
 					productos: [{
-						producto1: {
-							foto: '',
-							nombre: 'Pepsi',
-							stock: '25 u',
-							precio: '$1690'
-						}},
-						{
-						producto2: {
-							foto: '',
-							nombre: 'Coca-Cola',
-							stock: '15 u',
-							precio: '$1890'
-						}
-					}]
-				}},
+						id: 1,
+						foto: '',
+						nombre: 'Pepsi',
+						stock: '25 u',
+						precio: '$1690'
+					},
+					{
+						id: 2,
+						foto: '',
+						nombre: 'Coca-Cola',
+						stock: '15 u',
+						precio: '$1890'
+					}
+				]
+				},
 				{
-				tienda3: {
 					id: 1,
 					nombre: 'Starbucks',
 					rut: '23232323-3',
@@ -78,22 +75,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					tipo2: 'Café',
 					descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
 					productos: [{
-						producto1: {
-							foto: '',
-							nombre: 'Pepsi',
-							stock: '25 u',
-							precio: '$1690'
-						}},
-						{
-						producto2: {
-							foto: '',
-							nombre: 'Coca-Cola',
-							stock: '15 u',
-							precio: '$1890'
-						}
-					}]
+						id: 1,
+						foto: '',
+						nombre: 'Pepsi',
+						stock: '25 u',
+						precio: '$1690'
+					},
+					{
+						id: 2,
+						foto: '',
+						nombre: 'Coca-Cola',
+						stock: '15 u',
+						precio: '$1890'
+					}
+				]
 				}
-			}],
+				],
 
 			carrito: [{
 
