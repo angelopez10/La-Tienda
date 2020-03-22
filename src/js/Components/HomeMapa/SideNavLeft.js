@@ -23,7 +23,7 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -104,7 +104,7 @@ export default function SideNavLeft() {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar className={classes.bgColor}>
+        <Toolbar className={classes.bgColor} >
           
           <IconButton
             color="inherit"
