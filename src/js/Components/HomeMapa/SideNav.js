@@ -6,7 +6,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -15,11 +14,12 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import logo from '../Home_principal/logo_transparent_background.png';
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
+import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
+import LocalBarOutlinedIcon from '@material-ui/icons/LocalBarOutlined';
+import StorefrontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
 
 
 const drawerWidth = 240;
@@ -75,7 +75,6 @@ const useStyles = makeStyles(theme => ({
     },
     toolbar: {
         display: 'flex',
-        backgroundColor: '#252525',
         color: '#ff8d1e',
         alignItems: 'center',
         justifyContent: 'flex-end',
@@ -90,39 +89,39 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#ff8d1e',
         border: 0,
         borderRadius: 10,
-        color: '#f5f3f3',
+        color: 'black',
         height: 40,
         padding: '0 30px',
-    '&:hover': {
-      backgroundColor: '#ff8d1e',
-      borderColor: 'none',
-      boxShadow: 'none',
-    },
-    '&:active': {
-      boxShadow: 'none',
-      backgroundColor: '#ff8d1e',
-      borderColor: 'none',
-    },
-    '&:focus': {
-      backgroundColor: '#ff8d1e',
-      boxShadow: 'none'
-    },
+        '&:hover': {
+            backgroundColor: '#ff8d1e',
+            borderColor: 'none',
+            boxShadow: 'none',
+        },
+        '&:active': {
+            boxShadow: 'none',
+            backgroundColor: '#ff8d1e',
+            borderColor: 'none',
+        },
+        '&:focus': {
+            backgroundColor: '#ff8d1e',
+            boxShadow: 'none'
+        },
     },
     bgColor: {
         color: '#252525',
-        
+
     },
     Color: {
-        color: '#f7810b',
+        color: '#252525',
     }
-    
+
 
 }));
 
 
 export default function SideNav() {
 
-   
+
 
     const classes = useStyles();
     const theme = useTheme();
@@ -136,10 +135,10 @@ export default function SideNav() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-  
+
 
     return (
-    
+
 
         <div className={classes.root} >
             <CssBaseline />
@@ -149,7 +148,7 @@ export default function SideNav() {
                     [classes.appBarShift]: open,
                 })}
             >
-                <Toolbar className={classes.root}> 
+                <Toolbar className={classes.root}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -159,10 +158,10 @@ export default function SideNav() {
                             [classes.hide]: open,
                         })}
                     >
-                    <MenuIcon />
+                        <MenuIcon />
                     </IconButton>
                     <Link to='/' >
-                    <img src={logo} alt=''/>
+                        <img src={logo} alt='' />
                     </Link>
                     <nav className="navbar navbar-light  bg-color col-10">
                         <p href="#!" className="navbar-brand"></p>
@@ -172,11 +171,11 @@ export default function SideNav() {
                                 Search
 		                     </Button>
                         </form>
-                    </nav> 
+                    </nav>
                 </Toolbar>
             </AppBar>
 
-        <Drawer
+            <Drawer
                 variant="permanent"
                 className={clsx(classes.drawer, {
                     [classes.drawerOpen]: open,
@@ -196,23 +195,42 @@ export default function SideNav() {
                 </div>
                 <Divider />
                 <List className={classes.bgColor}>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon className={classes.Color}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+
+                    <ListItem button>
+                    <ListItemIcon className={classes.Color}>
+                    <Divider/>
+                        
+                        <LocalGroceryStoreIcon />
+                        
+                    </ListItemIcon>
+                    <ListItemText primary= 'Viveres' />
+                    </ListItem>
+                    <Divider/>
+                    <ListItem button>
+                    <ListItemIcon className={classes.Color}>
+                    <Divider/>
+                        
+                        <LocalBarOutlinedIcon  />
+                        
+                    </ListItemIcon>
+                    <ListItemText primary= 'Licores' />
+                    </ListItem>
+                    <Divider/>
+                    <ListItem button>
+                    <ListItemIcon className={classes.Color}>
+                    
+                        
+                        <StorefrontOutlinedIcon />
+                        
+                    </ListItemIcon>
+                    <ListItemText primary= 'Tienda en General' />
+                    </ListItem>
+                       
+             
+                           
                 </List>
                 <Divider />
-                <List className={classes.bgColor}>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon className={classes.Color}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-        </Drawer>
+            </Drawer>
         </div>
 
     );
