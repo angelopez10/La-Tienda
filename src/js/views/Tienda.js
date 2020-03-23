@@ -13,7 +13,6 @@ export default function Tienda() {
     const {store: {tiendas}} = useContext(Context);
     return (
         <div>
-            <NavbarTienda />
             <div class="container mt-5">
                 <div class="row">
                     <Categories />
@@ -25,7 +24,7 @@ export default function Tienda() {
                         tiendas.map(tienda => {
                             const productos = tienda.productos.map((producto, i) => {
                                 return (
-                                    <Producto key={i} nombre={producto.nombre} stock={producto.stock} precio={producto.precio}/>
+                                    <Producto key={i} id={producto.id} nombre={producto.nombre} stock={producto.stock} precio={producto.precio}/>
                                 )
                             })
                             return productos

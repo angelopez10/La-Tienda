@@ -51,14 +51,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					tipo2: 'Café',
 					descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
 					productos: [{
-						id: 1,
+						id: 3,
 						foto: '',
 						nombre: 'Pepsi',
 						stock: '25 u',
 						precio: '$1690'
 					},
 					{
-						id: 2,
+						id: 4,
 						foto: '',
 						nombre: 'Coca-Cola',
 						stock: '15 u',
@@ -75,14 +75,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					tipo2: 'Café',
 					descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
 					productos: [{
-						id: 1,
+						id: 5,
 						foto: '',
 						nombre: 'Pepsi',
 						stock: '25 u',
 						precio: '$1690'
 					},
 					{
-						id: 2,
+						id: 6,
 						foto: '',
 						nombre: 'Coca-Cola',
 						stock: '15 u',
@@ -92,14 +92,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				],
 
-			carrito: [{
-
-			}] 
+			carrito: [] 
 
 		},
 		actions: {
+			addToCart: (e) => {
+				const store = getStore();
+				console.log(e.target.id)
+				store.tiendas.map((tienda) => {
+					tienda.productos.map((item) => {
+						console.log(item.id)
+						if (store.carrito.includes(item) === false) {
+								setStore({ carrito: store.carrito.concat(item) })
+							
+						}
+					})
+				})
+				console.log(store.carrito)
+			}
 			
-
         }
 	}
 

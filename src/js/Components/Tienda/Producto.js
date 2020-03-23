@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {Context} from '../../AppContext'
 import './producto.css'
 
 export default function Producto(props) {
+    const {actions} = useContext(Context);
     return (
 
         <div class="col-12 col-md-6 col-lg-4">
@@ -15,9 +17,9 @@ export default function Producto(props) {
                             <p class="btn btn-danger btn-block">{props.precio}</p>
                         </div>
                         <div class="row">
-                            <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                            <p class="btn btn-success btn-block" id= {props.id} onClick={(e) => actions.addToCart(e)}>Add to cart</p>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
