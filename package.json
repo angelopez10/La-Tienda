@@ -26,7 +26,9 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-sidebar": "^3.0.2",
-    "react-transition-group": "^4.3.0"
+    "react-transition-group": "^4.3.0",
+    "supercluster": "^7.0.0",
+    "swr": "^0.1.18"
   },
   "scripts": {
     "start": "react-scripts start",
