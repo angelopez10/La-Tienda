@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Context} from '../../AppContext';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -8,13 +9,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import CloseIcon from '@material-ui/icons/Close';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import { Link } from 'react-router-dom'
 
@@ -55,8 +53,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
+    paddingTop: '60px',
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
   },
   content: {
     flexGrow: 1,
@@ -77,13 +76,18 @@ const useStyles = makeStyles(theme => ({
   bgColor: {
     backgroundColor: '#252525',
     color: '#ff8d1e'
-}
+  },
+  handleLink: {
+    color: 'inherit',
+    textDecoration: 'none'
+  }
 }));
 
 export default function SideNavLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const {store} = useContext(Context);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -127,31 +131,21 @@ export default function SideNavLeft() {
         }}
    
       >
-       
-        <Divider />
-        <List >
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <Link to='/tienda' >
-              <InboxIcon />
-                </Link>: <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose} >
-            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            <CloseIcon/>
           </IconButton>
         </div>
+        <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          <Link to = '/tienda' className={classes.handleLink}>
+          {store.tiendas.map((tienda, i) => (
+            <ListItem button key={i}>
+              <ListItemIcon><StorefrontIcon  /></ListItemIcon>
+              <ListItemText primary={tienda.nombre} />
             </ListItem>
           ))}
+          </Link>
         </List>
       </Drawer>
     </div>

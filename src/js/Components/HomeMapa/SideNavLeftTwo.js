@@ -9,8 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import CloseIcon from '@material-ui/icons/Close';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -53,8 +52,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
+    paddingTop: '60px',
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
   },
   content: {
     flexGrow: 1,
@@ -128,7 +128,7 @@ export default function SideNavLeftTwo() {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose} >
-            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            <CloseIcon />
           </IconButton>
         </div>
         <Divider />
@@ -143,7 +143,7 @@ export default function SideNavLeftTwo() {
             </ListItem>
           ))}
         </List>
-      
+        <button type="button" className="btn btn-success mt-5">Pagar</button>
       </Drawer>
     </div>
   );

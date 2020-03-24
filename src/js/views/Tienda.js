@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import {Context} from '../AppContext';
 import NavbarTienda from '../Components/Tienda/NavbarTienda';
+import '../Components/Tienda/producto.css';
 
 import SideNavLeftTwo from '../Components/HomeMapa/SideNavLeftTwo';
 import Producto from '../Components/Tienda/Producto';
@@ -13,7 +14,8 @@ export default function Tienda() {
     const {store: {tiendas}} = useContext(Context);
     return (
         <div>
-            <div class="container mt-5">
+            <NavbarTienda />
+            <div class="container main-position">
                 <div class="row">
                     <Categories />
                     <div class="col">

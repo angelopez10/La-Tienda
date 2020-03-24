@@ -44,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 				{
 					id: 1,
-					nombre: 'Starbucks',
+					nombre: 'Dunkin Donuts',
 					rut: '23232323-3',
 					email: 'starbucks@gmail.com',
 					tipo: 'tienda',
@@ -68,7 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 				{
 					id: 1,
-					nombre: 'Starbucks',
+					nombre: 'Burger King',
 					rut: '23232323-3',
 					email: 'starbucks@gmail.com',
 					tipo: 'tienda',

@@ -6,7 +6,7 @@ export default function Producto(props) {
     const {actions} = useContext(Context);
     return (
 
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4 ">
             <div class="card card-style mb-2">
                 <img class="card-img-top" src="https://picsum.photos/600/400" alt="Card image cap" />
                 <div class="card-body card-bg">
