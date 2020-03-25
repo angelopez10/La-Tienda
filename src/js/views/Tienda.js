@@ -26,7 +26,7 @@ export default function Tienda() {
                         tiendas.map(tienda => {
                             const productos = tienda.productos.map((producto, i) => {
                                 return (
-                                    <Producto key={i} id={producto.id} nombre={producto.nombre} stock={producto.stock} precio={producto.precio}/>
+                                    <Producto key={i} producto={producto}/>
                                 )
                             })
                             return productos

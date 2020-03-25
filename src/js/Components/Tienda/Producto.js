@@ -10,14 +10,14 @@ export default function Producto(props) {
             <div class="card card-style mb-2">
                 <img class="card-img-top" src="https://picsum.photos/600/400" alt="Card image cap" />
                 <div class="card-body card-bg">
-                    <h4 class="card-title"><a href="product.html" title="View Product">{props.nombre}</a></h4>
-                    <p class="card-text">{props.stock}</p>
+                    <h4 class="card-title"><a href="product.html" title="View Product">{props.producto.nombre}</a></h4>
+                    <p class="card-text">{props.producto.stock}</p>
                     <div class="col">
                         <div class="row">
-                            <p class="btn btn-danger btn-block">{props.precio}</p>
+                            <p class="btn btn-danger btn-block">{props.producto.precio}</p>
                         </div>
                         <div class="row">
-                            <p class="btn btn-success btn-block" id= {props.id} onClick={(e) => actions.addToCart(e)}>Add to cart</p>
+                            <p class="btn btn-success btn-block" id= {props.producto.id} onClick={() => actions.addToCart(props.producto)}>Add to cart</p>
                         </div>
                     </div> 
                 </div>

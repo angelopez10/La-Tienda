@@ -31,14 +31,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 							foto: '',
 							nombre: 'Pepsi',
 							stock: '25 u',
-							precio: '$1690'
+							precio: '$1690',
+							cantidad: 1
 						},
 						{
 							id: 2,
 							foto: '',
 							nombre: 'Coca-Cola',
 							stock: '15 u',
-							precio: '$1890'
+							precio: '$1890',
+							cantidad: 1
 						}
 					]
 				},
@@ -55,14 +57,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 						foto: '',
 						nombre: 'Pepsi',
 						stock: '25 u',
-						precio: '$1690'
+						precio: '$1690',
+						cantidad: 1
 					},
 					{
 						id: 4,
 						foto: '',
 						nombre: 'Coca-Cola',
 						stock: '15 u',
-						precio: '$1890'
+						precio: '$1890',
+						cantidad: 1
 					}
 				]
 				},
@@ -79,35 +83,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 						foto: '',
 						nombre: 'Pepsi',
 						stock: '25 u',
-						precio: '$1690'
+						precio: '$1690',
+						cantidad: 1
 					},
 					{
 						id: 6,
 						foto: '',
 						nombre: 'Coca-Cola',
 						stock: '15 u',
-						precio: '$1890'
+						precio: '$1890',
+						cantidad: 1
 					}
 				]
 				}
 				],
 
-			carrito: [] 
+			carrito: []
 
 		},
 		actions: {
-			addToCart: (e) => {
+			addToCart: (item) => {
 				const store = getStore();
-				console.log(e.target.id)
-				store.tiendas.map((tienda) => {
-					tienda.productos.map((item) => {
-						console.log(item.id)
-						if (store.carrito.includes(item) === false) {
-								setStore({ carrito: store.carrito.concat(item) })
-							
-						}
-					})
-				})
+					console.log(store.carrito.includes(item))
+					
+					
+					if(store.carrito.includes(item) === false){
+						setStore({ carrito: store.carrito.concat({item, cantidad: item.cantidad++}) })
+					}else {
+						setStore({ carrito: store.carrito.concat({item}) })
+					}
+						
+				
 				console.log(store.carrito)
 			}
 			
