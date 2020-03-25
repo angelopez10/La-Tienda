@@ -19,8 +19,6 @@ function HomeMap() {
     <SideNavLeft />
     <SideNavLeftTwo />
 
-
-
     </div>
   );
 }
