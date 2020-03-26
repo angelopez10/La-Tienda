@@ -38,6 +38,33 @@ export default function Mapa(props) {
 
 
 
+  /*
+{categories.map(category => (
+  <button
+    onClick={() => {
+      setFilterCategory(category);
+    }}
+    key={category}
+  >
+    {category}
+  </button>
+))}
+{filterCategory && (
+  <button
+    onClick={() => {
+      setFilterCategory(null);
+    }}
+  >
+    reset
+  </button>
+)}
+*/
+
+
+
+
+
+
 
 
   return (
@@ -89,6 +116,27 @@ export default function Mapa(props) {
 
 
 
+/*
+{categories.map(category => (
+  <button
+    onClick={() => {
+      setFilterCategory(category);
+    }}
+    key={category}
+  >
+    {category}
+  </button>
+))}
+{filterCategory && (
+  <button
+    onClick={() => {
+      setFilterCategory(null);
+    }}
+  >
+    reset
+  </button>
+)}
+*/
 
 
 

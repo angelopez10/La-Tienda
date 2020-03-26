@@ -120,7 +120,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function SideNav() {
+export const SideNav = props => {
+
 
 
 
@@ -128,6 +129,9 @@ export default function SideNav() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const { store, actions } = useContext(Context);
+    const [filterCategory, setFilterCategory] = React.useState(null);
+
+    const categories = [...new Set(store.contacts.map(tienda => tienda.category))]
 
 
     const handleDrawerOpen = () => {
@@ -138,12 +142,12 @@ export default function SideNav() {
         setOpen(false);
     };
     useEffect(() => {
-        actions.setFilter();
+        actions.setFilter(props);
     }, []);
-    
-    console.log(store.cate);
 
-  
+    console.log(categories);
+
+
 
     return (
 
@@ -226,23 +230,33 @@ export default function SideNav() {
                         <ListItemText primary='Tienda en General' />
                     </ListItem>
                     <List>
-                        {store.cate.map((category, index) => (
-                            <ListItem button 
-                            key={category}
-                    
-                            onClick={category => 
-                                actions.setFilter(category)
+                        {categories.map((contact, index) => (
+                            <ListItem button
+                                key={contact}
+                                onClick={e =>{
+                                    setFilterCategory(contact)
+                                    actions.setFilter(e, contact)}
                               }
+                            
                             >
                                 <ListItemIcon>{index % 2 === 0 ? <LocalBarOutlinedIcon /> : <StorefrontOutlinedIcon />}</ListItemIcon>
-                                <ListItemText primary={category} />
+                        <ListItemText primary={contact} />
                             </ListItem>
                         ))}
-                    </List>
+                        {filterCategory && (
+                        <ListItem button
+                            onClick={() => {
+                                setFilterCategory(null)
+                            }}
+                        >
+                            reset
+                        </ListItem>
+                    )}
                 </List>
-                <Divider />
+                </List>
+            <Divider />
             </Drawer>
-        </div>
+        </div >
 
     );
 }

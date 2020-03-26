@@ -145,6 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						setStore({ contacts: data });
+						console.log(data);
 						
 						const  categoria = [...new Set(data.map(tienda => tienda.category))];
 						setStore({ cate: categoria });
@@ -165,11 +166,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			setFilter: (e) => {
+			setFilter: (e, contact) => {
 				const store  = getStore();
-				console.log(e);
+				console.log(contact);
 
-				setStore({ filteredTiendas: e ? store.cate.filter(tienda => tienda.cate === e) : store.contacts });
+				setStore({ filteredTiendas: contact ? store.contacts.filter(tienda => tienda.category === contact) : store.contacts });
+				console.log(store.filteredTiendas)
 
 			},
 
