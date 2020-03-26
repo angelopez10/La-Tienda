@@ -1,6 +1,5 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Mapa from '../Components/HomeMapa/Mapa'
 import SideNav from '../Components/HomeMapa/SideNav'
 import SideNavLeft from '../Components/HomeMapa/SideNavLeft'

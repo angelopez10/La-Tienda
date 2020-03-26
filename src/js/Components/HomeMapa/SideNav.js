@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,6 +20,7 @@ import Button from 'react-bootstrap/Button'
 import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
 import LocalBarOutlinedIcon from '@material-ui/icons/LocalBarOutlined';
 import StorefrontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
+import { Context } from "../../AppContext";
 
 
 const drawerWidth = 240;
@@ -126,6 +127,7 @@ export default function SideNav() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const { store, actions } = useContext(Context);
 
 
     const handleDrawerOpen = () => {
@@ -135,7 +137,13 @@ export default function SideNav() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    useEffect(() => {
+        actions.setFilter();
+    }, []);
+    
+    console.log(store.cate);
 
+  
 
     return (
 
@@ -195,39 +203,42 @@ export default function SideNav() {
                 </div>
                 <Divider />
                 <List className={classes.bgColor}>
-
                     <ListItem button>
-                    <ListItemIcon className={classes.Color}>
-                    <Divider/>
-                        
-                        <LocalGroceryStoreIcon />
-                        
-                    </ListItemIcon>
-                    <ListItemText primary= 'Viveres' />
+                        <ListItemIcon className={classes.Color}>
+                            <Divider />
+                            <LocalGroceryStoreIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Viveres' />
                     </ListItem>
-                    <Divider/>
+                    <Divider />
                     <ListItem button>
-                    <ListItemIcon className={classes.Color}>
-                    <Divider/>
-                        
-                        <LocalBarOutlinedIcon  />
-                        
-                    </ListItemIcon>
-                    <ListItemText primary= 'Licores' />
+                        <ListItemIcon className={classes.Color}>
+                            <Divider />
+                            <LocalBarOutlinedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Licores' />
                     </ListItem>
-                    <Divider/>
+                    <Divider />
                     <ListItem button>
-                    <ListItemIcon className={classes.Color}>
+                        <ListItemIcon className={classes.Color}>
+                            <StorefrontOutlinedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary='Tienda en General' />
+                    </ListItem>
+                    <List>
+                        {store.cate.map((category, index) => (
+                            <ListItem button 
+                            key={category}
                     
-                        
-                        <StorefrontOutlinedIcon />
-                        
-                    </ListItemIcon>
-                    <ListItemText primary= 'Tienda en General' />
-                    </ListItem>
-                       
-             
-                           
+                            onClick={category => 
+                                actions.setFilter(category)
+                              }
+                            >
+                                <ListItemIcon>{index % 2 === 0 ? <LocalBarOutlinedIcon /> : <StorefrontOutlinedIcon />}</ListItemIcon>
+                                <ListItemText primary={category} />
+                            </ListItem>
+                        ))}
+                    </List>
                 </List>
                 <Divider />
             </Drawer>
@@ -235,4 +246,27 @@ export default function SideNav() {
 
     );
 }
+
+
+/*
+{categories.map(category => (
+  <button
+    onClick={() => {
+      setFilterCategory(category);
+    }}
+    key={category}
+  >
+    {category}
+  </button>
+))}
+{filterCategory && (
+  <button
+    onClick={() => {
+      setFilterCategory(null);
+    }}
+  >
+    reset
+  </button>
+)}
+*/
 
