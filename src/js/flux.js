@@ -99,18 +99,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				],
 
 			carrito: []
+			
 
 		},
 		actions: {
+			// Agrega productos al carrito
 			addToCart: (item) => {
 				const store = getStore();
-					console.log(store.carrito.includes(item))
+					let addedItem = store.carrito.concat(item)
+					let existedItem = store.carrito.includes(item)
 					
-					
-					if(store.carrito.includes(item) === false){
-						setStore({ carrito: store.carrito.concat({item, cantidad: item.cantidad++}) })
-					}else {
-						setStore({ carrito: store.carrito.concat({item}) })
+
+					if(existedItem === false){
+						setStore({ carrito: addedItem })
+					}else{
+						
+						setStore({cantidad: item.cantidad += 1 })
+						
 					}
 						
 				
