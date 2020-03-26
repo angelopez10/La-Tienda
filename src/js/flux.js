@@ -1,10 +1,4 @@
-
-
-
-
-
 const getState = ({ getStore, getActions, setStore }) => {
-
 
 	return {
 		// base datos Angel
@@ -126,8 +120,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ carrito: addedItem })
 					}else{
 						setStore({cantidad: item.cantidad += 1 })
-          }
-      }
+				  }
+				  console.log(store.carrito)
+				},
       
 			// Alex Mapa
 
@@ -174,12 +169,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ filteredTiendas: contact ? store.contacts.filter(tienda => tienda.category === contact) : store.contacts });
 				console.log(store.filteredTiendas)
 
-			},
-     }
+			}
+		}
+		}
 	}
-
-
-}
-
-
 export default getState;
