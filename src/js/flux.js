@@ -1,10 +1,4 @@
-
-
-
-
-
 const getState = ({ getStore, getActions, setStore }) => {
-
 
 	return {
 		// base datos Angel
@@ -113,21 +107,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cate: [],
 			filteredTiendas: [],
 
-
-		},
+    },
 		actions: {
-
+      // Agrega productos al carrito
 			addToCart: (item) => {
 				const store = getStore();
-				console.log(store.carrito.includes(item))
-				if (store.carrito.includes(item) === false) {
-					setStore({ carrito: store.carrito.concat({ item, cantidad: item.cantidad++ }) })
-				} else {
-					setStore({ carrito: store.carrito.concat({ item }) })
-				}
-				console.log(store.carrito)
-			},
+					let addedItem = store.carrito.concat(item)
+					let existedItem = store.carrito.includes(item)
+					
 
+					if(existedItem === false){
+						setStore({ carrito: addedItem })
+					}else{
+						setStore({cantidad: item.cantidad += 1 })
+				  }
+				  console.log(store.carrito)
+				},
+      
 			// Alex Mapa
 
 			setMapa: () => {
@@ -178,18 +174,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({filteredTiendas: store.contacts.filter(tienda =>
 						tienda.category === contact) })
 				}
-			},
-
-
-
-
-
+			 }
 
 		}
-	}
-
-
-}
-
+	}};
 
 export default getState;
