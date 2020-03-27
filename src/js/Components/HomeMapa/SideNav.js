@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext} from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -169,6 +169,7 @@ export const SideNav = props => {
                         })}
                     >
                         <MenuIcon />
+                    
                     </IconButton>
                     <Link to='/' >
                         <img src={logo} alt='' />
@@ -179,6 +180,7 @@ export const SideNav = props => {
                             <input className="form-control mr-sm-2" style={{ width: '350px' }} id="input" type="search" placeholder="Search" aria-label="Search" />
                             <Button className={classes.button} color='default' type='submit'>
                                 Search
+                                
 		                     </Button>
                         </form>
                     </nav>
@@ -216,7 +218,7 @@ export const SideNav = props => {
                         </ListItem>
                     )}
                      <Divider />
-                        {categories.map((contact, index) => (
+                     {categories.map((contact, index) => (
                             <ListItem button
                                 key={contact}
                                 onClick={e =>{
@@ -237,25 +239,5 @@ export const SideNav = props => {
 }
 
 
-/*
-{categories.map(category => (
-  <button
-    onClick={() => {
-      setFilterCategory(category);
-    }}
-    key={category}
-  >
-    {category}
-  </button>
-))}
-{filterCategory && (
-  <button
-    onClick={() => {
-      setFilterCategory(null);
-    }}
-  >
-    reset
-  </button>
-)}
-*/
+
 

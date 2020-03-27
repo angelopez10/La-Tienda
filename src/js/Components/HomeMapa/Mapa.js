@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useRef, useContext, useEffect} from "react";
 import { Context } from "../../AppContext";
 //import useSwr from "swr";
 import GoogleMapReact from "google-map-react";
@@ -16,11 +16,23 @@ export default function Mapa(props) {
   const [bounds, setBounds] = useState(null);
   const [zoom, setZoom] = useState(10);
 
+
+  //const url =
+  //"https://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2019-10";
+  //const { data, error } = useSwr(url, fetcher);
+
+
+
   useEffect(() => {
     actions.setMapa();
-
+    //actions.setContacts(data);
   }, []);
  
+
+ 
+ 
+
+
 
   //const [filterCategory, setFilterCategory] = React.useState(null);
 

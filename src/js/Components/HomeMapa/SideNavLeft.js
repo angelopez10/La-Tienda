@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    paddingTop: '60px',
+    paddingTop: '95px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
@@ -87,7 +87,7 @@ export default function SideNavLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const {store} = useContext(Context);
+  const { store } = useContext(Context);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -96,6 +96,17 @@ export default function SideNavLeft() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  
+  const tienda =  store.filteredTiendas.slice(0, 10);
+  console.log(tienda);
+
+
+
+
+
+
+
+
 
   return (
     <div className={classes.root}>
@@ -139,13 +150,15 @@ export default function SideNavLeft() {
         <Divider />
         <List>
           <Link to = '/tienda' className={classes.handleLink}>
-          {store.tiendas.map((tienda, i) => (
+         {tienda.map((tienda, i) => (
             <ListItem button key={i}>
-              <ListItemIcon><StorefrontIcon  /></ListItemIcon>
-              <ListItemText primary={tienda.nombre} />
+              <ListItemIcon>
+                <StorefrontIcon  />
+              </ListItemIcon>
+              <ListItemText primary= {tienda.id} />
             </ListItem>
           ))}
-          </Link>
+          </Link>*/
         </List>
       </Drawer>
     </div>
