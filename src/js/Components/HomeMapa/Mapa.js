@@ -18,7 +18,7 @@ export default function Mapa(props) {
 
   useEffect(() => {
     actions.setMapa();
-//actions.setTienda();
+
   }, []);
  
 

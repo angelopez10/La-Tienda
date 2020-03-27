@@ -145,7 +145,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						setStore({ contacts: data });
-						console.log(data);
+						setStore({ filteredTiendas: data });
 						
 						const  categoria = [...new Set(data.map(tienda => tienda.category))];
 						setStore({ cate: categoria });
@@ -157,22 +157,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			},
+			
 
-			setTienda: () => {
+			setFilt: (e, contact) => {
 				const store  = getStore();
-				//console.log(store.contacts);
-				//const  categoria = [...new Set(store.contacts.map(tienda => tienda.category))];
-				//console.log(categoria);
-
+				console.log(contact);
+				setStore({filteredTiendas: store.contacts })
+				
 			},
+
+		
 
 			setFilter: (e, contact) => {
 				const store  = getStore();
-				console.log(contact);
+		
 
-				setStore({ filteredTiendas: contact ? store.contacts.filter(tienda => tienda.category === contact) : store.contacts });
-				console.log(store.filteredTiendas)
-
+				if (contact === undefined) {
+					setStore({filteredTiendas: store.contacts })
+				} else {
+					setStore({filteredTiendas: store.contacts.filter(tienda =>
+						tienda.category === contact) })
+				}
 			},
 
 

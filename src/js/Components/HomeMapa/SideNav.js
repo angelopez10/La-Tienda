@@ -141,11 +141,9 @@ export const SideNav = props => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    useEffect(() => {
-        actions.setFilter(props);
-    }, []);
+  
 
-    console.log(categories);
+
 
 
 
@@ -207,52 +205,29 @@ export const SideNav = props => {
                 </div>
                 <Divider />
                 <List className={classes.bgColor}>
-                    <ListItem button>
-                        <ListItemIcon className={classes.Color}>
-                            <Divider />
+                    <Divider />
+                    {filterCategory && (
+                        <ListItem button
+                            onClick={e => actions.setFilter(e, undefined)
+                            }
+                        >
                             <LocalGroceryStoreIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Viveres' />
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemIcon className={classes.Color}>
-                            <Divider />
-                            <LocalBarOutlinedIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Licores' />
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemIcon className={classes.Color}>
-                            <StorefrontOutlinedIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Tienda en General' />
-                    </ListItem>
-                    <List>
+                            <ListItemText primary="Tiendas en General" />
+                        </ListItem>
+                    )}
+                     <Divider />
                         {categories.map((contact, index) => (
                             <ListItem button
                                 key={contact}
                                 onClick={e =>{
                                     setFilterCategory(contact)
                                     actions.setFilter(e, contact)}
-                              }
-                            
+                              }               
                             >
                                 <ListItemIcon>{index % 2 === 0 ? <LocalBarOutlinedIcon /> : <StorefrontOutlinedIcon />}</ListItemIcon>
-                        <ListItemText primary={contact} />
-                            </ListItem>
+                                <ListItemText primary={contact} />
+                            </ListItem >
                         ))}
-                        {filterCategory && (
-                        <ListItem button
-                            onClick={() => {
-                                setFilterCategory(null)
-                            }}
-                        >
-                            reset
-                        </ListItem>
-                    )}
-                </List>
                 </List>
             <Divider />
             </Drawer>
