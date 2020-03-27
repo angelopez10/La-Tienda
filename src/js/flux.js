@@ -1,3 +1,9 @@
+import PlacesAutocomplete, {
+	geocodeByAddress,
+	getLatLng
+  } from "react-places-autocomplete";
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -142,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						setStore({ contacts: data });
 						setStore({ filteredTiendas: data });
-						console.log(data);
+					
 						
 						const  categoria = [...new Set(data.map(tienda => tienda.category))];
 						setStore({ cate: categoria });
@@ -167,6 +173,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						tienda.category === contact) })
 				}
 			 },
+
+			coordenaasMapa: (e, value)=> {
+
+				
+				
+			},
 
 		}}
 	};

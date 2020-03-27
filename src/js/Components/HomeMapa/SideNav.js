@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -21,6 +21,10 @@ import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
 import LocalBarOutlinedIcon from '@material-ui/icons/LocalBarOutlined';
 import StorefrontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
 import { Context } from "../../AppContext";
+import PlacesAutocomplete, {
+    geocodeByAddress,
+    getLatLng
+} from "react-places-autocomplete";
 
 
 const drawerWidth = 240;
@@ -130,6 +134,12 @@ export const SideNav = props => {
     const [open, setOpen] = React.useState(false);
     const { store, actions } = useContext(Context);
     const [filterCategory, setFilterCategory] = React.useState(null);
+    const [address, setAddress] = React.useState("");
+    const [coordinates, setCoordinates] = React.useState({
+        lat: null,
+        lng: null
+      });
+   
 
     const categories = [...new Set(store.contacts.map(tienda => tienda.category))]
 
@@ -141,7 +151,21 @@ export const SideNav = props => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-  
+
+    useEffect(() => {
+        document.title = `You clicked ${count} times`;
+      }, [coordinates]);
+
+
+    const handleSelect = async value => {
+        const results = await geocodeByAddress(value);
+       
+        const latLng = await getLatLng(results[0]);
+        
+        setAddress(value);
+        setCoordinates(latLng);
+    };
+
 
 
 
@@ -169,7 +193,7 @@ export const SideNav = props => {
                         })}
                     >
                         <MenuIcon />
-                    
+
                     </IconButton>
                     <Link to='/' >
                         <img src={logo} alt='' />
@@ -177,11 +201,35 @@ export const SideNav = props => {
                     <nav className="navbar navbar-light  bg-color col-10">
                         <p href="#!" className="navbar-brand"></p>
                         <form className="form-inline">
-                            <input className="form-control mr-sm-2" style={{ width: '350px' }} id="input" type="search" placeholder="Search" aria-label="Search" />
-                            <Button className={classes.button} color='default' type='submit'>
-                                Search
-                                
-		                     </Button>
+                           
+                                    <PlacesAutocomplete
+                                        value={address}
+                                        onChange={setAddress}
+                                        onSelect={handleSelect}
+                                        
+                                    >
+                                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                            <div className="form-control mr-sm-2"  style={{  paddingTop: '3px', margin:0 }} >
+                                                <input {...getInputProps({ placeholder: "Direccion" })}  style={{ width: '360px', marginLeft:0 }} id="input" type="search"/>
+                                            <div>
+                                                    {loading ? <div>...loading</div> : null}
+
+                                                    {suggestions.map(suggestion => {
+                                                        const style = {
+                                                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
+                                                        };
+
+                                                        return (
+                                                            <div {...getSuggestionItemProps(suggestion, { style })}>
+                                                                {suggestion.description}
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </PlacesAutocomplete>
+                            
                         </form>
                     </nav>
                 </Toolbar>
@@ -217,21 +265,22 @@ export const SideNav = props => {
                             <ListItemText primary="Tiendas en General" />
                         </ListItem>
                     )}
-                     <Divider />
-                     {categories.map((contact, index) => (
-                            <ListItem button
-                                key={contact}
-                                onClick={e =>{
-                                    setFilterCategory(contact)
-                                    actions.setFilter(e, contact)}
-                              }               
-                            >
-                                <ListItemIcon>{index % 2 === 0 ? <LocalBarOutlinedIcon /> : <StorefrontOutlinedIcon />}</ListItemIcon>
-                                <ListItemText primary={contact} />
-                            </ListItem >
-                        ))}
+                    <Divider />
+                    {categories.map((contact, index) => (
+                        <ListItem button
+                            key={contact}
+                            onClick={e => {
+                                setFilterCategory(contact)
+                                actions.setFilter(e, contact)
+                            }
+                            }
+                        >
+                            <ListItemIcon>{index % 2 === 0 ? <LocalBarOutlinedIcon /> : <StorefrontOutlinedIcon />}</ListItemIcon>
+                            <ListItemText primary={contact} />
+                        </ListItem >
+                    ))}
                 </List>
-            <Divider />
+                <Divider />
             </Drawer>
         </div >
 
