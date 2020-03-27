@@ -9,9 +9,14 @@ import SideNavLeftTwo from '../Components/HomeMapa/SideNavLeftTwo'
 
 
 
+
 function HomeMap() {
+ 
+
+ 
   return (
     <div className="App">
+
 
     <Mapa />
     <SideNav />

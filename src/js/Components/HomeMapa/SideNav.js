@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext} from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -141,11 +141,9 @@ export const SideNav = props => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    useEffect(() => {
-        actions.setFilter(props);
-    }, []);
+  
 
-    console.log(categories);
+
 
 
 
@@ -171,6 +169,7 @@ export const SideNav = props => {
                         })}
                     >
                         <MenuIcon />
+                    
                     </IconButton>
                     <Link to='/' >
                         <img src={logo} alt='' />
@@ -181,6 +180,7 @@ export const SideNav = props => {
                             <input className="form-control mr-sm-2" style={{ width: '350px' }} id="input" type="search" placeholder="Search" aria-label="Search" />
                             <Button className={classes.button} color='default' type='submit'>
                                 Search
+                                
 		                     </Button>
                         </form>
                     </nav>
@@ -207,52 +207,29 @@ export const SideNav = props => {
                 </div>
                 <Divider />
                 <List className={classes.bgColor}>
-                    <ListItem button>
-                        <ListItemIcon className={classes.Color}>
-                            <Divider />
+                    <Divider />
+                    {filterCategory && (
+                        <ListItem button
+                            onClick={e => actions.setFilter(e, undefined)
+                            }
+                        >
                             <LocalGroceryStoreIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Viveres' />
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemIcon className={classes.Color}>
-                            <Divider />
-                            <LocalBarOutlinedIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Licores' />
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemIcon className={classes.Color}>
-                            <StorefrontOutlinedIcon />
-                        </ListItemIcon>
-                        <ListItemText primary='Tienda en General' />
-                    </ListItem>
-                    <List>
-                        {categories.map((contact, index) => (
+                            <ListItemText primary="Tiendas en General" />
+                        </ListItem>
+                    )}
+                     <Divider />
+                     {categories.map((contact, index) => (
                             <ListItem button
                                 key={contact}
                                 onClick={e =>{
                                     setFilterCategory(contact)
                                     actions.setFilter(e, contact)}
-                              }
-                            
+                              }               
                             >
                                 <ListItemIcon>{index % 2 === 0 ? <LocalBarOutlinedIcon /> : <StorefrontOutlinedIcon />}</ListItemIcon>
-                        <ListItemText primary={contact} />
-                            </ListItem>
+                                <ListItemText primary={contact} />
+                            </ListItem >
                         ))}
-                        {filterCategory && (
-                        <ListItem button
-                            onClick={() => {
-                                setFilterCategory(null)
-                            }}
-                        >
-                            reset
-                        </ListItem>
-                    )}
-                </List>
                 </List>
             <Divider />
             </Drawer>
@@ -262,25 +239,5 @@ export const SideNav = props => {
 }
 
 
-/*
-{categories.map(category => (
-  <button
-    onClick={() => {
-      setFilterCategory(category);
-    }}
-    key={category}
-  >
-    {category}
-  </button>
-))}
-{filterCategory && (
-  <button
-    onClick={() => {
-      setFilterCategory(null);
-    }}
-  >
-    reset
-  </button>
-)}
-*/
+
 
