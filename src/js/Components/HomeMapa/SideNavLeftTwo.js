@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {Context} from '../../AppContext';
+import { Link } from 'react-router-dom'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -12,14 +13,17 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import DeleteIcon from '@material-ui/icons/Delete';
+import '../Tienda/producto.css'
+
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -52,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
-    paddingTop: '60px',
+    paddingTop: '80px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
@@ -82,7 +86,7 @@ export default function SideNavLeftTwo() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const {store} = useContext(Context);
+  const {store, actions} = useContext(Context);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -131,19 +135,24 @@ export default function SideNavLeftTwo() {
             <CloseIcon />
           </IconButton>
         </div>
-        <Divider />
         <List>
           {
             store.carrito.length > 0 &&
             store.carrito.map((producto, index) => (
-            <ListItem button key={index}>
+            <ListItem key={index}>
               <ListItemIcon><img class="card-img-top" src="https://picsum.photos/40/40" alt="Card image cap" /></ListItemIcon>
-              <ListItemText primary={producto.nombre} />
+              <div className='row'>
+              <div className='col-12 ml-3 mt-4'>
+              <h6>{producto.nombre} | ${producto.precio}</h6>
+              <p>Cantidad: {producto.cantidad}</p>
+              <Link onClick={() => actions.deleteFromCart(producto)}>Eliminar <DeleteIcon /></Link>
+              </div>
+              </div>
               <Divider />
             </ListItem>
           ))}
         </List>
-        <button type="button" className="btn btn-success mt-5">Pagar</button>
+        <Link to='/checkout' type="button" className="btn btn-success mt-5" >Pagar (Total: ${store.total})</Link>
       </Drawer>
     </div>
   );

@@ -5,6 +5,7 @@ import HomeMap from './js/views/HomeMap';
 import Tienda from './js/views/Tienda';
 import TiendaAdminView from './js/views/TiendaAdminView';
 import injectContext from './js/AppContext';
+import CheckoutView from './js/views/CheckoutView';
 
 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='/mapa' exact component={HomeMap} />
           <Route path='/tienda' exact component={Tienda} />
           <Route path='/admin' exact component={TiendaAdminView} />
+          <Route path='/checkout' exact component={CheckoutView} />
         </Switch>
       
       </Router>

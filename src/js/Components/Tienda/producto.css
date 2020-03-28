@@ -24,3 +24,17 @@
     margin-top: 100px;
 }
 
+.button-font {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(233, 232, 232);
+    background-color: #ff8d1e;
+}
+
+.button-font:hover {
+
+    font-size: 14px;
+    background-color: #ff8d1e;
+}
+
+
