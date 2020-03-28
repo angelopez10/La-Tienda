@@ -137,14 +137,14 @@ export default function SideNavLeftTwo() {
         </div>
         <List>
           {
-            store.carrito.map((producto, index) => (
+            store.carrito.map((item, index) => (
               <ListItem key={index}>
                 <ListItemIcon><img class="card-img-top" src="https://picsum.photos/40/40" alt="Card image cap" /></ListItemIcon>
                 <div className='row'>
                   <div className='col-12 ml-3 mt-4'>
-                    <h6>{producto.nombre} | ${producto.precio}</h6>
-                    <p>Cantidad: {producto.cantidad}</p>
-                    <Link onClick={() => actions.deleteFromCart(producto)}>Eliminar <DeleteIcon /></Link>
+                    <h6>{item.producto.nombre} | ${item.producto.precio}</h6>
+                    <p>Cantidad: {item.cantidad}</p>
+                    <Link onClick={() => actions.deleteFromCart(item.producto)}>Eliminar <DeleteIcon /></Link>
                   </div>
                 </div>
                 <Divider />
