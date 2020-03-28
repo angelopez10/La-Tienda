@@ -1,3 +1,4 @@
+
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -113,6 +114,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			contacts: [],
 			cate: [],
 			filteredTiendas: [],
+			mapLat: [],
+			mapLng: []
 
     },
 		actions: {
@@ -162,7 +165,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						setStore({ contacts: data });
 						setStore({ filteredTiendas: data });
-						console.log(data);
+					
 						
 						const  categoria = [...new Set(data.map(tienda => tienda.category))];
 						setStore({ cate: categoria });
@@ -188,7 +191,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			 },
 
-		}}
+			coordenaasMapa: (e, value)=> {
+				setStore({mapLat: e.lat})
+				setStore({mapLng: e.lng})
+			}
+			},
+
+		}
 	};
 
 export default getState;

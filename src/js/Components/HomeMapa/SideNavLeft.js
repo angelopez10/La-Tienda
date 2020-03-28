@@ -98,7 +98,7 @@ export default function SideNavLeft() {
   };
   
   const tienda =  store.filteredTiendas.slice(0, 10);
-  console.log(tienda);
+
 
 
 
@@ -158,7 +158,7 @@ export default function SideNavLeft() {
               <ListItemText primary= {tienda.id} />
             </ListItem>
           ))}
-          </Link>*/
+          </Link>
         </List>
       </Drawer>
     </div>
