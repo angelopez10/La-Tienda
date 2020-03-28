@@ -14,7 +14,13 @@ export default function Tienda() {
     const {store: {tiendas}} = useContext(Context);
     return (
         <div>
-            <NavbarTienda />
+            {
+
+                tiendas.length > 0 &&
+                tiendas.map(tienda => {
+                   return <NavbarTienda tienda={tienda}/>
+                })
+            }
             <div class="container main-position">
                 <div class="row">
                     <Categories />

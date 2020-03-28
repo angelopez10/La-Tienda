@@ -33,16 +33,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					id: 1,
 					foto: '',
 					nombre: 'Pepsi',
+					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
-					precio: '$1690',
+					precio: '1690',
 					cantidad: 1
 				},
 				{
 					id: 2,
 					foto: '',
 					nombre: 'Coca-Cola',
+					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '15 u',
-					precio: '$1890',
+					precio: '1890',
 					cantidad: 1
 				}
 				]
@@ -59,16 +61,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					id: 3,
 					foto: '',
 					nombre: 'Pepsi',
+					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
-					precio: '$1690',
+					precio: '1690',
 					cantidad: 1
 				},
 				{
 					id: 4,
 					foto: '',
 					nombre: 'Coca-Cola',
+					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '15 u',
-					precio: '$1890',
+					precio: '1890',
 					cantidad: 1
 				}
 				]
@@ -85,16 +89,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					id: 5,
 					foto: '',
 					nombre: 'Pepsi',
+					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
-					precio: '$1690',
+					precio: '1690',
 					cantidad: 1
 				},
 				{
 					id: 6,
 					foto: '',
 					nombre: 'Coca-Cola',
+					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '15 u',
-					precio: '$1890',
+					precio: '1890',
 					cantidad: 1
 				}
 				]
@@ -102,6 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 
 			carrito: [],
+			total: 0,
 
 			// Alex mapa
 			contacts: [],
@@ -112,20 +119,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 
     },
 		actions: {
-      // Agrega productos al carrito
+      		// Agrega productos al carrito y entrega el valor total a pagar
 			addToCart: (item) => {
 				const store = getStore();
 					let addedItem = store.carrito.concat(item)
 					let existedItem = store.carrito.includes(item)
-					
 
 					if(existedItem === false){
-						setStore({ carrito: addedItem })
+						let newTotal = parseInt(store.total) + parseInt(item.precio)
+						setStore({ carrito: addedItem, total: newTotal })
 					}else{
-						setStore({cantidad: item.cantidad += 1 })
-				  }
-				  console.log(store.carrito)
-				},
+						let newTotal = parseInt(store.total) + parseInt(item.precio)
+						setStore({cantidad: item.cantidad += 1, total: newTotal })
+				  	}
+				console.log(store.total)
+			},
+
+			//Elimina el producto del carrito
+			deleteFromCart: (item) => {
+				const store = getStore();
+	
+				let newItems = store.carrito.splice(item, 1)
+				let newTotal = parseInt(store.total) - parseInt(item.precio)
+				let newCantidad = item.cantidad -= 1
+				setStore({carrito: newItems, total: newTotal, cantidad: newCantidad})
+
+				console.log(store.carrito)
+			},
       
 			// Alex Mapa
 

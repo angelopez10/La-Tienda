@@ -103,7 +103,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function NavbarTienda() {
+export default function NavbarTienda(props) {
   const classes = useStyles();
   const [open] = React.useState(false);
 
@@ -120,7 +120,7 @@ export default function NavbarTienda() {
               <Link to='/' >
                 <img src={logo} alt='' className='logo-principal'/>
               </Link>
-              <p>Nombre de la tienda</p>
+              <h4 className='pl-5'>{props.tienda.nombre}</h4>
           </Toolbar>
       </AppBar>
       </div>
