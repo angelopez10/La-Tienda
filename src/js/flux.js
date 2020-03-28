@@ -1,8 +1,3 @@
-import PlacesAutocomplete, {
-	geocodeByAddress,
-	getLatLng
-  } from "react-places-autocomplete";
-
 
 const getState = ({ getStore, getActions, setStore }) => {
 
@@ -112,6 +107,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			contacts: [],
 			cate: [],
 			filteredTiendas: [],
+			mapLat: [],
+			mapLng: []
 
     },
 		actions: {
@@ -175,12 +172,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			 },
 
 			coordenaasMapa: (e, value)=> {
-
-				
-				
+				setStore({mapLat: e.lat})
+				setStore({mapLng: e.lng})
+			}
 			},
 
-		}}
+		}
 	};
 
 export default getState;

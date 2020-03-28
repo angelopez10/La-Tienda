@@ -153,8 +153,8 @@ export const SideNav = props => {
     };
 
     useEffect(() => {
-        document.title = `You clicked ${count} times`;
-      }, [coordinates]);
+        actions.coordenaasMapa(coordinates);
+      }, [coordinates.lat]);
 
 
     const handleSelect = async value => {

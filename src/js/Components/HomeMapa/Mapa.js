@@ -1,6 +1,6 @@
 import React, { useState, useRef, useContext, useEffect} from "react";
 import { Context } from "../../AppContext";
-import GoogleMapReact from "google-map-react";
+import GoogleMapReact, {DirectionsRenderer } from "google-map-react";
 import "./Mapa.css";
 
 
@@ -20,32 +20,36 @@ export default function Mapa(props) {
 
 
 
+
   useEffect(() => {
     actions.setMapa();
   }, []);
 
-  useEffect(() => {
-  document.title = `You clicked ${count} times`;
-}, [count]);
+
+  console.log(store.mapLat, store.mapLng );
+
+  
+
+
+  
+  
+
 
 
 
  
-
-
-
-
-  // kkkkkk
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
 
       <GoogleMapReact
         bootstrapURLKeys={{ key: 'AIzaSyDrJx4thHq6csImpMoRlB8qy00-GQuhIQw' }}
-        defaultCenter={{ lat: 52.6372, lng: -1.135171 }}
+        defaultCenter={{ lat: 52.636879, lng: -1.139759 }}
         defaultZoom={15}
         
+        
         yesIWantToUseGoogleMapApiInternals
+        position= {{ lat:store.mapLat, lng: store.mapLng }}
         onGoogleApiLoaded={({ map }) => {
           mapRef.current = map;
         }}
@@ -58,6 +62,7 @@ export default function Mapa(props) {
             bounds.nw.lat
           ]);
         }}
+        
       >
       
        
@@ -75,13 +80,19 @@ export default function Mapa(props) {
                 const expansionZoom = 17;
                 mapRef.current.setZoom(expansionZoom);
                 mapRef.current.panTo({ lat: parseFloat(tienda.location.latitude), lng: parseFloat(tienda.location.longitude) });
-              }}>
+              }}
+              
+              >
               <img src="/favicon.ico" alt="crime" />
             </button>
           
           </Marker>
         ))}
-      
+         
+       
+        
+       
+
       </GoogleMapReact>
     </div>
   );
