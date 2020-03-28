@@ -16,7 +16,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import logo from '../Home_principal/logo_transparent_background.png';
 import { Link } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
 import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
 import LocalBarOutlinedIcon from '@material-ui/icons/LocalBarOutlined';
 import StorefrontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
