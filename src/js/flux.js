@@ -1,3 +1,4 @@
+import { set } from "animejs";
 
 const getState = ({ getStore, getActions, setStore }) => {
 
@@ -133,10 +134,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			filteredTiendas: [],
 			mapLat: [],
 			mapLng: [],
-			checked: [],
-			value: []
+			checked:[],
+			value:[],
+			coordenadas: []
 
-		},
+		
+    },
 		actions: {
 			// Agrega productos al carrito y entrega el valor total a pagar
 			addToCart: producto => {
@@ -249,9 +252,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			coordenaasMapa: (e, value) => {
-				setStore({ mapLat: e.lat })
-				setStore({ mapLng: e.lng })
+			coordenaasMapa: (e, value)=> {
+				setStore({mapLat: e.lat})
+				setStore({mapLng: e.lng})
+				setStore({coordenadas:e})
+
 			},
 
 			toggleChecked: (e) => {

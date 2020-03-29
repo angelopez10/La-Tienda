@@ -6,7 +6,11 @@ import LigthMode from './LigthMode';
 
 
 export default function MapaMapBoxLigth(props) {
+
+
   const [viewport, setViewport] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
     latitude: 52.636879,
     longitude: -1.139759,
     width: "100vw",
@@ -33,7 +37,23 @@ export default function MapaMapBoxLigth(props) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setViewport({
+        ...viewport,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
+
  
+  
+
 
   return (
     <div>
@@ -44,6 +64,7 @@ export default function MapaMapBoxLigth(props) {
         onViewportChange={viewport => {
           setViewport(viewport);
         }}
+        
       >
         <LigthMode />
         {store.filteredTiendas.map(tienda => (
