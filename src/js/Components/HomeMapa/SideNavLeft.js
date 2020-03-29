@@ -105,7 +105,6 @@ export default function SideNavLeft() {
       <CssBaseline />
       <AppBar
         style={{width:"7%", transform: 'translateY(104px)'}}
-        
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -116,7 +115,6 @@ export default function SideNavLeft() {
             color="inherit"
             aria-label="open drawer"
             edge="end"
-            
             onClick={handleDrawerOpen}
             className={clsx(open && classes.hide)}
           >
@@ -132,7 +130,6 @@ export default function SideNavLeft() {
         classes={{
           paper: classes.drawerPaper,
         }}
-   
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose} >
