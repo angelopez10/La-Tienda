@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {Context} from '../../AppContext';
+import React, { useContext } from 'react';
+import { Context } from '../../AppContext';
 import { Link } from 'react-router-dom'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -23,7 +23,7 @@ const drawerWidth = 280;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    
+
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -79,14 +79,14 @@ const useStyles = makeStyles(theme => ({
   bgColor: {
     backgroundColor: '#252525',
     color: '#ff8d1e'
-}
+  }
 }));
 
 export default function SideNavLeftTwo() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const {store, actions} = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,19 +100,19 @@ export default function SideNavLeftTwo() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{width:"7%", transform: 'translateY(169px)'}}
-        
+        style={{ width: "7%", transform: 'translateY(169px)' }}
+
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
         <Toolbar className={classes.bgColor}>
-          
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="end"
-    
+
             onClick={handleDrawerOpen}
             className={clsx(open && classes.hide)}
           >
@@ -128,7 +128,7 @@ export default function SideNavLeftTwo() {
         classes={{
           paper: classes.drawerPaper,
         }}
-   
+
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose} >
@@ -137,20 +137,19 @@ export default function SideNavLeftTwo() {
         </div>
         <List>
           {
-            store.carrito.length > 0 &&
-            store.carrito.map((producto, index) => (
-            <ListItem key={index}>
-              <ListItemIcon><img class="card-img-top" src="https://picsum.photos/40/40" alt="Card image cap" /></ListItemIcon>
-              <div className='row'>
-              <div className='col-12 ml-3 mt-4'>
-              <h6>{producto.nombre} | ${producto.precio}</h6>
-              <p>Cantidad: {producto.cantidad}</p>
-              <Link onClick={() => actions.deleteFromCart(producto)}>Eliminar <DeleteIcon /></Link>
-              </div>
-              </div>
-              <Divider />
-            </ListItem>
-          ))}
+            store.carrito.map((item, index) => (
+              <ListItem key={index}>
+                <ListItemIcon><img class="card-img-top" src="https://picsum.photos/40/40" alt="Card image cap" /></ListItemIcon>
+                <div className='row'>
+                  <div className='col-12 ml-3 mt-4'>
+                    <h6>{item.producto.nombre} | ${item.producto.precio}</h6>
+                    <p>Cantidad: {item.cantidad}</p>
+                    <Link onClick={() => actions.deleteFromCart(item.producto)}>Eliminar <DeleteIcon /></Link>
+                  </div>
+                </div>
+                <Divider />
+              </ListItem>
+            ))}
         </List>
         <Link to='/checkout' type="button" className="btn btn-success mt-5" >Pagar (Total: ${store.total})</Link>
       </Drawer>

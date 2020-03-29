@@ -36,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
-					cantidad: 1
+					
 				},
 				{
 					id: 2,
@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '15 u',
 					precio: '1890',
-					cantidad: 1
+					
 				}
 				]
 			},
@@ -64,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
-					cantidad: 1
+					
 				},
 				{
 					id: 4,
@@ -73,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '15 u',
 					precio: '1890',
-					cantidad: 1
+					
 				}
 				]
 			},
@@ -92,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
-					cantidad: 1
+					
 				},
 				{
 					id: 6,
@@ -101,7 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '15 u',
 					precio: '1890',
-					cantidad: 1
+					
 				}
 				]
 			}
@@ -122,31 +122,63 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
 		actions: {
       		// Agrega productos al carrito y entrega el valor total a pagar
-			addToCart: (item) => {
-				const store = getStore();
-					let addedItem = store.carrito.concat(item)
-					let existedItem = store.carrito.includes(item)
-
-					if(existedItem === false){
-						let newTotal = parseInt(store.total) + parseInt(item.precio)
-						setStore({ carrito: addedItem, total: newTotal })
-					}else{
-						let newTotal = parseInt(store.total) + parseInt(item.precio)
-						setStore({cantidad: item.cantidad += 1, total: newTotal })
-				  	}
-				console.log(store.total)
-			},
-
-			//Elimina el producto del carrito
-			deleteFromCart: (item) => {
-				const store = getStore();
-	
-				let newItems = store.carrito.splice(item, 1)
-				let newTotal = parseInt(store.total) - parseInt(item.precio)
-				let newCantidad = item.cantidad -= 1
-				setStore({carrito: newItems, total: newTotal, cantidad: newCantidad})
-
-				console.log(store.carrito)
+			  addToCart: producto => {
+                const store = getStore();
+                let {carrito} = store;
+                let existe = false;
+                let newtotalCarrito = 0;
+                console.log(producto);
+                console.log(carrito);
+                let newCarrito = carrito.map((item) => {
+                    if(JSON.stringify(item.producto) === JSON.stringify(producto)){
+                        item.cantidad += 1;
+                        existe = true;
+                        return item;
+                    }
+                    return item;
+                })
+                if(!existe){
+                    newCarrito.push({
+                        id: carrito.length + 1,
+                        producto: producto,
+                        cantidad: 1
+                    })
+                }
+                newCarrito.map((item) => {
+                    newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+                })
+                setStore({
+                    carrito: newCarrito,
+                    total: newtotalCarrito
+                })
+            },
+            deleteFromCart: producto => {
+                const store = getStore();
+                let {carrito} = store;
+                let newtotalCarrito = 0;
+                let pos = null;
+                let newCarrito = carrito.map((item, i) => {
+                    if(JSON.stringify(item.producto) === JSON.stringify(producto)){
+                        if(item.cantidad === 1){
+                            pos = i;
+                            item.cantidad -= 1;
+                        }else{
+                            item.cantidad -= 1;
+                        }
+                        return item;
+                    }
+                    return item;
+                })
+                if(pos !== null){
+                    newCarrito.splice(pos, 1);
+                }
+                newCarrito.map((item) => {
+                    newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+                })
+                setStore({
+                    carrito: newCarrito,
+                    total: newtotalCarrito
+                })
 			},
       
 			// Alex Mapa
