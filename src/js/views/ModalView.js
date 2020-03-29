@@ -12,7 +12,6 @@ import MyVerticallyCenteredModal from '../Components/Modales/Modal';
 
 function ModalView() {
 	const [modalShow, setModalShow] = React.useState(false);
-  
 	return (
 	  <ButtonToolbar>
 		<Button variant="primary" onClick={() => setModalShow(true)}>
