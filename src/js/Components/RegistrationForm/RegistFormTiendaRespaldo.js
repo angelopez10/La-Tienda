@@ -140,10 +140,6 @@ export default function RegistFormCliente() {
             id="confirm password"
             autoComplete="current-password"
           />
-        
-
-
-        
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
