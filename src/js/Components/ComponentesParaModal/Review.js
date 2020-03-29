@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { Context } from '../../AppContext';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -35,6 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Review() {
   const classes = useStyles();
+  const { store, actions } = useContext(Context);
 
   return (
     <React.Fragment>
@@ -42,16 +44,16 @@ export default function Review() {
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map(product => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+        {store.carrito.map(producto => (
+          <ListItem className={classes.listItem} key={producto.producto.nombre}>
+            <ListItemText primary={producto.producto.nombre} secondary={`Cantidad: ${producto.cantidad}`} />
+            <Typography variant="body2">${producto.producto.precio}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            ${store.total}
           </Typography>
         </ListItem>
       </List>
