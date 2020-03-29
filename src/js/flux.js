@@ -1,3 +1,4 @@
+import { set } from "animejs";
 
 const getState = ({ getStore, getActions, setStore }) => {
 
@@ -117,7 +118,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			mapLat: [],
 			mapLng: [],
 			checked:[],
-			value:[]
+			value:[],
+			coordenadas: []
+
 		
     },
 		actions: {
@@ -226,6 +229,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			coordenaasMapa: (e, value)=> {
 				setStore({mapLat: e.lat})
 				setStore({mapLng: e.lng})
+				setStore({coordenadas:e})
 			},
 
 			toggleChecked: (e) => {	

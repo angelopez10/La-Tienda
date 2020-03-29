@@ -14,13 +14,14 @@ export default function DarkMode() {
     setChecked((prev) => !prev);
     actions.toggleChecked(checked);
   };
-  console.log(store.value);
+ 
+  
   return (
     
-    <FormGroup   style={{ color:(store.value? 'white': 'black'),  
+    <FormGroup   style={{ color:(store.value? 'white': 'black'),
     position:'fixed',
-    left: '1150px',
-    top: '350px' }}
+    left: '100px',
+    top: '100px'}}
     >
       <Link to='/mapaLigth'>
       <FormControlLabel

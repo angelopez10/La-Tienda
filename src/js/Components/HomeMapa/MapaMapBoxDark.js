@@ -6,7 +6,11 @@ import DarkMode from "./DarkMode";
 
 
 export default function MapaMapBoxDark(props) {
+
+
   const [viewport, setViewport] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
     latitude: 52.636879,
     longitude: -1.139759,
     width: "100vw",
@@ -35,6 +39,22 @@ export default function MapaMapBoxDark(props) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setViewport({
+        ...viewport,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
+
+
+
  
 
   
@@ -45,9 +65,7 @@ export default function MapaMapBoxDark(props) {
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle='mapbox://styles/jarb29/ck8boany41vwr1ipblccbomnl'
-        onViewportChange={viewport => {
-          setViewport(viewport);
-        }}
+        onViewportChange={(vp) => setViewport(vp)}
       >
         <DarkMode />
         {store.filteredTiendas.map(tienda => (
