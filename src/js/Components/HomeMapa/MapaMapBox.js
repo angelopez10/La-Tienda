@@ -4,7 +4,7 @@ import { Context } from "../../AppContext";
 import "./MapaMapBox.css"
 
 
-export default function MapaMapBox() {
+export default function MapaMapBox(props) {
   const [viewport, setViewport] = useState({
     latitude: 52.636879,
     longitude: -1.139759,
@@ -13,11 +13,22 @@ export default function MapaMapBox() {
     zoom: 13
   });
   const [selectedTienda, setSelectedTienda] = useState(0);
+  const [key, setKey] = useState('mapbox://styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai')
   const { store, actions } = useContext(Context);
+
 
   useEffect(() => {
     actions.setMapa();
   }, []);
+
+  console.log(key);
+  useEffect(() => {
+   setKey(store.checked)
+  });
+
+
+
+
 
 
   useEffect(() => {
@@ -35,6 +46,12 @@ export default function MapaMapBox() {
 
 
 
+
+  const a = key? 'mapbox://styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai' : key; 
+  console.log(a);
+
+ 
+
   
 
   return (
@@ -42,7 +59,7 @@ export default function MapaMapBox() {
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/jarb29/ck8boany41vwr1ipblccbomnl"
+        mapStyle={a}
         onViewportChange={viewport => {
           setViewport(viewport);
         }}
@@ -78,11 +95,6 @@ export default function MapaMapBox() {
             </div>
           </Popup>
         ) : null}
-                
-
-
-
-
       </ReactMapGL>
     </div>
   );

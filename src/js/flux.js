@@ -115,8 +115,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cate: [],
 			filteredTiendas: [],
 			mapLat: [],
-			mapLng: []
-
+			mapLng: [],
+			checked:[],
+			value:[]
+		
     },
 		actions: {
       		// Agrega productos al carrito y entrega el valor total a pagar
@@ -194,7 +196,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			coordenaasMapa: (e, value)=> {
 				setStore({mapLat: e.lat})
 				setStore({mapLng: e.lng})
-			}
+			},
+
+			toggleChecked: (e) => {	
+
+				setStore({value: e})
+				
+				const b = (e === true)? 'mapbox:///styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai' : 'mapbox://styles/jarb29/ck8boany41vwr1ipblccbomnl';
+				setStore({checked: b })
+			  },
+
+			  
+
+
+
+
+
 			},
 
 		}
