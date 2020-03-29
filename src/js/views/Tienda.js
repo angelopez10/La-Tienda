@@ -29,7 +29,8 @@ export default function Tienda() {
                     {   
                         
                         tiendas.length > 0 &&
-                        tiendas.map(tienda => {
+                        tiendas.map((tienda) => {
+                            console.log(tienda)
                             const productos = tienda.productos.map((producto, i) => {
                                 return (
                                     <Producto key={i} producto={producto}/>

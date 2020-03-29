@@ -5,21 +5,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 		// base datos Angel
 		store: {
 			usuarios: [{
-				cliente1: {
-					id: 1,
-					nombre: 'Angel',
-					apellido: 'López',
-					email: 'angelopez10898@gmail.com',
-					tipo: 'cliente'
-				},
-				cliente2: {
-					id: 2,
-					nombre: 'Jose',
-					apellido: 'Rubio',
-					email: 'joserubio@gmail.com',
-					tipo: 'cliente'
-				}
-			}],
+				id: 1,
+				nombre_user: '',
+				apellido: '',
+				email: '',
+				direccion: '',
+				direccion2: '',
+				ciudad: '',
+				region: '',
+				pais: '',
+				codigo_postal: '',
+				nombre_tarjeta: '',
+				numero_tarjeta: '',
+				fecha_vencimiento: '',
+				cvv: '',
+				tipo: 'cliente'
+
+			},
+			],
 
 			tiendas: [{
 				id: 1,
@@ -36,7 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
-					
+
 				},
 				{
 					id: 2,
@@ -45,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '15 u',
 					precio: '1890',
-					
+
 				}
 				]
 			},
@@ -64,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
-					
+
 				},
 				{
 					id: 4,
@@ -73,7 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '15 u',
 					precio: '1890',
-					
+
 				}
 				]
 			},
@@ -92,7 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
-					
+
 				},
 				{
 					id: 6,
@@ -101,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '15 u',
 					precio: '1890',
-					
+
 				}
 				]
 			}
@@ -110,83 +113,104 @@ const getState = ({ getStore, getActions, setStore }) => {
 			carrito: [],
 			total: 0,
 
+			nombre_user: '',
+			apellido: '',
+			email: '',
+			direccion: '',
+			direccion2: '',
+			ciudad: '',
+			region: '',
+			pais: '',
+			codigo_postal: '',
+			nombre_tarjeta: '',
+			numero_tarjeta: '',
+			fecha_vencimiento: '',
+			cvv: '',
+
 			// Alex mapa
 			contacts: [],
 			cate: [],
 			filteredTiendas: [],
 			mapLat: [],
 			mapLng: [],
-			checked:[],
-			value:[]
-		
-    },
+			checked: [],
+			value: []
+
+		},
 		actions: {
-      		// Agrega productos al carrito y entrega el valor total a pagar
-			  addToCart: producto => {
-                const store = getStore();
-                let {carrito} = store;
-                let existe = false;
-                let newtotalCarrito = 0;
-                console.log(producto);
-                console.log(carrito);
-                let newCarrito = carrito.map((item) => {
-                    if(JSON.stringify(item.producto) === JSON.stringify(producto)){
-                        item.cantidad += 1;
-                        existe = true;
-                        return item;
-                    }
-                    return item;
-                })
-                if(!existe){
-                    newCarrito.push({
-                        id: carrito.length + 1,
-                        producto: producto,
-                        cantidad: 1
-                    })
-                }
-                newCarrito.map((item) => {
-                    newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
-                })
-                setStore({
-                    carrito: newCarrito,
-                    total: newtotalCarrito
-                })
-            },
-            deleteFromCart: producto => {
-                const store = getStore();
-                let {carrito} = store;
-                let newtotalCarrito = 0;
-                let pos = null;
-                let newCarrito = carrito.map((item, i) => {
-                    if(JSON.stringify(item.producto) === JSON.stringify(producto)){
-                        if(item.cantidad === 1){
-                            pos = i;
-                            item.cantidad -= 1;
-                        }else{
-                            item.cantidad -= 1;
-                        }
-                        return item;
-                    }
-                    return item;
-                })
-                if(pos !== null){
-                    newCarrito.splice(pos, 1);
-                }
-                newCarrito.map((item) => {
-                    newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
-                })
-                setStore({
-                    carrito: newCarrito,
-                    total: newtotalCarrito
-                })
+			// Agrega productos al carrito y entrega el valor total a pagar
+			addToCart: producto => {
+				const store = getStore();
+				let { carrito } = store;
+				let existe = false;
+				let newtotalCarrito = 0;
+				console.log(producto);
+				console.log(carrito);
+				let newCarrito = carrito.map((item) => {
+					if (JSON.stringify(item.producto) === JSON.stringify(producto)) {
+						item.cantidad += 1;
+						existe = true;
+						return item;
+					}
+					return item;
+				})
+				if (!existe) {
+					newCarrito.push({
+						id: carrito.length + 1,
+						producto: producto,
+						cantidad: 1
+					})
+				}
+				newCarrito.map((item) => {
+					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+				})
+				setStore({
+					carrito: newCarrito,
+					total: newtotalCarrito
+				})
 			},
-      
+			deleteFromCart: producto => {
+				const store = getStore();
+				let { carrito } = store;
+				let newtotalCarrito = 0;
+				let pos = null;
+				let newCarrito = carrito.map((item, i) => {
+					if (JSON.stringify(item.producto) === JSON.stringify(producto)) {
+						if (item.cantidad === 1) {
+							pos = i;
+							item.cantidad -= 1;
+						} else {
+							item.cantidad -= 1;
+						}
+						return item;
+					}
+					return item;
+				})
+				if (pos !== null) {
+					newCarrito.splice(pos, 1);
+				}
+				newCarrito.map((item) => {
+					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+				})
+				setStore({
+					carrito: newCarrito,
+					total: newtotalCarrito
+				})
+			},
+
+			// Guarda la info de los inputs en el store
+			handleChange: e => {
+				setStore({
+					[e.target.name]: e.target.value
+				})
+			},
+
 			// Alex Mapa
 
 			setMapa: () => {
 				var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
 					targetUrl = 'https://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2019-10'
-		
+
 				fetch((proxyUrl + targetUrl), {
 					method: "GET",
 					headers: {
@@ -199,11 +223,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						setStore({ contacts: data });
 						setStore({ filteredTiendas: data });
-					
-						
-						const  categoria = [...new Set(data.map(tienda => tienda.category))];
+
+
+						const categoria = [...new Set(data.map(tienda => tienda.category))];
 						setStore({ cate: categoria });
-					
+
 					})
 					.catch(error => {
 						console.log(error);
@@ -211,40 +235,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			},
-			
+
 
 			setFilter: (e, contact) => {
-				const store  = getStore();
+				const store = getStore();
 				if (contact === undefined) {
-					setStore({filteredTiendas: store.contacts })
+					setStore({ filteredTiendas: store.contacts })
 				} else {
-					setStore({filteredTiendas: store.contacts.filter(tienda =>
-						tienda.category === contact) })
+					setStore({
+						filteredTiendas: store.contacts.filter(tienda =>
+							tienda.category === contact)
+					})
 				}
-			 },
-
-			coordenaasMapa: (e, value)=> {
-				setStore({mapLat: e.lat})
-				setStore({mapLng: e.lng})
 			},
 
-			toggleChecked: (e) => {	
-
-				setStore({value: e})
-				
-				const b = (e === true)? 'mapbox:///styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai' : 'mapbox://styles/jarb29/ck8boany41vwr1ipblccbomnl';
-				setStore({checked: b })
-			  },
-
-			  
-
-
-
-
-
+			coordenaasMapa: (e, value) => {
+				setStore({ mapLat: e.lat })
+				setStore({ mapLng: e.lng })
 			},
 
-		}
-	};
+			toggleChecked: (e) => {
+
+				setStore({ value: e })
+
+				const b = (e === true) ? 'mapbox:///styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai' : 'mapbox://styles/jarb29/ck8boany41vwr1ipblccbomnl';
+				setStore({ checked: b })
+			},
+
+
+
+
+
+
+
+		},
+
+	}
+};
 
 export default getState;
