@@ -215,8 +215,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setFilter: (e, contact) => {
 				const store  = getStore();
-		
-
 				if (contact === undefined) {
 					setStore({filteredTiendas: store.contacts })
 				} else {

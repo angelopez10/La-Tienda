@@ -2,9 +2,10 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../AppContext";
 import "./MapaMapBox.css"
+import DarkMode from "./DarkMode";
 
 
-export default function MapaMapBox(props) {
+export default function MapaMapBoxDark(props) {
   const [viewport, setViewport] = useState({
     latitude: 52.636879,
     longitude: -1.139759,
@@ -13,21 +14,11 @@ export default function MapaMapBox(props) {
     zoom: 13
   });
   const [selectedTienda, setSelectedTienda] = useState(0);
-  const [key, setKey] = useState('mapbox://styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai')
   const { store, actions } = useContext(Context);
-
 
   useEffect(() => {
     actions.setMapa();
   }, []);
-
-  console.log(key);
-  useEffect(() => {
-   setKey(store.checked)
-  });
-
-
-
 
 
 
@@ -44,12 +35,6 @@ export default function MapaMapBox(props) {
     };
   }, []);
 
-
-
-
-  const a = key? 'mapbox://styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai' : key; 
-  console.log(a);
-
  
 
   
@@ -59,11 +44,12 @@ export default function MapaMapBox(props) {
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle={a}
+        mapStyle='mapbox://styles/jarb29/ck8boany41vwr1ipblccbomnl'
         onViewportChange={viewport => {
           setViewport(viewport);
         }}
       >
+        <DarkMode />
         {store.filteredTiendas.map(tienda => (
           <Marker
             key={tienda.id}

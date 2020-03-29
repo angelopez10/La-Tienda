@@ -100,14 +100,6 @@ export default function SideNavLeft() {
   const tienda =  store.filteredTiendas.slice(0, 10);
 
 
-
-
-
-
-
-
-
-
   return (
     <div className={classes.root}>
       <CssBaseline />
