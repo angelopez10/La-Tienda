@@ -252,7 +252,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-
 			coordenaasMapa: (e, value)=> {
 				setStore({mapLat: e.lat})
 				setStore({mapLng: e.lng})
