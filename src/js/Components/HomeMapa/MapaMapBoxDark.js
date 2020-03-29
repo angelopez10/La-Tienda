@@ -13,8 +13,6 @@ export default function MapaMapBoxDark(props) {
     height: window.innerHeight,
     latitude: 52.636879,
     longitude: -1.139759,
-    width: "100vw",
-    height: "100vh",
     zoom: 13
   });
   const [selectedTienda, setSelectedTienda] = useState(0);

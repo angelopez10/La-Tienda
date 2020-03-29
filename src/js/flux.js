@@ -268,12 +268,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ checked: b })
 			},
 
-
-
-
-
-
-
 		},
 
 	}
