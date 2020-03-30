@@ -1,5 +1,3 @@
-import { set } from "animejs";
-
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
