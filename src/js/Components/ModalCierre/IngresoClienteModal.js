@@ -106,20 +106,15 @@ export default function IngresoClienteModal() {
         <Paper >
           <React.Fragment>
             {activeStep === steps.length ? (
-
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-
                   Aqui colocamos el LInk para la siguiente vista
                 </Typography>
                 <Typography variant="subtitle1">
-
                   En caso
                 </Typography>
               </React.Fragment>
-
             ) : (
-
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <div className={classes.buttons}>
