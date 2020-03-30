@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from '../../AppContext';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -14,9 +14,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import DeleteIcon from '@material-ui/icons/Delete';
-import '../Tienda/producto.css'
-
+import '../Tienda/producto.css';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ButtonToolbar from 'react-bootstrap/Button';
+import ModalCheckOut from '../Modales/ModalCheckOut';
+import Button from 'react-bootstrap/Button';
 
 const drawerWidth = 280;
 
@@ -83,6 +85,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SideNavLeftTwo() {
+  const [modalShow, setModalShow] = React.useState(false);
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -151,7 +154,15 @@ export default function SideNavLeftTwo() {
               </ListItem>
             ))}
         </List>
-        <Link to='/checkout' type="button" className="btn btn-success mt-5" >Pagar (Total: ${store.total})</Link>
+        <ButtonToolbar className={classes.position}>
+          <Button className={classes.root} onClick={() => setModalShow(true)}>
+            Pagar (Total: ${store.total})
+		      </Button>
+          <ModalCheckOut
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+          />
+        </ButtonToolbar>
       </Drawer>
     </div>
   );

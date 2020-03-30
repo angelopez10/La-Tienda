@@ -43,7 +43,6 @@ function App() {
           <Route path='/mapaDark' exact component={MapaDark} />
           <Route path='/tienda' exact component={Tienda} />
           <Route path='/admin' exact component={TiendaAdminView} />
-          <Route path='/checkout' exact component={CheckoutView} />
         </Switch>
       </Router>
   );
