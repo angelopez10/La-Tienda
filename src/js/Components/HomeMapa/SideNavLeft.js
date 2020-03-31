@@ -97,7 +97,7 @@ export default function SideNavLeft() {
     setOpen(false);
   };
   
-  const tienda =  store.filteredTiendas.slice(0, 10);
+  
 
 
   return (
@@ -138,16 +138,17 @@ export default function SideNavLeft() {
         </div>
         <Divider />
         <List>
-          <Link to = '/tienda' className={classes.handleLink}>
-         {tienda.map((tienda, i) => (
+         {
+            store.tiendas.map((tienda, i) => (
+            <Link to = {`/tienda/${tienda.id}`} className={classes.handleLink}>
             <ListItem button key={i}>
               <ListItemIcon>
                 <StorefrontIcon  />
               </ListItemIcon>
-              <ListItemText primary= {tienda.id} />
+              <ListItemText primary= {tienda.nombre} />
             </ListItem>
+            </Link>
           ))}
-          </Link>
         </List>
       </Drawer>
     </div>

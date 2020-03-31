@@ -41,8 +41,9 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/mapaLigth' exact component={MapaLigth} />
           <Route path='/mapaDark' exact component={MapaDark} />
-          <Route path='/tienda' exact component={Tienda} />
+          <Route path='/tienda/:id' exact component={Tienda} />
           <Route path='/admin' exact component={TiendaAdminView} />
+          <Route render={() => <h1 className="notfound">Not found!</h1>} />
         </Switch>
       </Router>
   );

@@ -11,13 +11,13 @@ import Pagination from '../Components/Tienda/Pagination';
 
 
 export default function Tienda() {
-    const {store: {tiendas}} = useContext(Context);
+    const {store} = useContext(Context);
     return (
         <div>
             {
-
-                tiendas.length > 0 &&
-                tiendas.map(tienda => {
+                
+                store.tiendas.length > 0 &&
+                store.tiendas.map(tienda => {
                    return <NavbarTienda tienda={tienda}/>
                 })
             }
@@ -27,16 +27,11 @@ export default function Tienda() {
                     <div class="col">
                     <div class="row">
                     {   
-                        
-                        tiendas.length > 0 &&
-                        tiendas.map((tienda) => {
-                            console.log(tienda)
-                            const productos = tienda.productos.map((producto, i) => {
+                            store.productos.map((producto, i) => {
+                                
                                 return (
                                     <Producto key={i} producto={producto}/>
                                 )
-                            })
-                            return productos
                         })
                     }   
                     </div>
