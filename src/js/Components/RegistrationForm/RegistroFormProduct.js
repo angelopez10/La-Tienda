@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Context} from '../../AppContext';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -48,6 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RegistFormProduct() {
   const classes = useStyles();
+  const {actions} = useContext(Context);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -67,7 +69,8 @@ export default function RegistFormProduct() {
             fullWidth
             id="Foto"
             label="Foto"
-            name="Foto"
+            name="foto"
+            onChange={e => actions.handleChange(e)}
             autoComplete="Foto"
             autoFocus
           />
@@ -78,7 +81,8 @@ export default function RegistFormProduct() {
             fullWidth
             id="Nombre_Producto"
             label="Nombre del Producto"
-            name="NombreProducto"
+            name="nombreProducto"
+            onChange={e => actions.handleChange(e)}
             autoComplete="NombreProducto"
             autoFocus
           />
@@ -89,7 +93,8 @@ export default function RegistFormProduct() {
             fullWidth
             id="Cantidad"
             label="Stock disponible"
-            name="Cantidad"
+            name="stock"
+            onChange={e => actions.handleChange(e)}
             autoComplete="Cantidad"
             autoFocus
           />
@@ -100,7 +105,8 @@ export default function RegistFormProduct() {
             fullWidth
             id="Precio"
             label="Precio"
-            name="Precio"
+            name="precio"
+            onChange={e => actions.handleChange(e)}
             autoComplete="Precio"
             autoFocus
           />
@@ -110,8 +116,9 @@ export default function RegistFormProduct() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={e => actions.handleSubmitProducto(e)}
           >
-            <Link >Ingresar</Link>
+            Agregar
           </Button>
         </form>
       </div>

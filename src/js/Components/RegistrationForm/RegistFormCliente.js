@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Context} from '../../AppContext';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -37,6 +38,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RegistFormCliente() {
   const classes = useStyles();
+  const {actions} = useContext(Context);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -56,8 +58,9 @@ export default function RegistFormCliente() {
             fullWidth
             id="Nombre"
             label="Nombre"
-            name="Nombre"
+            name="nombre"
             autoComplete="Nombre"
+            onChange={e => actions.handleChangeRegister(e)}
             autoFocus
           />
           <TextField
@@ -67,7 +70,8 @@ export default function RegistFormCliente() {
             fullWidth
             id="Apellido"
             label="Apellido"
-            name="Apellido"
+            name="apellido"
+            onChange={e => actions.handleChangeRegister(e)}
             autoComplete="Apellido"
             autoFocus
           />
@@ -81,6 +85,7 @@ export default function RegistFormCliente() {
             id="email"
             label="Email"
             name="email"
+            onChange={e => actions.handleChangeRegister(e)}
             autoComplete="email"
             autoFocus
           />
@@ -91,7 +96,8 @@ export default function RegistFormCliente() {
             fullWidth
             id="Direccion"
             label="Direccion"
-            name="Direccion"
+            name="direccion"
+            onChange={e => actions.handleChangeRegister(e)}
             autoComplete="Direccion"
             autoFocus
           />

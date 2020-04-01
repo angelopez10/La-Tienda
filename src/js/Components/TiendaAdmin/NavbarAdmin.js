@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/Button'
 import ModalIngresoProduct from '../Modales/ModalIngresoProduct'
@@ -52,52 +52,52 @@ const useStyles = makeStyles({
       boxShadow: 'none'
     },
   }
-  
+
 });
 
 export default function NavbarAdmin() {
-    const [modalShow, setModalShow] = React.useState(false);
-    const classes = useStyles();
-    
-    return (
-        <div>
-            <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-        <div class='container'>
-        <Link to='/' >
-        <img src={logo} alt='' className='logo-principal'/>
-          
-            <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarResponsive"
-            aria-controls="navbarResponsive"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          </Link>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-              <ButtonToolbar className={classes.root2}>
-                  <Button variant="primary" className={classes.root} onClick={() => setModalShow(true)}>
-                    Agregar productos
+  const [modalShow, setModalShow] = React.useState(false);
+  const classes = useStyles();
+
+  return (
+    <div>
+      <div>
+        <nav class="navbar navbar-expand-lg bg-color static-top">
+          <div class='container'>
+            <Link to='/' >
+              <img src={logo} alt='' className='logo-principal' />
+
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </Link>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <ButtonToolbar className={classes.root2}>
+                    <Button variant="primary" className={classes.root} onClick={() => setModalShow(true)}>
+                      Agregar productos
 		              </Button>
 
-                  <ModalIngresoProduct
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                  />
-                </ButtonToolbar>
-              </li>
-            </ul>
+                    <ModalIngresoProduct
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
+                  </ButtonToolbar>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </div>
-        </div>
-    )
+  )
 }

@@ -3,26 +3,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		// base datos Angel
 		store: {
-			usuarios: [{
-				id: 1,
-				nombre_user: '',
-				apellido: '',
-				email: '',
-				direccion: '',
-				direccion2: '',
-				ciudad: '',
-				region: '',
-				pais: '',
-				codigo_postal: '',
-				nombre_tarjeta: '',
-				numero_tarjeta: '',
-				fecha_vencimiento: '',
-				cvv: '',
-				tipo: 'cliente'
-
-			},
-			],
-
 			tiendas: [{
 				id: 1,
 				nombre: 'Starbucks',
@@ -56,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				producto: {
 					id: 1,
 					foto: '',
-					nombre: 'Pepsi',
+					nombreProducto: 'Pepsi',
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
@@ -67,7 +47,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				producto: {
 					id: 1,
 					foto: '',
-					nombre: 'Pepsi',
+					nombreProducto: 'Pepsi',
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
@@ -78,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				producto: {
 					id: 1,
 					foto: '',
-					nombre: 'Pepsi',
+					nombreProducto: 'Pepsi',
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
@@ -89,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				producto: {
 					id: 1,
 					foto: '',
-					nombre: 'Pepsi',
+					nombreProducto: 'Pepsi',
 					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 					stock: '25 u',
 					precio: '1690',
@@ -101,6 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			carrito: [],
 			total: 0,
 
+			id: 1,
 			nombre_user: '',
 			apellido: '',
 			email: '',
@@ -114,6 +95,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			numero_tarjeta: '',
 			fecha_vencimiento: '',
 			cvv: '',
+			foto: '',
+			nombreProducto: '',
+			descripcion: '',
+			stock: '',
+			precio: '',
 
 			// Alex mapa
 			contacts: [],
@@ -194,6 +180,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					[e.target.name]: e.target.value
 				})
 			},
+
+			handleSubmitProducto: e => {
+				const store = getStore();
+				e.preventDefault();
+				let data = {
+
+					producto: {
+						id: store.productos.length + 1,
+						foto: store.foto,
+						nombreProducto: store.nombreProducto,
+						descripcion: store.descripcion,
+						stock: store.stock,
+						precio: store.precio,
+					},
+					id_tienda: 1
+				}
+				setStore({
+					productos: store.productos.concat(data)
+				})
+			},
+
+
+
 
 			// Alex Mapa
 
