@@ -29,7 +29,7 @@ export default function AddressForm() {
           <TextField
             required
             id="apellido"
-            name="apellido"
+            name="apellido_user"
             label="Apellido"
             fullWidth
             autoComplete="lname"
@@ -40,7 +40,7 @@ export default function AddressForm() {
           <TextField
             required
             id="direccion"
-            name="direccion"
+            name="direccion1"
             label="Address line 1"
             fullWidth
             autoComplete="billing address-line1"

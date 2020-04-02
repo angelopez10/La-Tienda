@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RegistFormProduct() {
   const classes = useStyles();
-  const {actions} = useContext(Context);
+  const {actions, store} = useContext(Context);
   
 
   return (
@@ -60,7 +60,7 @@ export default function RegistFormProduct() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Ingreso de Productos
+          Edita tus productos
         </Typography>
         <form className={classes.form} noValidate>
         <TextField
@@ -70,12 +70,12 @@ export default function RegistFormProduct() {
             required
             fullWidth
             id="Foto"
+            label="Foto"
             name="foto"
             onChange={e => actions.handleChange(e)}
             autoComplete="Foto"
             autoFocus
-          >
-          </TextField>
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -86,18 +86,6 @@ export default function RegistFormProduct() {
             name="nombreProducto"
             onChange={e => actions.handleChange(e)}
             autoComplete="NombreProducto"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="descripcion"
-            label="Descripción"
-            name="descripcion"
-            onChange={e => actions.handleChange(e)}
-            autoComplete="descripcion"
             autoFocus
           />
           <TextField
@@ -132,7 +120,7 @@ export default function RegistFormProduct() {
             className={classes.submit}
             onClick={e => actions.handleSubmitProducto(e)}
           >
-            Agregar
+            Editar
           </Button>
         </form>
       </div>

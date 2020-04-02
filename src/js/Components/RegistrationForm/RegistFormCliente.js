@@ -60,7 +60,7 @@ export default function RegistFormCliente() {
             label="Nombre"
             name="nombre"
             autoComplete="Nombre"
-            onChange={e => actions.handleChangeRegister(e)}
+            onChange={e => actions.handleChange(e)}
             autoFocus
           />
           <TextField
@@ -71,7 +71,7 @@ export default function RegistFormCliente() {
             id="Apellido"
             label="Apellido"
             name="apellido"
-            onChange={e => actions.handleChangeRegister(e)}
+            onChange={e => actions.handleChange(e)}
             autoComplete="Apellido"
             autoFocus
           />
@@ -85,7 +85,7 @@ export default function RegistFormCliente() {
             id="email"
             label="Email"
             name="email"
-            onChange={e => actions.handleChangeRegister(e)}
+            onChange={e => actions.handleChange(e)}
             autoComplete="email"
             autoFocus
           />
@@ -97,7 +97,7 @@ export default function RegistFormCliente() {
             id="Direccion"
             label="Direccion"
             name="direccion"
-            onChange={e => actions.handleChangeRegister(e)}
+            onChange={e => actions.handleChange(e)}
             autoComplete="Direccion"
             autoFocus
           />
@@ -106,11 +106,12 @@ export default function RegistFormCliente() {
             margin="normal"
             required
             fullWidth
-            name="password"
+            name="clave"
             label="Clave"
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={e => actions.handleChange(e)}
           />
           <TextField
             variant="outlined"
