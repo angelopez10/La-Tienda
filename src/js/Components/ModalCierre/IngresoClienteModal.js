@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {Context} from '../../AppContext';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -85,16 +86,18 @@ function getStepContent(step) {
     case 1:
       return <RegistFormCliente />;
     default:
-      throw new Error('Unknown step');
+      return <IngresoCliente />;
   }
 }
 
 export default function IngresoClienteModal() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const {actions} = useContext(Context);
 
-  const handleNext = () => {
+  const handleNext = (e) => {
     setActiveStep(activeStep + 1);
+    actions.handleSubmitCliente(e)
   };
 
   const handleBack = () => {
@@ -104,17 +107,7 @@ export default function IngresoClienteModal() {
   return (
       <main>
         <Paper >
-          <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Aqui colocamos el LInk para la siguiente vista
-                </Typography>
-                <Typography variant="subtitle1">
-                  En caso
-                </Typography>
-              </React.Fragment>
-            ) : (
+        <React.Fragment>
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <div className={classes.buttons}>
@@ -133,7 +126,6 @@ export default function IngresoClienteModal() {
                     </Button>
                   </div>
                 </React.Fragment>
-              )}
           </React.Fragment>
           <Box mt={8}>
             <Copyright />

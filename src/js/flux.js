@@ -196,7 +196,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						clave: store.clave	
 				}
 				setStore({
-					usuarios: store.productos.concat(data)
+					usuarios: store.usuarios.concat(data)
 				})
 			},
 
