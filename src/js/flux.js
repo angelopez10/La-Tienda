@@ -3,6 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		// base datos Angel
 		store: {
+			usuarios:[{
+
+			}],
 			tiendas: [{
 				id: 1,
 				nombre: 'Starbucks',
@@ -33,59 +36,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 
 			productos: [{
-				producto: {
-					id: 1,
-					foto: '',
-					nombreProducto: 'Pepsi',
-					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-					stock: '25 u',
-					precio: '1690',
-				},
-				id_tienda: 1,
+				id: 1,
+				foto: '',
+				nombreProducto: 'Queso',
+				descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+				stock: '25 u',
+				precio: '1690',
+				id_tienda: 3,
 			},
 			{
-				producto: {
-					id: 1,
-					foto: '',
-					nombreProducto: 'Pepsi',
-					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-					stock: '25 u',
-					precio: '1690',
-				},
-				id_tienda: 1,
+				id: 2,
+				foto: '',
+				nombreProducto: 'Arroz',
+				descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+				stock: '25 u',
+				precio: '1690',
+				id_tienda: 3,
 			},
 			{
-				producto: {
-					id: 1,
-					foto: '',
-					nombreProducto: 'Pepsi',
-					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-					stock: '25 u',
-					precio: '1690',
-				},
-				id_tienda: 1,
+				id: 3,
+				foto: '',
+				nombreProducto: 'Agua',
+				descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+				stock: '25 u',
+				precio: '1690',
+				id_tienda: 3,
 			},
 			{
-				producto: {
-					id: 1,
-					foto: '',
-					nombreProducto: 'Pepsi',
-					descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-					stock: '25 u',
-					precio: '1690',
-				},
+				id: 4,
+				foto: '',
+				nombreProducto: 'Pasta',
+				descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+				stock: '25 u',
+				precio: '1690',
 				id_tienda: 3,
 			},
 			],
-
+			//info para carrito de compras
 			carrito: [],
 			total: 0,
 
-			id: 1,
-			nombre_user: '',
+			//info para registro de usuario
+			nombre: '',
 			apellido: '',
 			email: '',
 			direccion: '',
+			clave:'',
+
+			//info para checkout
+			nombre_user:'',
+			apellido_user:'',
+			direccion1:'',
 			direccion2: '',
 			ciudad: '',
 			region: '',
@@ -95,6 +96,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			numero_tarjeta: '',
 			fecha_vencimiento: '',
 			cvv: '',
+
+			//info para agregar producto
 			foto: '',
 			nombreProducto: '',
 			descripcion: '',
@@ -181,26 +184,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
+			handleSubmitCliente: e => {
+				const store = getStore();
+				e.preventDefault();
+				let data = {
+						id: 3,
+						nombre: store.nombre,
+						apellido: store.apellido,
+						email: store.email,
+						direccion: store.direccion,
+						clave: store.clave	
+				}
+				setStore({
+					usuarios: store.usuarios.concat(data)
+				})
+			},
+
 			handleSubmitProducto: e => {
 				const store = getStore();
 				e.preventDefault();
 				let data = {
-
-					producto: {
 						id: store.productos.length + 1,
 						foto: store.foto,
 						nombreProducto: store.nombreProducto,
 						descripcion: store.descripcion,
 						stock: store.stock,
 						precio: store.precio,
-					},
-					id_tienda: 1
+						id_tienda: 1	
 				}
 				setStore({
 					productos: store.productos.concat(data)
 				})
 			},
 
+			deleteProduct: producto => {
+				const store = getStore();
+				const { productos } = store;
+				let pos = null
+				let newProductos = productos.map((item, i) => {
+					if (JSON.stringify(item) === JSON.stringify(producto)) {
+						pos = i
+					}
+					return item;
+				})
+				if(pos !== null){
+					newProductos.splice(pos, 1)
+				}
+				setStore({
+					productos: newProductos
+				})
+				console.log(productos)
+			},
 
 
 

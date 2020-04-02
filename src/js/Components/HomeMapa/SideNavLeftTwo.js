@@ -145,7 +145,7 @@ export default function SideNavLeftTwo() {
                 <ListItemIcon><img class="card-img-top" src="https://picsum.photos/40/40" alt="Card image cap" /></ListItemIcon>
                 <div className='row'>
                   <div className='col-12 ml-3 mt-4'>
-                    <h6>{item.producto.nombre} | ${item.producto.precio}</h6>
+                    <h6>{item.producto.nombreProducto} | ${item.producto.precio}</h6>
                     <p>Cantidad: {item.cantidad}</p>
                     <Link onClick={() => actions.deleteFromCart(item.producto)}>Eliminar <DeleteIcon /></Link>
                   </div>
