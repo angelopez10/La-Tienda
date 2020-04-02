@@ -10,7 +10,7 @@ export default function ModalIngresoTienda(props) {
 	return (
 	  <Modal
 		{...props}
-		size="xd"
+		size="md"
 		aria-labelledby="contained-modal-title-vcenter"
 		centered
 	  >
