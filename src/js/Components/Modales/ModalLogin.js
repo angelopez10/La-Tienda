@@ -16,8 +16,6 @@ export default function ModalLogin(props) {
 		aria-labelledby="contained-modal-title-vcenter"
 		centered
 	  >
-		<Modal.Header closeButton>
-		</Modal.Header>
 		<Modal.Body >
             <p>
 			  <IngresoClienteModal />

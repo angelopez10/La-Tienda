@@ -5,7 +5,22 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import IngresoTienda from '../RegistrationForm/IngresoTienda';
 import RegistFormTienda from '../RegistrationForm/RegistFormTienda';
+import Box from '@material-ui/core/Box';
 
+
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+    
+        La Tienda
+
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 
 
@@ -78,10 +93,7 @@ export default function IngresoTiendaModal() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Aqui colocamos el LInk para la siguiente vista
-                </Typography>
-                <Typography variant="subtitle1">
-                  En caso
+                 Gracias por registrarse con nosotros
                 </Typography>
               </React.Fragment>
             ) : (
@@ -99,13 +111,16 @@ export default function IngresoTiendaModal() {
                       onClick={handleNext}
                       className={classes.button}
                     >
-                      {activeStep === steps.length - 1 ? 'Registrate' : "Don't have an account? Sign Up"}
+                      {activeStep === steps.length - 1 ? 'Registrate' : "No tienes una cuenta, Registrate"}
                     </Button>
                   </div>
                 </React.Fragment>
               )}
           </React.Fragment>
         </Paper>
+        <Box mt={8}>
+        <Copyright />
+      </Box>
       </main>
   );
 }

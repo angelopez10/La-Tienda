@@ -3,7 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		// base datos Angel
 		store: {
-			usuarios:[{
+
+			baseURL: 'http://127.0.0.1:5000',
+			usuarios: [{
 
 			}],
 			tiendas: [{
@@ -76,17 +78,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			carrito: [],
 			total: 0,
 
-			//info para registro de usuario
+			// Alex info para registro de usuario
 			nombre: '',
 			apellido: '',
 			email: '',
 			direccion: '',
-			clave:'',
+			clave: '',
+			telefono: '',
 
 			//info para checkout
-			nombre_user:'',
-			apellido_user:'',
-			direccion1:'',
+			nombre_user: '',
+			apellido_user: '',
+			direccion1: '',
 			direccion2: '',
 			ciudad: '',
 			region: '',
@@ -112,7 +115,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			mapLng: [],
 			checked: [],
 			value: [],
-			coordenadas: []
+			coordenadas: [],
+
+			// Alex front adn Back
+			currentUser: null,
+			IsAuthenticated: false,
+			error: null,
+
 
 
 		},
@@ -177,40 +186,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			// Guarda la info de los inputs en el store
+			// Guarda la info de los inputs del cliente en el store
 			handleChange: e => {
 				setStore({
 					[e.target.name]: e.target.value
 				})
 			},
+			// Guarda la info de los inputs del loging en el store
 
-			handleSubmitCliente: e => {
-				const store = getStore();
-				e.preventDefault();
-				let data = {
-						id: 3,
-						nombre: store.nombre,
-						apellido: store.apellido,
-						email: store.email,
-						direccion: store.direccion,
-						clave: store.clave	
-				}
+			handleChangeTienda: e => {
 				setStore({
-					usuarios: store.usuarios.concat(data)
+					[e.target.name]: e.target.value
 				})
 			},
+
+			// Guarda la info de los inputs del loging en el store
+
+			handleChangeCliente: e => {
+				setStore({
+					[e.target.name]: e.target.value
+				})
+
+			},
+
+
 
 			handleSubmitProducto: e => {
 				const store = getStore();
 				e.preventDefault();
 				let data = {
-						id: store.productos.length + 1,
-						foto: store.foto,
-						nombreProducto: store.nombreProducto,
-						descripcion: store.descripcion,
-						stock: store.stock,
-						precio: store.precio,
-						id_tienda: 1	
+					id: store.productos.length + 1,
+					foto: store.foto,
+					nombreProducto: store.nombreProducto,
+					descripcion: store.descripcion,
+					stock: store.stock,
+					precio: store.precio,
+					id_tienda: 1
 				}
 				setStore({
 					productos: store.productos.concat(data)
@@ -227,7 +238,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					return item;
 				})
-				if(pos !== null){
+				if (pos !== null) {
 					newProductos.splice(pos, 1)
 				}
 				setStore({
@@ -235,6 +246,89 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				console.log(productos)
 			},
+
+			// Alex registro
+			handleSubmitCliente: (e, history) => {
+				e.preventDefault();
+				const store = getStore();
+				console.log(store.nombre)
+
+				let data = {
+					"nombre": store.nombre,
+					"apellido": store.apellido,
+					"email": store.email,
+					"direccion": store.direccion,
+					"clave": store.clave,
+					"telefono": store.telefono
+				}
+			
+				getActions().registro('/api/register', data);
+
+			},
+
+			registro: async (url, data, history) => {
+				const store = getStore();
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				const dato = await resp.json();
+				if (dato.msg) {
+					setStore({
+						error: dato
+					})
+				} else {
+					setStore({
+						currentUser: dato,
+						IsAuthenticated: true,
+						error: null
+					})
+				}
+			},
+
+
+			// Alex loging 
+			handleLogingCliente:  (e, history) => {
+				e.preventDefault();
+				const store = getStore();
+				let data = {
+					"email": store.email,
+					"clave": store.clave,
+				}
+				getActions().loging('/api/loging', data, history);
+			},
+
+			loging: async (url, data, history) => {
+				const store = getStore();
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json'
+					},	
+				})
+				const dato = await resp.json();
+				console.log(dato)
+				if (dato.msg) {
+					setStore({
+						error: dato
+					})
+				} else {
+					setStore({
+						currentUser: dato,
+						IsAuthenticated: true,
+						error: null
+					});
+					history.push('/mapaLigth')
+				} 
+
+			},
+			
 
 
 
@@ -256,17 +350,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						setStore({ contacts: data });
 						setStore({ filteredTiendas: data });
-
-
 						const categoria = [...new Set(data.map(tienda => tienda.category))];
 						setStore({ cate: categoria });
-
 					})
 					.catch(error => {
 						console.log(error);
 					});
-
-
 			},
 
 
@@ -286,17 +375,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ mapLat: e.lat })
 				setStore({ mapLng: e.lng })
 				setStore({ coordenadas: e })
-
 			},
 
 			toggleChecked: (e) => {
-
 				setStore({ value: e })
-
 				const b = (e === true) ? 'mapbox:///styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai' : 'mapbox://styles/jarb29/ck8boany41vwr1ipblccbomnl';
 				setStore({ checked: b })
 			},
-
 		},
 
 	}

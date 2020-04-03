@@ -21,7 +21,7 @@ export default function ProductoAdmin(props) {
     return (
         <div className="col-12 col-md-6 col-lg-3 ">
             <div className="card card-style mb-2">
-                <img className="card-img-top" src="https://picsum.photos/600/400" alt="Card image cap" />
+                <img className="card-img-top" src="https://picsum.photos/600/400" alt=""/>
                 <div className="card-body card-bg">
                     <h4 className="card-title"><a href="product.html" title="View Product">{props.producto.nombreProducto}</a></h4>
                     <p className="card-text">{props.producto.descripcion}</p>

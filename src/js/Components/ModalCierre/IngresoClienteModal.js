@@ -7,15 +7,13 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import IngresoCliente from '../RegistrationForm/IngresoCliente';
 import RegistFormCliente from '../RegistrationForm/RegistFormCliente';
-import { Link } from 'react-router-dom'
+
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
         La Tienda
-      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -85,19 +83,18 @@ function getStepContent(step) {
       return <IngresoCliente />;
     case 1:
       return <RegistFormCliente />;
-    default:
-      return <IngresoCliente />;
+      default:
+      throw new Error('Unknown step');
   }
 }
 
-export default function IngresoClienteModal() {
+export default function IngresoClienteModal(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const {actions} = useContext(Context);
 
   const handleNext = (e) => {
-    setActiveStep(activeStep + 1);
-    actions.handleSubmitCliente(e)
+    setActiveStep(activeStep + 1);    
   };
 
   const handleBack = () => {
@@ -106,31 +103,56 @@ export default function IngresoClienteModal() {
 
   return (
       <main>
-        <Paper >
-        <React.Fragment>
+         <Paper >
+         <React.Fragment>
+            {activeStep === steps.length ? (
+              <React.Fragment>
+                <Typography variant="h5" gutterBottom>
+                  Gracias por registrarse con nosotros
+                </Typography>
+              </React.Fragment>
+            ) : (
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <div className={classes.buttons}>
                     {activeStep !== 0 && (
-                      <Button onClick={handleBack} className={classes.button}>
+                    <Button onClick={handleBack} className={classes.button}>
                         Back
                     </Button>
                     )}
-                    <Button
+      
+                      {activeStep === steps.length - 1 ? (
+                      <Button 
+                      
                       variant="contained"
                       color="primary"
-                      onClick={handleNext}
+                      onClick={e =>{
+                        handleNext(e);
+                        actions.handleSubmitCliente(e, props.history)}
+                      }
                       className={classes.button}
-                    >
-                      {activeStep === steps.length - 1 ? 'Registrate' : "Don't have an account? Sign Up"}
+                      > 
+                      Registrate
+                      </Button>
+                         ) : (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleNext}
+                          className={classes.button}
+                        >
+                          "No tienes una cuenta? Registrate"     
                     </Button>
+                    )} 
                   </div>
                 </React.Fragment>
-          </React.Fragment>
+
+                )}
+            </React.Fragment>
+        </Paper>
           <Box mt={8}>
             <Copyright />
           </Box>
-        </Paper>
       </main>
   );
 }

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Context} from '../../AppContext';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -36,9 +36,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegistFormCliente() {
+export default function RegistFormCliente(props) {
   const classes = useStyles();
   const {actions} = useContext(Context);
+
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -101,6 +103,18 @@ export default function RegistFormCliente() {
             autoComplete="Direccion"
             autoFocus
           />
+            <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="telefono"
+            label="telefono"
+            type="telefono"
+            id="telefono"
+            autoComplete="Telefono"
+            onChange={e => actions.handleChange(e)}
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -113,17 +127,7 @@ export default function RegistFormCliente() {
             autoComplete="current-password"
             onChange={e => actions.handleChange(e)}
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="confirm_password"
-            label="Repetir Clave"
-            type="password"
-            id="confirm password"
-            autoComplete="current-password"
-          />
+        
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"

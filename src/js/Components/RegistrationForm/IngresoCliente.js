@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,21 +7,33 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Context } from '../../AppContext';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
 
 
 
 
 const useStyles = makeStyles(theme => ({
+
+  createStyles: ({
+    root: {
+      width: '100%',
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }),
+
   paper: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     borderBottom: 'none',
-    
+
   },
   avatar: {
     margin: theme.spacing(1),
@@ -30,14 +42,21 @@ const useStyles = makeStyles(theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-    
+
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
 
-export default function IngresoCliente() {
+function IngresoCliente(props) {
+
+  
+  const { store, actions } = useContext(Context);
+
+
+
+
   const classes = useStyles();
 
   return (
@@ -47,6 +66,14 @@ export default function IngresoCliente() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
+        {
+          !!store.error  && (
+            <div className={classes.root}>
+              
+              <Alert severity="error">{store.error.msg}</Alert>
+    
+            </div>)
+          }
         <Typography component="h1" variant="h5">
           Ingreso Cliente
         </Typography>
@@ -61,17 +88,19 @@ export default function IngresoCliente() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={e => actions.handleChangeCliente(e)}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
-            label="Clave"
+            name="clave"
+            label="clave"
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={e => actions.handleChangeCliente(e)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -83,22 +112,28 @@ export default function IngresoCliente() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={e => actions.handleLogingCliente(e, props.history)}
+
           >
-            <Link to='/mapaLigth'>Ingresa</Link>
+            Ingresa
           </Button>
         </form>
-        </div>
-      <div>
-      <Button 
-      href="#" 
-      color="primary"
-      className={classes.button}
-      >
-       {"Forgot password"}
-       </Button>
       </div>
-      
+      <div>
+        <Button
+          href="#"
+          color="primary"
+          className={classes.button}
+        >
+          {"Olvido su Clave"}
+        </Button>
+      </div>
+
     </Container>
-    
+
   );
 }
+
+
+
+export default  withRouter(IngresoCliente);
