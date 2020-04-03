@@ -76,6 +76,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			carrito: [],
 			total: 0,
 
+			//URL Para fetch
+			baseURL: 'http://localhost:5000',
+
 			//info para registro de usuario
 			nombre: '',
 			apellido: '',
@@ -184,6 +187,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
+			handleChangeFile: e => {
+				setStore({
+					[e.target.name]: e.target.files[0]
+				})
+			},
+
 			handleSubmitCliente: e => {
 				const store = getStore();
 				e.preventDefault();
@@ -200,21 +209,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			handleSubmitProducto: e => {
+			handleSubmitProducto: (e, history) => {
 				const store = getStore();
 				e.preventDefault();
-				let data = {
-						id: store.productos.length + 1,
-						foto: store.foto,
-						nombreProducto: store.nombreProducto,
-						descripcion: store.descripcion,
-						stock: store.stock,
-						precio: store.precio,
-						id_tienda: 1	
-				}
-				setStore({
-					productos: store.productos.concat(data)
+				let formData = new FormData();
+
+				formData.append("nombre", store.nombreProducto);
+				formData.append("stock", store.stock);
+				formData.append("precio", store.precio);
+				if(store.foto !== '') formData.append("avatar", store.foto);
+
+				getActions().register('/api/register/producto', formData, history)
+			},
+
+			register: async (url, data) => {
+				const store = getStore();
+				const {baseURL} = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'POST',
+					body: data
 				})
+				const info = await resp.json();
+				console.log(info);
+				if(info.msg) {
+					console.log('No funciona')
+				}else {
+					console.log('Producto agregado')
+				}
 			},
 
 			deleteProduct: producto => {

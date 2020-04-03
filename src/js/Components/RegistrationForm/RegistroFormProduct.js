@@ -71,7 +71,7 @@ export default function RegistFormProduct() {
             fullWidth
             id="Foto"
             name="foto"
-            onChange={e => actions.handleChange(e)}
+            onChange={e => actions.handleChangeFile(e)}
             autoComplete="Foto"
             autoFocus
           >
