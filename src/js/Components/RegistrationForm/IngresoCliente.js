@@ -8,10 +8,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Context } from '../../AppContext';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 
 
@@ -113,7 +113,6 @@ function IngresoCliente(props) {
             color="primary"
             className={classes.submit}
             onClick={e => actions.handleLogingCliente(e, props.history)}
-
           >
             Ingresa
           </Button>
@@ -128,9 +127,7 @@ function IngresoCliente(props) {
           {"Olvido su Clave"}
         </Button>
       </div>
-
     </Container>
-
   );
 }
 

@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import IngresoCliente from '../RegistrationForm/IngresoCliente';
 import RegistFormCliente from '../RegistrationForm/RegistFormCliente';
+import Alert from '@material-ui/lab/Alert';
+import { withRouter } from 'react-router-dom';
 
 
 function Copyright() {
@@ -84,14 +86,13 @@ function getStepContent(step) {
     case 1:
       return <RegistFormCliente />;
       default:
-      throw new Error('Unknown step');
   }
 }
 
-export default function IngresoClienteModal(props) {
+function IngresoClienteModal(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const {actions} = useContext(Context);
+  const {actions, store} = useContext(Context);
 
   const handleNext = (e) => {
     setActiveStep(activeStep + 1);    
@@ -104,14 +105,14 @@ export default function IngresoClienteModal(props) {
   return (
       <main>
          <Paper >
-         <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Gracias por registrarse con nosotros
-                </Typography>
-              </React.Fragment>
-            ) : (
+         {
+          !!store.error  && (
+            <div className={classes.root}>
+              
+              <Alert severity="error">{store.error.msg}</Alert>
+    
+            </div>)
+          }
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <div className={classes.buttons}>
@@ -121,13 +122,13 @@ export default function IngresoClienteModal(props) {
                     </Button>
                     )}
       
-                      {activeStep === steps.length - 1 ? (
+                      {activeStep === steps.length - 1? (
                       <Button 
                       
                       variant="contained"
                       color="primary"
                       onClick={e =>{
-                        handleNext(e);
+                       
                         actions.handleSubmitCliente(e, props.history)}
                       }
                       className={classes.button}
@@ -146,9 +147,6 @@ export default function IngresoClienteModal(props) {
                     )} 
                   </div>
                 </React.Fragment>
-
-                )}
-            </React.Fragment>
         </Paper>
           <Box mt={8}>
             <Copyright />
@@ -156,3 +154,6 @@ export default function IngresoClienteModal(props) {
       </main>
   );
 }
+
+
+export default withRouter(IngresoClienteModal);

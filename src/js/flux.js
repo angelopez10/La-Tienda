@@ -126,6 +126,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 		actions: {
+			isAuthenticated: () => {
+                if (sessionStorage.getItem("currentUser")) {
+                    // Restaura el contenido al campo de texto
+                    let currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+                    let isAuthenticated = sessionStorage.getItem("isAuthenticated");
+                    setStore({
+                        currentUser: currentUser,
+                        isAuthenticated: isAuthenticated
+                    })
+                }
+            },
+
+
+
+
 			// Agrega productos al carrito y entrega el valor total a pagar
 			addToCart: producto => {
 				const store = getStore();
@@ -251,7 +266,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			handleSubmitCliente: (e, history) => {
 				e.preventDefault();
 				const store = getStore();
-				console.log(store.nombre)
+		
 
 				let data = {
 					"nombre": store.nombre,
@@ -262,8 +277,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"telefono": store.telefono
 				}
 			
-				getActions().registro('/api/register', data);
-
+				getActions().registro('/api/register', data, history);
 			},
 
 			registro: async (url, data, history) => {
@@ -277,6 +291,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 				const dato = await resp.json();
+				console.log(dato)
 				if (dato.msg) {
 					setStore({
 						error: dato
@@ -286,7 +301,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						currentUser: dato,
 						IsAuthenticated: true,
 						error: null
-					})
+					});
+					sessionStorage.setItem('currentUser', JSON.stringify(dato))
+                    sessionStorage.setItem('isAuthenticated', true)
+					history.push('/mapaLigth')
+				
 				}
 			},
 
