@@ -5,7 +5,6 @@ import HomeMap from './js/views/HomeMap';
 import Tienda from './js/views/Tienda';
 import TiendaAdminView from './js/views/TiendaAdminView';
 import injectContext from './js/AppContext';
-import CheckoutView from './js/views/CheckoutView';
 import MapaMapBoxDark from './js/Components/HomeMapa/MapaMapBoxDark';
 import MapaMapBoxLigth from './js/Components/HomeMapa/MapaMapBoxLigth';
 

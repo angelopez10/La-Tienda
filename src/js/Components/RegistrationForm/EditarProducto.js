@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RegistFormProduct() {
   const classes = useStyles();
-  const {actions, store} = useContext(Context);
+  const {actions} = useContext(Context);
   
 
   return (
