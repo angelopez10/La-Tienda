@@ -10,8 +10,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function IngresoCliente(props) {
+function IngresoCliente(props) {
   const classes = useStyles();
   const {actions} = useContext(Context);
 
@@ -68,11 +68,11 @@ export default function IngresoCliente(props) {
             margin="normal"
             required
             fullWidth
-            name="password"
+            name="clave"
             label="Clave"
-            type="password"
-            id="password"
-            autoComplete="current-password"
+            type="clave"
+            id="clave"
+            autoComplete="clave"
             onChange={e => actions.handleChangeTienda(e)}
           />
           <FormControlLabel
@@ -85,6 +85,7 @@ export default function IngresoCliente(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={e => actions.handleLogingTienda(e, props.history)}
           >
            Ingresa
           </Button>
@@ -101,3 +102,5 @@ export default function IngresoCliente(props) {
     </Container>
   );
 }
+
+export default withRouter(IngresoCliente);

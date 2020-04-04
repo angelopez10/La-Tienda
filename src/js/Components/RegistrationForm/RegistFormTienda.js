@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
+import {Context} from '../../AppContext';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { withRouter } from 'react-router-dom';
 
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -36,8 +38,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegistFormCliente() {
+function RegistFormCliente(props) {
   const classes = useStyles();
+  const {actions} = useContext(Context);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -47,7 +50,7 @@ export default function RegistFormCliente() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Formulario de Registro Cliente
+          Formulario de Registro Tienda
         </Typography>
         <form className={classes.form} noValidate>
       
@@ -56,36 +59,37 @@ export default function RegistFormCliente() {
             margin="normal"
             required
             fullWidth
-            id="Nombre_tienda"
+            id="nombre"
             label="Nombre de la Tienda"
-            name="Nombre"
-            autoComplete="Nombre"
+            name="nombre"
+            autoComplete="nombre"
             autoFocus
+            onChange={e => actions.handleChangeRegistroTienda(e)}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="Rut"
-            label="Rut"
-            name="Rut"
-            autoComplete="Rut"
+            id="categoria"
+            label="Categoria"
+            name="categoria"
+            autoComplete="categoria"
             autoFocus
+            onChange={e => actions.handleChangeRegistroTienda(e)}
           />
-           <TextField
+          <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="Telefono"
-            label="Telefono"
-            name="Telefono"
-            autoComplete="Telefono"
+            id="rut"
+            label="Rut"
+            name="rut"
+            autoComplete="rut"
             autoFocus
+            onChange={e => actions.handleChangeRegistroTienda(e)}
           />
-
-
           <TextField
             variant="outlined"
             margin="normal"
@@ -96,40 +100,45 @@ export default function RegistFormCliente() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={e => actions.handleChangeRegistroTienda(e)}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="Direccion"
-            label="Direccion"
-            name="Direccion"
-            autoComplete="Direccion"
+            id="latitude"
+            label="Latitude"
+            name="latitude"
+            autoComplete="latitude"
             autoFocus
+            onChange={e => actions.handleChangeRegistroTienda(e)}
+          />
+           <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="longitude"
+            label="Longitude"
+            name="longitude"
+            autoComplete="longitude"
+            autoFocus
+            onChange={e => actions.handleChangeRegistroTienda(e)}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
+            name="clave"
             label="Clave"
-            type="password"
-            id="password"
-            autoComplete="current-password"
+            type="clave"
+            id="clave"
+            autoComplete="clave"
+            onChange={e => actions.handleChangeRegistroTienda(e)}
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="confirm_password"
-            label="confirmar Clave"
-            type="password"
-            id="confirm password"
-            autoComplete="current-password"
-          />
+   
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -140,3 +149,5 @@ export default function RegistFormCliente() {
     </Container>
   );
 }
+
+export default withRouter(RegistFormCliente);
