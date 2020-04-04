@@ -11,8 +11,8 @@ export default function MapaMapBoxLigth(props) {
   const [viewport, setViewport] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
-    latitude: 52.636879,
-    longitude: -1.139759,
+    latitude: -33.448891,
+    longitude: -70.669266,
     zoom: 13
   });
   const [selectedTienda, setSelectedTienda] = useState(0);
