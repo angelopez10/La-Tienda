@@ -139,10 +139,13 @@ function IngresoClienteModal(props) {
                       variant="contained"
                       color="primary"
                       onClick={
-                        store.currentUser? 
-                        e =>{actions.handleSubmitCliente(e, props.history)} :
+                        store.clave?
+                        
                         e =>{actions.handleSubmitCliente(e, props.history)
-                          handleNext(e)} 
+                             handleNext(e)
+                        } :
+                        e =>{actions.handleSubmitCliente(e, props.history)
+                        }
                       }
                       className={classes.button}
                       > 

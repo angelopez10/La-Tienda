@@ -3,8 +3,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		// base datos Angel
 		store: {
-
+///// Alex URL
 			baseURL: 'http://127.0.0.1:5000',
+
+
 			usuarios: [{
 
 			}],
@@ -79,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			total: 0,
 
 
-			//info para registro de usuario
+			//Alex info para registro de usuario
 
 			nombre: '',
 			apellido: '',
@@ -119,15 +121,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 			value: [],
 			coordenadas: [],
 
-			// Alex front adn Back
+			// Alex front and Back
 			currentUser: null,
 			IsAuthenticated: false,
 			error: null,
+			
+			// Alex registro tienda
+			categoria: [],
+			rut: [],
+			errorTienda: null,
+			latitude: [],
+			longitude: [],
+
 
 
 
 		},
 		actions: {
+/////// Funcion de autenticacion para el login 
+
 			isAuthenticated: () => {
                 if (sessionStorage.getItem("currentUser")) {
                     // Restaura el contenido al campo de texto
@@ -140,10 +152,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
 
-
-
-
-			// Agrega productos al carrito y entrega el valor total a pagar
+/////////////////////////// Agrega productos al carrito y entrega el valor total a pagar
 			addToCart: producto => {
 				const store = getStore();
 				let { carrito } = store;
@@ -203,8 +212,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			// Guarda la info de los inputs del cliente en el store
+//////////////////////////// Guarda la info de los inputs del cliente en el store
+////para todo los registros
+			
 			handleChange: e => {
+				setStore({
+					[e.target.name]: e.target.value
+				})
+			},
+
+			handleChangeCliente: e => {
 				setStore({
 					[e.target.name]: e.target.value
 				})
@@ -212,6 +229,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 
 			handleChangeTienda: e => {
+				setStore({
+					[e.target.name]: e.target.value
+				})
+			},
+
+			handleChangeRegistroTienda: e => {
 				setStore({
 					[e.target.name]: e.target.value
 				})
@@ -225,22 +248,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			handleSubmitCliente: e => {
-				const store = getStore();
-				e.preventDefault();
-				let data = {
-						id: 3,
-						nombre: store.nombre,
-						apellido: store.apellido,
-						email: store.email,
-						direccion: store.direccion,
-						clave: store.clave	
-        }
-				setStore({
-					[e.target.name]: e.target.value
-				})
-
-			},
+/////////////////////////////////////////////////////////
 
 			handleSubmitProducto: (e, history) => {
 				const store = getStore();
@@ -290,7 +298,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(productos)
 			},
 
-			// Alex registro
+///////////////////////////////// Alex registro del cliente
+
 			handleSubmitCliente: (e, history) => {
 				e.preventDefault();
 				const store = getStore();
@@ -335,7 +344,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			// Alex loging 
+///////////////////// Alex loging del cliente
+
 			handleLogingCliente:  (e, history) => {
 				e.preventDefault();
 				const store = getStore();
@@ -374,11 +384,103 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} 
 
 			},
+
+
+///////////////////////////////// Alex registro de la tienda
+
+			handleSubmitTienda: (e, history) => {
+				e.preventDefault();
+				const store = getStore();
+		
+
+				let data = {
+					"nombre": store.nombre,
+					"categoria": store.categoria,
+					"rut": store.rut,
+					"email": store.email,
+					"latitude": store.latitude,
+					"longitude": store.longitude,
+					"clave": store.clave,
+
+			
+				}
+			
+				getActions().registroTienda('/api/registerTienda', data, history);
+			},
+
+			registroTienda: async (url, data, history) => {
+				const store = getStore();
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				const dato = await resp.json();
+				console.log(dato)
+				if (dato.msg) {
+					setStore({
+						errorTienda: dato
+					})
+				} else {
+					setStore({
+						currentUser: dato,
+						IsAuthenticated: true,
+						errorTienda: null
+					});
+
+				}
+			},
+
+
+////////////////////////////////// Alex loging de la Tienda
+
+			handleLogingTienda:  (e, history) => {
+				e.preventDefault();
+				const store = getStore();
+				let data = {
+					"email": store.email,
+					"clave": store.clave,
+				}
+				getActions().logingTienda('/api/logingTienda', data, history);
+			},
+
+			logingTienda: async (url, data, history) => {
+				const store = getStore();
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json'
+					},	
+				})
+				const dato = await resp.json();
+				console.log(dato)
+				if (dato.msg) {
+					setStore({
+						errorTienda: dato
+					})
+				} else {
+					setStore({
+						currentUser: dato,
+						IsAuthenticated: true,
+						errorTienda: null
+					});
+					sessionStorage.setItem('currentUser', JSON.stringify(dato))
+                    sessionStorage.setItem('isAuthenticated', true)
+					history.push('/admin')
+				} 
+
+			},
+			
 			
 
 
 
-			// Alex Mapa
+////////////////////////////// Alex Mapa
 
 			setMapa: () => {
 				var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
@@ -403,7 +505,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					});
 			},
-
+//////////////// Filtro de tiendas para el mapa
 
 			setFilter: (e, contact) => {
 				const store = getStore();
@@ -422,6 +524,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ mapLng: e.lng })
 				setStore({ coordenadas: e })
 			},
+/////////////////// Mapa modo nocturno
 
 			toggleChecked: (e) => {
 				setStore({ value: e })
