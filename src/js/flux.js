@@ -248,11 +248,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-<<<<<<< HEAD
-			////////////////////////////////////////////////////////
-=======
->>>>>>> upstream/master
-
 			handleSubmitProducto: (e, history) => {
 				const store = getStore();
 				e.preventDefault();
