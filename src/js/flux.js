@@ -302,10 +302,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						IsAuthenticated: true,
 						error: null
 					});
-					sessionStorage.setItem('currentUser', JSON.stringify(dato))
-                    sessionStorage.setItem('isAuthenticated', true)
-					history.push('/mapaLigth')
-				
+
 				}
 			},
 
@@ -343,6 +340,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						IsAuthenticated: true,
 						error: null
 					});
+					sessionStorage.setItem('currentUser', JSON.stringify(dato))
+                    sessionStorage.setItem('isAuthenticated', true)
 					history.push('/mapaLigth')
 				} 
 

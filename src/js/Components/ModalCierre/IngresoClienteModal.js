@@ -80,12 +80,15 @@ const useStyles = makeStyles(theme => ({
 const steps = ['Ingreso Cliente', 'Registro Formulario cliente'];
 
 function getStepContent(step) {
+
+  
   switch (step) {
     case 0:
       return <IngresoCliente />;
     case 1:
       return <RegistFormCliente />;
       default:
+        throw new Error('Unknown step');
   }
 }
 
@@ -113,6 +116,15 @@ function IngresoClienteModal(props) {
     
             </div>)
           }
+         <React.Fragment>
+            {activeStep === steps.length ? (
+              <React.Fragment>
+                <Typography variant="h5" gutterBottom>
+                 Gracias por registrarse con nosotros
+                </Typography>
+              </React.Fragment>
+            ) : (
+       
                 <React.Fragment>
                   {getStepContent(activeStep)}
                   <div className={classes.buttons}>
@@ -121,15 +133,16 @@ function IngresoClienteModal(props) {
                         Back
                     </Button>
                     )}
-      
+
                       {activeStep === steps.length - 1? (
                       <Button 
-                      
                       variant="contained"
                       color="primary"
-                      onClick={e =>{
-                       
-                        actions.handleSubmitCliente(e, props.history)}
+                      onClick={
+                        store.currentUser? 
+                        e =>{actions.handleSubmitCliente(e, props.history)} :
+                        e =>{actions.handleSubmitCliente(e, props.history)
+                          handleNext(e)} 
                       }
                       className={classes.button}
                       > 
@@ -146,6 +159,8 @@ function IngresoClienteModal(props) {
                     </Button>
                     )} 
                   </div>
+                  </React.Fragment>
+                     )}
                 </React.Fragment>
         </Paper>
           <Box mt={8}>
