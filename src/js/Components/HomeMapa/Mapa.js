@@ -25,7 +25,7 @@ export default function Mapa(props) {
 
       <GoogleMapReact
         bootstrapURLKeys={{ key: 'AIzaSyDrJx4thHq6csImpMoRlB8qy00-GQuhIQw' }}
-        defaultCenter={{ lat: 52.636879, lng: -1.139759 }}
+        defaultCenter={{ lat: -33.448891, lng: -70.669266 }}
         defaultZoom={15}
         yesIWantToUseGoogleMapApiInternals
 
@@ -45,15 +45,15 @@ export default function Mapa(props) {
         {store.filteredTiendas.map(tienda => (
           <Marker
             key={tienda.id}
-            lat={tienda.location.latitude}
-            lng={tienda.location.longitude}
+            lat={tienda.latitude}
+            lng={tienda.longitude}
           >
             <button className="crime-marker"
               onClick={(e) => {
                 e.preventDefault();
                 const expansionZoom = 17;
                 mapRef.current.setZoom(expansionZoom);
-                mapRef.current.panTo({ lat: parseFloat(tienda.location.latitude), lng: parseFloat(tienda.location.longitude) });
+                mapRef.current.panTo({ lat: parseFloat(tienda.latitude), lng: parseFloat(tienda.longitude) });
               }}
               >
               <img src="/favicon.ico" alt="crime" />

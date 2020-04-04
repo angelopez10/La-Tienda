@@ -66,14 +66,6 @@ function IngresoCliente(props) {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        {
-          !!store.error  && (
-            <div className={classes.root}>
-              
-              <Alert severity="error">{store.error.msg}</Alert>
-    
-            </div>)
-          }
         <Typography component="h1" variant="h5">
           Ingreso Cliente
         </Typography>

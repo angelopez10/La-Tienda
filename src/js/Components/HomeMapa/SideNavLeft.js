@@ -139,7 +139,7 @@ export default function SideNavLeft() {
         <Divider />
         <List>
          {
-            store.tiendas.map((tienda, i) => (
+            store.contacts.map((tienda, i) => (
             <Link to = {`/tienda/${tienda.id}`} className={classes.handleLink}>
             <ListItem button key={i}>
               <ListItemIcon>
