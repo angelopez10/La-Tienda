@@ -248,7 +248,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-/////////////////////////////////////////////////////////
 
 			handleSubmitProducto: (e, history) => {
 				const store = getStore();
@@ -353,7 +352,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"email": store.email,
 					"clave": store.clave,
 				}
-				getActions().loging('/api/loging', data, history);
+				getActions().loging('/api/login', data, history);
 			},
 
 			loging: async (url, data, history) => {

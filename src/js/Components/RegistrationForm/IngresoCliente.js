@@ -88,7 +88,7 @@ function IngresoCliente(props) {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={e => actions.handleChangeCliente(e)}
+            onChange={e => actions.handleChange(e)}
           />
           <TextField
             variant="outlined"
@@ -100,7 +100,7 @@ function IngresoCliente(props) {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={e => actions.handleChangeCliente(e)}
+            onChange={e => actions.handleChange(e)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

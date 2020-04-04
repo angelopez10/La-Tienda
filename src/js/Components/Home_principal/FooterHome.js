@@ -36,6 +36,14 @@ const useStyles = makeStyles({
     color: '#f5f3f3',
     height: 48,
     padding: '0 30px',
+    ['@media (max-width:768px)']: { // eslint-disable-line no-useless-computed-key
+      marginLeft: 0,
+      marginBottom: '10px'
+    },
+    ['@media (max-width:1200px)']: { // eslint-disable-line no-useless-computed-key
+      marginLeft: 0,
+      marginBottom: '10px'
+    },
     marginLeft: '300px',
     '&:hover': {
       backgroundColor: '#ff8d1e',
@@ -68,7 +76,7 @@ export default function FooterHome() {
         <div className="main-footer widgets-dark typo-light">
           <div className="container pt-2">
             <div className="row">
-              <div className="col-xs-12 col-sm-6 col-lg-6 ">
+              <div className="col-xs-12 col-sm-12 col-lg-6 ">
                 <div className="widget no-box">
                   <h5 className="widget-title">
                     Trabaja con nosotros<span></span>
@@ -76,9 +84,9 @@ export default function FooterHome() {
                   <p>Accede a nuestra red de tiendas e incrementa tus ganancias</p>
                 </div>
               </div>
-              <div className='col-xs-12 col-sm-6 col-lg-6  pl-5 '>
-                <ButtonToolbar className={classes.position}>
-                  <Button  className={classes.root} onClick={() => setModalShow(true)}>
+              <div className='col-xs-6 col-sm-6 col-lg-6 '>
+                <ButtonToolbar className={classes.position} >
+                  <Button  className={classes.root} onClick={() => setModalShow(true)} >
                     Trabaja con Nosotros
 		                </Button>
                   <ModalIngresoTienda
