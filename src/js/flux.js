@@ -330,7 +330,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"email": store.email,
 					"clave": store.clave,
 				}
-				getActions().loging('/api/login', data, history);
+				getActions().loging('/api/loging', data, history);
 			},
 
 			loging: async (url, data, history) => {
