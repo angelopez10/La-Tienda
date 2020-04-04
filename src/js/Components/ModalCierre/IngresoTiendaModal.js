@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext}  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import IngresoTienda from '../RegistrationForm/IngresoTienda';
 import RegistFormTienda from '../RegistrationForm/RegistFormTienda';
 import Box from '@material-ui/core/Box';
+import {Context} from '../../AppContext';
+import Alert from '@material-ui/lab/Alert';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -74,9 +77,10 @@ function getStepContent(step) {
   }
 }
 
-export default function IngresoTiendaModal() {
+function IngresoTiendaModal(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const {actions, store} = useContext(Context);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -86,41 +90,76 @@ export default function IngresoTiendaModal() {
     setActiveStep(activeStep - 1);
   };
 
+  
+
   return (
       <main >
         <Paper >
+        {
+          !!store.errorTienda  && (
+            <div className={classes.root}>
+              
+              <Alert severity="error">{store.errorTienda.msg}</Alert>
+    
+            </div>)
+          }
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                 Gracias por registrarse con nosotros
+                 Gracias por registrarse su Tienda con nosotros
                 </Typography>
               </React.Fragment>
             ) : (
-                <React.Fragment>
-                  {getStepContent(activeStep)}
-                  <div className={classes.buttons}>
-                    {activeStep !== 0 && (
-                      <Button onClick={handleBack} className={classes.button}>
-                        Back
-                    </Button>
-                    )}
+       
+              <React.Fragment>
+              {getStepContent(activeStep)}
+              <div className={classes.buttons}>
+                {activeStep !== 0 && (
+                <Button onClick={handleBack} className={classes.button}>
+                    Back
+                </Button>
+                )}
+
+                  {activeStep === steps.length - 1? (
+                  <Button 
+                  variant="contained"
+                  color="primary"
+                  onClick={
+                    store.clave?
+                    
+                    e =>{actions.handleSubmitTienda(e, props.history)
+                         handleNext(e)
+                    } :
+                    e =>{actions.handleSubmitTienda(e, props.history)
+                    }
+                  }
+                  className={classes.button}
+                  > 
+                  Registrate
+                  </Button>
+                     ) : (
                     <Button
                       variant="contained"
                       color="primary"
                       onClick={handleNext}
                       className={classes.button}
                     >
-                      {activeStep === steps.length - 1 ? 'Registrate' : "No tienes una cuenta, Registrate"}
-                    </Button>
-                  </div>
-                </React.Fragment>
-              )}
-          </React.Fragment>
-        </Paper>
-        <Box mt={8}>
+                      "No tienes una cuenta? Registrate"     
+                </Button>
+                )} 
+              </div>
+              </React.Fragment>
+                 )}
+            </React.Fragment>
+       </Paper>
+      <Box mt={8}>
         <Copyright />
       </Box>
-      </main>
-  );
+  </main>
+);
 }
+
+
+export default withRouter(IngresoTiendaModal);
+
