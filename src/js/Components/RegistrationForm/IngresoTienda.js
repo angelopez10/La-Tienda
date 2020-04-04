@@ -96,7 +96,7 @@ function IngresoCliente(props) {
       color="primary"
       className={classes.button}
       >
-       {"Forgot password"}
+       {"Olvido Su clave"}
        </Button>
 
     </Container>

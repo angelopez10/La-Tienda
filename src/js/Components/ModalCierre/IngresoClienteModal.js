@@ -105,15 +105,14 @@ function IngresoClienteModal(props) {
     setActiveStep(activeStep - 1);
   };
 
+
   return (
       <main>
          <Paper >
          {
           !!store.error  && (
             <div className={classes.root}>
-              
               <Alert severity="error">{store.error.msg}</Alert>
-    
             </div>)
           }
          <React.Fragment>
@@ -133,17 +132,14 @@ function IngresoClienteModal(props) {
                         Back
                     </Button>
                     )}
-
                       {activeStep === steps.length - 1? (
                       <Button 
                       variant="contained"
                       color="primary"
                       onClick={
-                        store.clave?
-                        
-                        e =>{actions.handleSubmitCliente(e, props.history)
-                             handleNext(e)
-                        } :
+                        (store.clave && !store.error && store.IsAuthenticated)?
+                            e => { handleNext(e)}
+                       :
                         e =>{actions.handleSubmitCliente(e, props.history)
                         }
                       }
