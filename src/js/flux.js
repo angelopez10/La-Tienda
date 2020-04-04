@@ -225,22 +225,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			handleSubmitCliente: e => {
-				const store = getStore();
-				e.preventDefault();
-				let data = {
-						id: 3,
-						nombre: store.nombre,
-						apellido: store.apellido,
-						email: store.email,
-						direccion: store.direccion,
-						clave: store.clave	
-        }
-				setStore({
-					[e.target.name]: e.target.value
-				})
-
-			},
 
 			handleSubmitProducto: (e, history) => {
 				const store = getStore();
@@ -346,7 +330,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"email": store.email,
 					"clave": store.clave,
 				}
-				getActions().loging('/api/loging', data, history);
+				getActions().loging('/api/login', data, history);
 			},
 
 			loging: async (url, data, history) => {

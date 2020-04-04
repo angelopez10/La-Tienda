@@ -13,6 +13,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
   margin: 0;
   overflow-y: hidden;
   opacity: 0.9;
@@ -60,4 +61,28 @@ body {
   border-right: 1px solid #b9bbbb;
   padding-right: 750px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .logo-principal {
+    padding-right: 30px;
+    border: none;
+  }
+
+  .searchbar:hover > .search_input {
+    padding: 0 10px;
+    width: 350px;
+    caret-color: #ff8d1e;
+    transition: width 0.4s linear;
+  }
+
+
+}
+
+@media (max-width: 1200px) {
+  .logo-principal {
+    padding-right: 100px;
+    border: none;
+  }
+
 }
