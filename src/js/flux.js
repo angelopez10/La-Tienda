@@ -248,10 +248,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////
-=======
->>>>>>> upstream/master
+			////////////////////////////////////////////////////////
 
 			handleSubmitProducto: (e, history) => {
 				const store = getStore();
@@ -356,7 +353,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"email": store.email,
 					"clave": store.clave,
 				}
-				getActions().loging('/api/login', data, history);
+				getActions().loging('/api/loging', data, history);
 			},
 
 			loging: async (url, data, history) => {
@@ -373,6 +370,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(dato)
 				if (dato.msg) {
 					setStore({
+		
 						error: dato
 					})
 				} else {
