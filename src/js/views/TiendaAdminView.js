@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import React, { useContext, useEffect} from 'react'
 import { Context } from '../AppContext'
 import NavbarAdmin from '../Components/TiendaAdmin/NavbarAdmin';
 import ProductoAdmin from '../Components/TiendaAdmin/ProductoAdmin';
@@ -7,7 +7,10 @@ import ProductoAdmin from '../Components/TiendaAdmin/ProductoAdmin';
 
 
 export default function TiendaAdminView(props) {
-    const { store } = useContext(Context);
+    const { store, actions } = useContext(Context);
+    useEffect(() => {
+        actions.setTiendaAdmin();
+      }, []);
     return (
         <div>
             <NavbarAdmin />

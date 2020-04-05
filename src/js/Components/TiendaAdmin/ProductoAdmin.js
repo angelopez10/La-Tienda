@@ -12,18 +12,23 @@ const useStyles = makeStyles(() => ({
     textColor: {
         color: '#ff8d1e'
     },
+    size: {
+        width: '600px',
+        height: '400px'
+    }
 }));
 
 export default function ProductoAdmin(props) {
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
+    let img = store.baseURL + '/api/producto/' + props.producto.avatar
     const [modalShow, setModalShow] = React.useState(false);
     const classes = useStyles();
     return (
         <div className="col-12 col-md-6 col-lg-3 ">
             <div className="card card-style mb-2">
-                <img className="card-img-top" src="https://picsum.photos/600/400" alt=""/>
+                <img className="card-img-top" src={img} alt="" width='400px' height='200px'/> 
                 <div className="card-body card-bg">
-                    <h4 className="card-title"><a href="product.html" title="View Product">{props.producto.nombreProducto}</a></h4>
+                    <h4 className="card-title"><a href="product.html" title="View Product">{props.producto.nombre}</a></h4>
                     <p className="card-text">{props.producto.descripcion}</p>
                     <p className="card-text">Stock: {props.producto.stock}</p>
                     <p className="card-text">Precio: {props.producto.precio}</p>

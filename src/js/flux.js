@@ -39,43 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 			],
 
-			productos: [{
-				id: 1,
-				foto: '',
-				nombreProducto: 'Queso',
-				descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				stock: '25 u',
-				precio: '1690',
-				id_tienda: 3,
-			},
-			{
-				id: 2,
-				foto: '',
-				nombreProducto: 'Arroz',
-				descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				stock: '25 u',
-				precio: '1690',
-				id_tienda: 3,
-			},
-			{
-				id: 3,
-				foto: '',
-				nombreProducto: 'Agua',
-				descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				stock: '25 u',
-				precio: '1690',
-				id_tienda: 3,
-			},
-			{
-				id: 4,
-				foto: '',
-				nombreProducto: 'Pasta',
-				descripcion: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-				stock: '25 u',
-				precio: '1690',
-				id_tienda: 3,
-			},
-			],
+			productos: [],
 			//info para carrito de compras
 			carrito: [],
 			total: 0,
@@ -255,7 +219,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				formData.append("nombreProducto", store.nombreProducto);
 				formData.append("descripcion", store.descripcion);
 				formData.append("stock", store.stock);
-				formData.append("nombreProducto", store.nombreProducto);
 				formData.append("precio", store.precio);
 				formData.append("tienda_id", store.currentUser.Tienda.id);
 				if(store.avatar !==' '){
@@ -539,7 +502,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			setTiendaAdmin: (e, history) => {
+				const store = getStore();
+				console.log(store.currentUser.Tienda.email)
+				let data = {
+					"clave": store.currentUser.access_token,
+					"email": store.currentUser.Tienda.email,
+				};
+				getActions().productosAdmin(`/api/tienda/${store.currentUser.Tienda.id}`, data, history);
+			},
 
+			productosAdmin: async (url, data) => {
+				console.log(data.clave);
+				const store = getStore();
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + data.clave,
+					},
+
+				})
+				const dato = await resp.json();
+				console.log(dato)
+				if (dato.msg) {
+					setStore({
+						error: dato
+					})
+				} else {
+					setStore({
+						productos: dato,
+					});
+				}
+			},
 
 
 

@@ -134,6 +134,7 @@ export default function RegistFormProduct(props) {
             fullWidth
             variant="contained"
             color="primary"
+            closeButton
             className={classes.submit}
             onClick={e =>{actions.handleSubmitProducto(e)}}
             >
