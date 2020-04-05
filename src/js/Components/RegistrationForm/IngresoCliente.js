@@ -12,7 +12,7 @@ import { withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Context } from '../../AppContext';
 import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
+
 
 
 
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
 function IngresoCliente(props) {
 
   
-  const { store, actions } = useContext(Context);
+  const {  actions } = useContext(Context);
 
 
 

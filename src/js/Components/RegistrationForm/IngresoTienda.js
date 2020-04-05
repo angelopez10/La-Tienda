@@ -70,9 +70,9 @@ function IngresoCliente(props) {
             fullWidth
             name="clave"
             label="Clave"
-            type="clave"
-            id="clave"
-            autoComplete="clave"
+            type="password"
+            id="password"
+            autoComplete="current-password"
             onChange={e => actions.handleChangeTienda(e)}
           />
           <FormControlLabel
