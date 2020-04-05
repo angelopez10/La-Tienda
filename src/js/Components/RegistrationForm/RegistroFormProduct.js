@@ -9,6 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Alert from '@material-ui/lab/Alert';
 
 
 
@@ -47,13 +48,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegistFormProduct() {
+export default function RegistFormProduct(props) {
   const classes = useStyles();
-  const {actions} = useContext(Context);
+  const {store, actions} = useContext(Context);
   
 
   return (
     <Container component="main" maxWidth="xs">
+      {
+          !!store.error  && (
+            <div className={classes.root}>
+              <Alert severity="error">{store.error.msg}</Alert>
+            </div>)
+          }
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -67,19 +74,18 @@ export default function RegistFormProduct() {
             variant="outlined"
             margin="normal"
             type="file"
-            required
             fullWidth
-            id="Foto"
-            name="foto"
-            onChange={e => actions.handleChangeFile(e)}
-            autoComplete="Foto"
+            id="avatar"
+            name="avatar"
+            autoComplete="avatar"
             autoFocus
+            onChange={e => actions.handleChangeFile(e)}
           >
           </TextField>
           <TextField
             variant="outlined"
             margin="normal"
-            required
+
             fullWidth
             id="Nombre_Producto"
             label="Nombre del Producto"
@@ -91,7 +97,7 @@ export default function RegistFormProduct() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
+
             fullWidth
             id="descripcion"
             label="Descripción"
@@ -103,7 +109,7 @@ export default function RegistFormProduct() {
           <TextField
             variant="outlined"
             margin="normal"
-            required
+
             fullWidth
             id="Cantidad"
             label="Stock disponible"
@@ -115,25 +121,37 @@ export default function RegistFormProduct() {
            <TextField
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             id="Precio"
             label="Precio"
             name="precio"
             onChange={e => actions.handleChange(e)}
             autoComplete="Precio"
-            autoFocus
           />
-          <Button
+          {store.productoAgregado&&store.precio? 
+          (<Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={e => actions.handleSubmitProducto(e)}
+            closeButton
+            onClick={e =>{actions.handleSubmitProducto(e)}}
+            >
+              Ingresar
+          </Button>)
+          : 
+          (<Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          closeButton
+          className={classes.submit}
           >
-            Agregar
-          </Button>
+            Ingresar
+          </Button>)
+          }
         </form>
       </div>
       <Box mt={8}>
