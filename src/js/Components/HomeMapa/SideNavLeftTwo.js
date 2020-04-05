@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Context } from '../../AppContext';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -87,7 +87,6 @@ const useStyles = makeStyles(theme => ({
 export default function SideNavLeftTwo() {
   const [modalShow, setModalShow] = React.useState(false);
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const { store, actions } = useContext(Context);
 
@@ -142,7 +141,7 @@ export default function SideNavLeftTwo() {
           {
             store.carrito.map((item, index) => (
               <ListItem key={index}>
-                <ListItemIcon><img class="card-img-top" src="https://picsum.photos/40/40" alt="Card image cap" /></ListItemIcon>
+                <ListItemIcon><img class="card-img-top" src="https://picsum.photos/40/40" alt="logo" /></ListItemIcon>
                 <div className='row'>
                   <div className='col-12 ml-3 mt-4'>
                     <h6>{item.producto.nombreProducto} | ${item.producto.precio}</h6>

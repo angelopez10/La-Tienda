@@ -172,6 +172,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				newCarrito.map((item) => {
 					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+					return newtotalCarrito;
 				})
 				setStore({
 					carrito: newCarrito,
@@ -200,6 +201,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				newCarrito.map((item) => {
 					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+					return newtotalCarrito;
 				})
 				setStore({
 					carrito: newCarrito,
@@ -249,6 +251,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				e.preventDefault();
 				let formData = new FormData();
 
+				
+
 				formData.append("nombre", store.nombreProducto);
 				formData.append("stock", store.stock);
 				formData.append("precio", store.precio);
@@ -257,12 +261,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().register('/api/register/producto', formData, history)
 			},
 
-			register: async (url, data) => {
+			register: async (url, data, token) => {
 				const store = getStore();
 				const {baseURL} = store;
 				const resp = await fetch(baseURL + url, {
 					method: 'POST',
-					body: data
+					body: data,
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${store.currentUser.access_token}`
+					},	
 				})
 				const info = await resp.json();
 				console.log(info);

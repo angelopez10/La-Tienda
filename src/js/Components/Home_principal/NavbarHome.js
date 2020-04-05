@@ -50,9 +50,9 @@ export default function NavbarHome() {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-lg static-top py-0 bg-color">
-        <div class='container'>
-          <Link class="navbar-brand text-link" href="#">
+      <nav className="navbar navbar-expand-lg static-top py-0 bg-color">
+        <div className='container'>
+          <Link className="navbar-brand text-link" to='/'>
             <img src={logo} alt='' className='logo-principal' />
           </Link>
           <ButtonToolbar className={classes.root} xs={12}>
