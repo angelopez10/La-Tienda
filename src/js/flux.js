@@ -113,13 +113,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Alex mapa
 			contacts: [],
-			cate: [],
 			filteredTiendas: [],
-			mapLat: [],
-			mapLng: [],
-			checked: [],
-			value: [],
-			coordenadas: [],
+		
 
 			// Alex front and Back
 			currentUser: null,
@@ -374,6 +369,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				} else {
 					setStore({
+					
 						currentUser: dato,
 						IsAuthenticated: true,
 						error: null
@@ -482,39 +478,59 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 ////////////////////////////// Alex Mapa
 
-			setMapa: () => {
-				var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-					targetUrl = 'https://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2019-10'
-
-				fetch((proxyUrl + targetUrl), {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json"
-					}
-				})
-					.then(resp => {
-						return resp.json();
-					})
-					.then(data => {
-						setStore({ contacts: data });
-						setStore({ filteredTiendas: data });
-						const categoria = [...new Set(data.map(tienda => tienda.category))];
-						setStore({ cate: categoria });
-					})
-					.catch(error => {
-						console.log(error);
-					});
+			setMapa: (e, history) => {
+				const store = getStore();
+				console.log(store.currentUser.Usuario.email)
+				let data = {
+					"clave": store.currentUser.access_token,
+					"email": store.currentUser.Usuario.email,
+				};
+				getActions().mapaTiendas('/api/mapa', data, history);
 			},
+			
+
+			mapaTiendas: async (url, data, history) => {
+				console.log(data.clave);
+				const store = getStore();
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer '+data.clave,
+					},	
+					
+				})
+				const dato = await resp.json();
+				console.log(dato)
+				if (dato.msg) {
+					setStore({
+						error: dato
+					})
+				} else {
+					setStore({
+						contacts: dato,
+						filteredTiendas: dato,
+					
+					});
+				} 
+			},
+			
+
+
+
+
+
 //////////////// Filtro de tiendas para el mapa
 
 			setFilter: (e, contact) => {
 				const store = getStore();
 				if (contact === undefined) {
-					setStore({ filteredTiendas: store.contacts })
+					setStore({ contacts: store.filteredTiendas })
 				} else {
 					setStore({
-						filteredTiendas: store.contacts.filter(tienda =>
-							tienda.category === contact)
+						contacts: store.filteredTiendas.filter(tienda =>
+							tienda.categoria === contact)
 					})
 				}
 			},

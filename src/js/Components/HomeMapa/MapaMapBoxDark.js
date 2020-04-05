@@ -13,7 +13,7 @@ export default function MapaMapBoxDark(props) {
     height: window.innerHeight,
     latitude: -33.448891,
     longitude:-70.669266,
-    zoom: 13
+    zoom: 12
   });
   const [selectedTienda, setSelectedTienda] = useState(0);
   const { store, actions } = useContext(Context);
@@ -66,11 +66,11 @@ export default function MapaMapBoxDark(props) {
         onViewportChange={(vp) => setViewport(vp)}
       >
         <DarkMode />
-        {store.filteredTiendas.map(tienda => (
+        {store.contacts.map(tienda => (
           <Marker
             key={tienda.id}
-            latitude={parseFloat(tienda.location.latitude)}
-            longitude={parseFloat(tienda.location.longitude)}
+            latitude={parseFloat(tienda.latitude)}
+            longitude={parseFloat(tienda.longitude)}
           >
             <button
              className="marker-btn"
@@ -85,15 +85,15 @@ export default function MapaMapBoxDark(props) {
                ))}
                {selectedTienda ? (
             <Popup
-            latitude={parseFloat(selectedTienda.location.latitude)}
-            longitude={parseFloat(selectedTienda.location.longitude)}
+            latitude={parseFloat(selectedTienda.latitude)}
+            longitude={parseFloat(selectedTienda.longitude)}
             onClose={() => {
               setSelectedTienda(null);
             }}
           >
             <div>
-              <h2>{selectedTienda.id}</h2>
-              <p>{selectedTienda.id}</p>
+              <h2>Nombre: {selectedTienda.nombre}</h2>
+              <p>Categoria: {selectedTienda.categoria}</p>
             </div>
           </Popup>
         ) : null}

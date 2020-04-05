@@ -125,15 +125,12 @@ function IngresoTiendaModal(props) {
                   <Button 
                   variant="contained"
                   color="primary"
-                  onClick={
-                    store.clave?
-                    
-                    e =>{actions.handleSubmitTienda(e, props.history)
-                         handleNext(e)
-                    } :
-                    e =>{actions.handleSubmitTienda(e, props.history)
+                  onClick= { 
+                    (store.clave && !store.errorTiend && store.IsAuthenticated)?
+                      e => {handleNext(e)}
+                  :
+                    e =>{actions.handleSubmitTienda(e, props.history)}
                     }
-                  }
                   className={classes.button}
                   > 
                   Registrate

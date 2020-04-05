@@ -140,7 +140,7 @@ export const SideNav = props => {
       });
    
 
-    const categories = [...new Set(store.contacts.map(tienda => tienda.category))]
+    const categories = [...new Set(store.contacts.map(tienda => tienda.categoria))]
 
 
     const handleDrawerOpen = () => {
@@ -153,7 +153,7 @@ export const SideNav = props => {
 
     useEffect(() => {
         actions.coordenaasMapa(coordinates);
-      }, [coordinates.lat]);
+      }, [store.filteredTiendas.latitude]);
 
 
     const handleSelect = async value => {

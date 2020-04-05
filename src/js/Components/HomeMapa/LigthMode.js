@@ -16,7 +16,7 @@ export default function LigthMode() {
   };
 
 
-  console.log(store.value);
+
   return (
 
     
