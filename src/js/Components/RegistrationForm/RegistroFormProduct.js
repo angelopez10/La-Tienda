@@ -136,9 +136,9 @@ function RegistFormProduct(props) {
             variant="contained"
             color="primary"
             closeButton
+
             onClick={e =>{actions.handleSubmitProducto(e, props.history)}}
            // className={classes.submit}
-            >
               Ingresar
           </Button> :
              
