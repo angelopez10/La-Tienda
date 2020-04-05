@@ -285,8 +285,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					setStore({
 						error : null,
-						productoAgregado: info
+						productoAgregado: info,
+						IsAuthenticated: true,
 					})
+					sessionStorage.setItem('currentUser', JSON.stringify(info))
+					sessionStorage.setItem('isAuthenticated', true)
 					
 					
 				}

@@ -135,7 +135,6 @@ export default function RegistFormProduct(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            closeButton
             onClick={e =>{actions.handleSubmitProducto(e)}}
             >
               Ingresar
