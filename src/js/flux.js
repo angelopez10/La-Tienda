@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		// base datos Angel
 		store: {
-///// Alex URL
+			///// Alex URL
 			baseURL: 'http://127.0.0.1:5000',
 
 
@@ -105,22 +105,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			cvv: '',
 
 			//info para agregar producto
-			foto: '',
+			avatar: '',
 			nombreProducto: '',
 			descripcion: '',
 			stock: '',
 			precio: '',
+			productoAgregado: [],
 
 			// Alex mapa
 			contacts: [],
 			filteredTiendas: [],
-		
+
 
 			// Alex front and Back
 			currentUser: null,
 			IsAuthenticated: false,
 			error: null,
-			
+
 			// Alex registro tienda
 			categoria: [],
 			rut: [],
@@ -133,21 +134,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 		actions: {
-/////// Funcion de autenticacion para el login 
+			/////// Funcion de autenticacion para el login 
 
 			isAuthenticated: () => {
-                if (sessionStorage.getItem("currentUser")) {
-                    // Restaura el contenido al campo de texto
-                    let currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-                    let isAuthenticated = sessionStorage.getItem("isAuthenticated");
-                    setStore({
-                        currentUser: currentUser,
-                        isAuthenticated: isAuthenticated
-                    })
-                }
-            },
+				if (sessionStorage.getItem("currentUser")) {
+					// Restaura el contenido al campo de texto
+					let currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+					let isAuthenticated = sessionStorage.getItem("isAuthenticated");
+					setStore({
+						currentUser: currentUser,
+						isAuthenticated: isAuthenticated
+					})
+				}
+			},
 
-/////////////////////////// Agrega productos al carrito y entrega el valor total a pagar
+			/////////////////////////// Agrega productos al carrito y entrega el valor total a pagar
 			addToCart: producto => {
 				const store = getStore();
 				let { carrito } = store;
@@ -209,9 +210,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-//////////////////////////// Guarda la info de los inputs del cliente en el store
-////para todo los registros
-			
+			//////////////////////////// Guarda la info de los inputs del cliente en el store
+			////para todo los registros
+
 			handleChange: e => {
 				setStore({
 					[e.target.name]: e.target.value
@@ -223,7 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					[e.target.name]: e.target.value
 				})
 			},
-		
+
 
 			handleChangeTienda: e => {
 				setStore({
@@ -244,42 +245,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 					[e.target.name]: e.target.files[0]
 				})
 			},
+///////////////////////////////////////// envio de productos
 
 
 			handleSubmitProducto: (e, history) => {
-				const store = getStore();
 				e.preventDefault();
+				const store = getStore();
 				let formData = new FormData();
-
-				
-
-				formData.append("nombre", store.nombreProducto);
+				formData.append("nombreProducto", store.nombreProducto);
+				formData.append("descripcion", store.descripcion);
 				formData.append("stock", store.stock);
+				formData.append("nombreProducto", store.nombreProducto);
 				formData.append("precio", store.precio);
-				if(store.foto !== '') formData.append("avatar", store.foto);
+				formData.append("tienda_id", store.currentUser.Tienda.id);
+				if(store.avatar !==' '){
+					formData.append("avatar", store.avatar)
+					setStore({ error: {"msg":"Por favor agregar foto"}})
+				};
+
+
 
 				getActions().register('/api/register/producto', formData, history)
 			},
 
 			register: async (url, data, token) => {
 				const store = getStore();
-				const {baseURL} = store;
+				const { baseURL } = store;
 				const resp = await fetch(baseURL + url, {
 					method: 'POST',
-					body: data,
-					headers: {
-						'Content-Type': 'application/json',
-						'Authorization': `Bearer ${store.currentUser.access_token}`
-					},	
+					body: data
 				})
 				const info = await resp.json();
-				console.log(info);
-				if(info.msg) {
-					console.log('No funciona')
-				}else {
-					console.log('Producto agregado')
+				console.log(info)
+			
+				if (info.msg) {
+					setStore({
+						error : info
+					})
+				} else {
+					setStore({
+						error : null,
+						productoAgregado: info
+					})
+					
+					
 				}
 			},
+
+///////////////////////////////////// eiliminar productos
 
 			deleteProduct: producto => {
 				const store = getStore();
@@ -300,12 +313,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(productos)
 			},
 
-///////////////////////////////// Alex registro del cliente
+			///////////////////////////////// Alex registro del cliente
 
 			handleSubmitCliente: (e, history) => {
 				e.preventDefault();
 				const store = getStore();
-		
+
 
 				let data = {
 					"nombre": store.nombre,
@@ -315,7 +328,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"clave": store.clave,
 					"telefono": store.telefono
 				}
-			
+
 				getActions().registro('/api/register', data, history);
 			},
 
@@ -346,9 +359,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-///////////////////// Alex loging del cliente
+			///////////////////// Alex loging del cliente
 
-			handleLogingCliente:  (e, history) => {
+			handleLogingCliente: (e, history) => {
 				e.preventDefault();
 				const store = getStore();
 				let data = {
@@ -366,36 +379,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(data),
 					headers: {
 						'Content-Type': 'application/json'
-					},	
+					},
 				})
 				const dato = await resp.json();
 				console.log(dato)
 				if (dato.msg) {
 					setStore({
-		
+
 						error: dato
 					})
 				} else {
 					setStore({
-					
+
 						currentUser: dato,
 						IsAuthenticated: true,
 						error: null
 					});
 					sessionStorage.setItem('currentUser', JSON.stringify(dato))
-                    sessionStorage.setItem('isAuthenticated', true)
+					sessionStorage.setItem('isAuthenticated', true)
 					history.push('/mapaLigth')
-				} 
+				}
 
 			},
 
 
-///////////////////////////////// Alex registro de la tienda
+			///////////////////////////////// Alex registro de la tienda
 
 			handleSubmitTienda: (e, history) => {
 				e.preventDefault();
 				const store = getStore();
-		
+
 
 				let data = {
 					"nombre": store.nombre,
@@ -406,9 +419,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"longitude": store.longitude,
 					"clave": store.clave,
 
-			
+
 				}
-			
+
 				getActions().registroTienda('/api/registerTienda', data, history);
 			},
 
@@ -439,9 +452,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-////////////////////////////////// Alex loging de la Tienda
+			////////////////////////////////// Alex loging de la Tienda
 
-			handleLogingTienda:  (e, history) => {
+			handleLogingTienda: (e, history) => {
 				e.preventDefault();
 				const store = getStore();
 				let data = {
@@ -459,10 +472,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(data),
 					headers: {
 						'Content-Type': 'application/json'
-					},	
+					},
 				})
 				const dato = await resp.json();
-				console.log(dato)
 				if (dato.msg) {
 					setStore({
 						errorTienda: dato
@@ -474,17 +486,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						errorTienda: null
 					});
 					sessionStorage.setItem('currentUser', JSON.stringify(dato))
-                    sessionStorage.setItem('isAuthenticated', true)
+					sessionStorage.setItem('isAuthenticated', true)
 					history.push('/admin')
-				} 
+				}
 
 			},
-			
-			
 
 
 
-////////////////////////////// Alex Mapa
+
+
+			////////////////////////////// Alex Mapa
 
 			setMapa: (e, history) => {
 				const store = getStore();
@@ -495,7 +507,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				getActions().mapaTiendas('/api/mapa', data, history);
 			},
-			
+
 
 			mapaTiendas: async (url, data, history) => {
 				console.log(data.clave);
@@ -505,9 +517,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization': 'Bearer '+data.clave,
-					},	
-					
+						'Authorization': 'Bearer ' + data.clave,
+					},
+
 				})
 				const dato = await resp.json();
 				console.log(dato)
@@ -519,17 +531,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						contacts: dato,
 						filteredTiendas: dato,
-					
+
 					});
-				} 
+				}
 			},
-			
 
 
 
 
 
-//////////////// Filtro de tiendas para el mapa
+
+			//////////////// Filtro de tiendas para el mapa
 
 			setFilter: (e, contact) => {
 				const store = getStore();
@@ -548,7 +560,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ mapLng: e.lng })
 				setStore({ coordenadas: e })
 			},
-/////////////////// Mapa modo nocturno
+			/////////////////// Mapa modo nocturno
 
 			toggleChecked: (e) => {
 				setStore({ value: e })
