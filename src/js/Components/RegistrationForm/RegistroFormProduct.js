@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Alert from '@material-ui/lab/Alert';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -48,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegistFormProduct(props) {
+function RegistFormProduct(props) {
   const classes = useStyles();
   const {store, actions} = useContext(Context);
   
@@ -128,29 +129,29 @@ export default function RegistFormProduct(props) {
             onChange={e => actions.handleChange(e)}
             autoComplete="Precio"
           />
-          {store.productoAgregado&&store.precio? 
-          (<Button
+          { (store.precio && store.avatar && store.nombreProducto && store.stock )?  
+          <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             closeButton
-            className={classes.submit}
-            onClick={e =>{actions.handleSubmitProducto(e)}}
-            >
+
+            onClick={e =>{actions.handleSubmitProducto(e, props.history)}}
+           // className={classes.submit}
               Ingresar
-          </Button>)
-          : 
-          (<Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          closeButton
-          className={classes.submit}
-          >
-            Ingresar
-          </Button>)
+          </Button> :
+             
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={e =>{actions.handleSubmitProducto(e, props.history)}}
+                className={classes.submit}
+                >
+                  Favor introducir todos los Datos
+              </Button>
           }
         </form>
       </div>
@@ -160,3 +161,5 @@ export default function RegistFormProduct(props) {
     </Container>
   );
 }
+
+export default withRouter(RegistFormProduct);

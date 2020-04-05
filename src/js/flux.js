@@ -174,7 +174,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-			//////////////////////////// Guarda la info de los inputs del cliente en el store
+/////////////////////////////// Guarda la info de los inputs del cliente en el store
 			////para todo los registros
 
 			handleChange: e => {
@@ -231,7 +231,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().register('/api/register/producto', formData, history)
 			},
 
-			register: async (url, data, token) => {
+			register: async (url, data, history) => {
 				const store = getStore();
 				const { baseURL } = store;
 				const resp = await fetch(baseURL + url, {
@@ -253,6 +253,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					sessionStorage.setItem('currentUser', JSON.stringify(info))
 					sessionStorage.setItem('isAuthenticated', true)
+					history.push('admind')
 					
 					
 				}
@@ -279,7 +280,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(productos)
 			},
 
-			///////////////////////////////// Alex registro del cliente
+//////////////////////////////////////////// Alex registro del cliente
 
 			handleSubmitCliente: (e, history) => {
 				e.preventDefault();
@@ -325,7 +326,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			///////////////////// Alex loging del cliente
+////////////////////////////////////// Alex loging del cliente
 
 			handleLogingCliente: (e, history) => {
 				e.preventDefault();
@@ -369,7 +370,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			///////////////////////////////// Alex registro de la tienda
+///////////////////////////////////////// Alex registro de la tienda
 
 			handleSubmitTienda: (e, history) => {
 				e.preventDefault();
@@ -384,10 +385,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"latitude": store.latitude,
 					"longitude": store.longitude,
 					"clave": store.clave,
-
-
 				}
-
 				getActions().registroTienda('/api/registerTienda', data, history);
 			},
 
@@ -413,11 +411,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						IsAuthenticated: true,
 						errorTienda: null
 					});
-
 				}
 			},
-
-
 			////////////////////////////////// Alex loging de la Tienda
 
 			handleLogingTienda: (e, history) => {
@@ -458,10 +453,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-
-
-
-
 			////////////////////////////// Alex Mapa
 
 			setMapa: (e, history) => {
@@ -474,7 +465,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().mapaTiendas('/api/mapa', data, history);
 			},
 
-
 			mapaTiendas: async (url, data, history) => {
 				console.log(data.clave);
 				const store = getStore();
@@ -485,7 +475,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						'Content-Type': 'application/json',
 						'Authorization': 'Bearer ' + data.clave,
 					},
-
 				})
 				const dato = await resp.json();
 				console.log(dato)
@@ -497,10 +486,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						contacts: dato,
 						filteredTiendas: dato,
-
 					});
 				}
 			},
+
 
 			setTiendaAdmin: (e, history) => {
 				const store = getStore();
@@ -541,7 +530,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			//////////////// Filtro de tiendas para el mapa
-
 			setFilter: (e, contact) => {
 				const store = getStore();
 				if (contact === undefined) {
@@ -559,7 +547,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ mapLng: e.lng })
 				setStore({ coordenadas: e })
 			},
-			/////////////////// Mapa modo nocturno
+////////////////////////////////// Mapa modo nocturno
 
 			toggleChecked: (e) => {
 				setStore({ value: e })
