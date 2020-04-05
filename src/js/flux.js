@@ -248,6 +248,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
+
 			handleSubmitProducto: (e, history) => {
 				const store = getStore();
 				e.preventDefault();
