@@ -1,23 +1,24 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 export default function MainHome() {
   //Checkear imagen de fondo, usar carpeta img en public
   return (
     <div className="main">
-      <div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
-          <div class="searchbar">
+      <div className="container h-100">
+        <div className="d-flex justify-content-center h-100">
+          <div className="searchbar">
             <input
-              class="search_input"
+              className="search_input"
               type="text"
               name=""
               placeholder="Ingresa tu dirección"
             />
-            <a href="#" class="search_icon">
+            <Link to='/login' className="search_icon">
             <FontAwesomeIcon icon={faSearch} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

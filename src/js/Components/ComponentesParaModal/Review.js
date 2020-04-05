@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Review() {
   const classes = useStyles();
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
 
   return (
     <React.Fragment>

@@ -52,7 +52,11 @@ const useStyles = makeStyles(theme => ({
 function IngresoCliente(props) {
 
   
+<<<<<<< HEAD
   const {  actions } = useContext(Context);
+=======
+  const { actions } = useContext(Context);
+>>>>>>> upstream/master
 
 
 

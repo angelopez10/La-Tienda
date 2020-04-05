@@ -153,7 +153,7 @@ export const SideNav = props => {
 
     useEffect(() => {
         actions.coordenaasMapa(coordinates);
-      }, [store.filteredTiendas.latitude]);
+      },);
 
 
     const handleSelect = async value => {

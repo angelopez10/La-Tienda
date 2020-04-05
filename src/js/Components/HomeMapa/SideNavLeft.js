@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Context} from '../../AppContext';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -85,7 +85,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function SideNavLeft() {
   const classes = useStyles();
-  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const { store } = useContext(Context);
 

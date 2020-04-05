@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext} from 'react'
 import { Context } from '../AppContext'
 import NavbarAdmin from '../Components/TiendaAdmin/NavbarAdmin';
 import ProductoAdmin from '../Components/TiendaAdmin/ProductoAdmin';
