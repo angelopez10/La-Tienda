@@ -86,7 +86,7 @@ const useStyles = makeStyles(theme => ({
 export default function SideNavLeft() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -138,7 +138,10 @@ export default function SideNavLeft() {
         <List>
          {
             store.contacts.map((tienda, i) => (
-            <Link to = {`/tienda/${tienda.id}`} className={classes.handleLink}>
+            <Link to = {`/tienda/${tienda.id}`} 
+            className={classes.handleLink}
+            onClick = {e=> {actions.storeSelected(e, tienda.id)}}
+            >
             <ListItem button key={i}>
               <ListItemIcon>
                 <StorefrontIcon  />
