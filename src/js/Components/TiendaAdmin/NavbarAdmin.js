@@ -5,12 +5,18 @@ import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/Button'
 import ModalIngresoProduct from '../Modales/ModalIngresoProduct'
 import logo from '../Home_principal/logo_transparent_background.png';
+import '../Home_principal/main-home.css';
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: '#ff8d1e',
     border: 0,
     borderRadius: 50,
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      width: '120px',
+      padding: '0',
+      
+    },
     color: '#f5f3f3',
     height: 50,
     padding: '0 30px',
@@ -62,28 +68,13 @@ export default function NavbarAdmin() {
   return (
     <div>
       <div>
-        <nav class="navbar navbar-expand-lg bg-color static-top">
+        <nav class="navbar navbar-expand-lg bg-color py-0 static-top">
           <div class='container'>
             <Link to='/' >
               <img src={logo} alt='' className='logo-principal' />
-
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
             </Link>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <ButtonToolbar className={classes.root2}>
-                    <Button variant="primary" className={classes.root} onClick={() => setModalShow(true)}>
+                  <ButtonToolbar className={classes.root} xs={12}>
+                    <Button  className={classes.root} onClick={() => setModalShow(true)} xs={12}>
                       Agregar productos
 		              </Button>
 
@@ -92,9 +83,6 @@ export default function NavbarAdmin() {
                       onHide={() => setModalShow(false)}
                     />
                   </ButtonToolbar>
-                </li>
-              </ul>
-            </div>
           </div>
         </nav>
       </div>

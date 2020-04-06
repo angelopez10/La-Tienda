@@ -12,10 +12,6 @@ const useStyles = makeStyles(() => ({
     textColor: {
         color: '#ff8d1e'
     },
-    size: {
-        width: '600px',
-        height: '400px'
-    }
 }));
 
 export default function ProductoAdmin(props) {
