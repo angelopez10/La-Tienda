@@ -130,7 +130,6 @@ export default function SideNavLeftTwo() {
         classes={{
           paper: classes.drawerPaper,
         }}
-
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose} >

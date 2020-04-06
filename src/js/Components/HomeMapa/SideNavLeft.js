@@ -109,7 +109,6 @@ export default function SideNavLeft() {
         })}
       >
         <Toolbar className={classes.bgColor} >
-          
           <IconButton
             color="inherit"
             aria-label="open drawer"

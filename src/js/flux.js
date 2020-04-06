@@ -112,69 +112,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			/////////////////////////// Agrega productos al carrito y entrega el valor total a pagar
-			addToCart: producto => {
-				const store = getStore();
-				let { carrito } = store;
-				let existe = false;
-				let newtotalCarrito = 0;
-				console.log(producto);
-				console.log(carrito);
-				let newCarrito = carrito.map((item) => {
-					if (JSON.stringify(item.producto) === JSON.stringify(producto)) {
-						item.cantidad += 1;
-						existe = true;
-						return item;
-					}
-					return item;
-				})
-				if (!existe) {
-					newCarrito.push({
-						id: carrito.length + 1,
-						producto: producto,
-						cantidad: 1
-					})
-				}
-				newCarrito.map((item) => {
-					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
-					return newtotalCarrito;
-				})
-				setStore({
-					carrito: newCarrito,
-					total: newtotalCarrito
-				})
-			},
-			deleteFromCart: producto => {
-				const store = getStore();
-				let { carrito } = store;
-				let newtotalCarrito = 0;
-				let pos = null;
-				let newCarrito = carrito.map((item, i) => {
-					if (JSON.stringify(item.producto) === JSON.stringify(producto)) {
-						if (item.cantidad === 1) {
-							pos = i;
-							item.cantidad -= 1;
-						} else {
-							item.cantidad -= 1;
-						}
-						return item;
-					}
-					return item;
-				})
-				if (pos !== null) {
-					newCarrito.splice(pos, 1);
-				}
-				newCarrito.map((item) => {
-					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
-					return newtotalCarrito;
-				})
-				setStore({
-					carrito: newCarrito,
-					total: newtotalCarrito
-				})
-			},
+/////////////////////////// Agrega productos al carrito y entrega el valor total a pagar
+			
 
-/////////////////////////////// Guarda la info de los inputs del cliente en el store
+
+
+/////////// Guarda la info de los inputs del cliente en el store
+			
+			
 			////para todo los registros
 
 			handleChange: e => {
@@ -253,7 +198,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					sessionStorage.setItem('currentUser', JSON.stringify(info))
 					sessionStorage.setItem('isAuthenticated', true)
-					history.push('admind')
+			
 					
 					
 				}
@@ -532,6 +477,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//////////////// Filtro de tiendas para el mapa
 			setFilter: (e, contact) => {
 				const store = getStore();
+				console.log(contact);
 				if (contact === undefined) {
 					setStore({ contacts: store.filteredTiendas })
 				} else {

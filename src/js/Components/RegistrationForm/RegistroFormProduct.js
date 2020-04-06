@@ -140,8 +140,9 @@ function RegistFormProduct(props) {
             onClick={e =>{actions.handleSubmitProducto(e, props.history)}}
             className={classes.submit}
           >Ingresar
-          </Button> :
-            
+          </Button> 
+          :
+
               <Button
                 type="submit"
                 fullWidth

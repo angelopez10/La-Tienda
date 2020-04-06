@@ -153,7 +153,7 @@ export const SideNav = props => {
 
     useEffect(() => {
         actions.coordenaasMapa(coordinates);
-      },);
+      },[]);
 
 
     const handleSelect = async value => {
@@ -167,12 +167,7 @@ export const SideNav = props => {
 
 
 
-
-
-
     return (
-
-
         <div className={classes.root} >
             <CssBaseline />
             <AppBar
@@ -204,8 +199,7 @@ export const SideNav = props => {
                                     <PlacesAutocomplete
                                         value={address}
                                         onChange={setAddress}
-                                        onSelect={handleSelect}
-                                        
+                                        onSelect={handleSelect} 
                                     >
                                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                                             <div className="form-control mr-sm-2"  style={{  paddingTop: '3px', margin:0 }} >
@@ -217,7 +211,6 @@ export const SideNav = props => {
                                                         const style = {
                                                             backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
                                                         };
-
                                                         return (
                                                             <div {...getSuggestionItemProps(suggestion, { style })}>
                                                                 {suggestion.description}
@@ -228,12 +221,10 @@ export const SideNav = props => {
                                             </div>
                                         )}
                                     </PlacesAutocomplete>
-                            
                         </form>
                     </nav>
                 </Toolbar>
             </AppBar>
-
             <Drawer
                 variant="permanent"
                 className={clsx(classes.drawer, {
@@ -271,8 +262,7 @@ export const SideNav = props => {
                             onClick={e => {
                                 setFilterCategory(contact)
                                 actions.setFilter(e, contact)
-                            }
-                            }
+                            }}
                         >
                             <ListItemIcon>{index % 2 === 0 ? <LocalBarOutlinedIcon /> : <StorefrontOutlinedIcon />}</ListItemIcon>
                             <ListItemText primary={contact} />
@@ -282,7 +272,6 @@ export const SideNav = props => {
                 <Divider />
             </Drawer>
         </div >
-
     );
 }
 
