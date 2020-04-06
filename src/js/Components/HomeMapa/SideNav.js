@@ -153,7 +153,7 @@ export const SideNav = props => {
 
     useEffect(() => {
         actions.coordenaasMapa(coordinates);
-      },);
+      },[]);
 
 
     const handleSelect = async value => {
