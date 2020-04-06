@@ -59,7 +59,6 @@ export default function NavbarHome() {
             <Button className={classes.root} color='default' onClick={() => setModalShow(true)} xs={12}>
               Ingresa
 		        </Button>
-
             <ModalLogin
               show={modalShow}
               onHide={() => setModalShow(false)}

@@ -19,6 +19,8 @@ export default function Mapa(props) {
     actions.setMapa();
   }, []);
 
+  console.log(store.filteredTiendas);
+
 
   return (
     <div style={{ height: "100vh", width: "100%" }}>
@@ -42,7 +44,7 @@ export default function Mapa(props) {
           ]);
         }}
       >
-        {store.filteredTiendas.map(tienda => (
+        {store.contacts.map(tienda => (
           <Marker
             key={tienda.id}
             lat={tienda.latitude}
