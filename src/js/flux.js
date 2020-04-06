@@ -93,6 +93,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			latitude: [],
 			longitude: [],
 
+			// Alex tienda seleccionada
+			tiendaSeleccionada: [],
+			tiendatotal:[],
+
 
 
 
@@ -203,6 +207,79 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 				}
 			},
+
+//////////////////////////// Tienda Seleccionada
+
+
+
+			storeSelected: (e, id)=> {
+				const store = getStore();
+				console.log(store.currentUser.Usuario.id);
+				
+
+				let data = {
+					"clave": store.currentUser.access_token,
+					"email": store.currentUser.Usuario.email,
+				};
+			
+				getActions().selectedTienda(`/api/tienda/${store.currentUser.Usuario.id}`, data);
+			},
+
+			selectedTienda: async (url, data) => {
+			
+				const store = getStore();
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': 'Bearer ' + data.clave,
+					},
+
+				})
+				const dato = await resp.json();
+				console.log(dato)
+				if (dato.msg) {
+					setStore({
+						error: dato
+					})
+				} else {
+					setStore({
+						tiendaSeleccionada: dato,
+						tiendatotal: dato,
+					});
+				}
+			},
+		
+			setFilterTienda: (e, contact) => {
+				const store = getStore();
+				console.log(contact);
+				if (contact === undefined) {
+					setStore({ tiendaSeleccionada: store.tiendatotal })
+				} else {
+					setStore({
+						tiendaSeleccionada: store.tiendatotal.filter(tienda =>
+							tienda.nombre === contact)
+					})
+				}
+			},
+
+
+////////////////////////////////////////////////////////
+		
+
+
+		
+	
+
+	
+
+//////////////////////
+
+
+
+
+
 
 ///////////////////////////////////// eiliminar productos
 
@@ -435,7 +512,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-
+//////////////// Vista administrados
 			setTiendaAdmin: (e, history) => {
 				const store = getStore();
 				console.log(store.currentUser.Tienda.email)
@@ -443,7 +520,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"clave": store.currentUser.access_token,
 					"email": store.currentUser.Tienda.email,
 				};
-				getActions().productosAdmin(`/api/tienda/${store.currentUser.Tienda.id}`, data, history);
+				getActions().productosAdmin(`/api/admin/${store.currentUser.Tienda.id}`, data, history);
 			},
 
 			productosAdmin: async (url, data) => {
