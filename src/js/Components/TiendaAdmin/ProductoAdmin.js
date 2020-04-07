@@ -39,8 +39,8 @@ export default function ProductoAdmin(props) {
                                 />
                             </IconButton>
                             </ButtonToolbar>
-                            <IconButton aria-label="delete" id={props.producto.id} className={classes.textColor} onClick={e => actions.deleteProduct(props.producto)}>
-                                <DeleteIcon />
+                            <IconButton aria-label="delete" id={props.producto.id} className={classes.textColor} >
+                                <DeleteIcon id={props.producto.id} onClick={e => actions.deleteProducto(e)}/>
                             </IconButton>
                         </div>
                     </div>
