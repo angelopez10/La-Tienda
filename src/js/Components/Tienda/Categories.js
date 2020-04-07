@@ -16,7 +16,7 @@ export default function Categories() {
 
     const { store, actions } = useContext(Context);
     const [filterCategory, setFilterCategory] = React.useState(null);
-    const categories = [...new Set(store.tiendaSeleccionada.map(tienda => tienda.nombre))]
+    const categories = [...new Set(store.tiendaSeleccionada.map(tienda => tienda.categoria))]
     console.log(categories);
 
 

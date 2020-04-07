@@ -17,8 +17,8 @@ export default function Tienda(props) {
         <div>
             {
                 
-                store.tiendas.length > 0 &&
-                store.tiendas.map(tienda => {
+                store.tiendaSeleccionada.length > 0 &&
+                store.tiendaSeleccionada.map(tienda => {
                    return <NavbarTienda tienda={tienda}/>
                 })
             }
@@ -28,8 +28,7 @@ export default function Tienda(props) {
                     <div class="col">
                     <div class="row">
                     {   
-                            store.productos.map((producto, i) => {
-                                
+                            store.tiendaSeleccionada.map((producto, i) => {
                                 return (
                                     <Producto key={i} producto={producto}/>
                                 )

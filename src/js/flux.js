@@ -75,6 +75,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			stock: '',
 			precio: '',
 			productoAgregado: [],
+			categoria: [],
 
 			// Alex mapa
 			contacts: [],
@@ -169,11 +170,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				formData.append("descripcion", store.descripcion);
 				formData.append("stock", store.stock);
 				formData.append("precio", store.precio);
+				formData.append("categoria", store.categoria);
 				formData.append("tienda_id", store.currentUser.Tienda.id);
 				if(store.avatar !==' '){
 					formData.append("avatar", store.avatar)
-					setStore({ error: {"msg":"Por favor agregar foto"}})
-				};
+					
+				}else {setStore({ error: {"msg":"Por favor agregar foto"}})};
+				console.log(store.avatar);
 
 
 
@@ -202,9 +205,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					sessionStorage.setItem('currentUser', JSON.stringify(info))
 					sessionStorage.setItem('isAuthenticated', true)
-			
-					
-					
 				}
 			},
 
@@ -215,6 +215,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			storeSelected: (e, id)=> {
 				const store = getStore();
 				console.log(store.currentUser.Usuario.id);
+				console.log(id);
+				
 				
 
 				let data = {
@@ -222,7 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					"email": store.currentUser.Usuario.email,
 				};
 			
-				getActions().selectedTienda(`/api/tienda/${store.currentUser.Usuario.id}`, data);
+				getActions().selectedTienda(`/api/tienda/${id}`, data);
 			},
 
 			selectedTienda: async (url, data) => {
@@ -259,7 +261,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					setStore({
 						tiendaSeleccionada: store.tiendatotal.filter(tienda =>
-							tienda.nombre === contact)
+							tienda.categoria === contact)
 					})
 				}
 			},

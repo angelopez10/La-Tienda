@@ -101,6 +101,18 @@ function RegistFormProduct(props) {
 
             fullWidth
             id="descripcion"
+            label="categoria"
+            name="categoria"
+            onChange={e => actions.handleChange(e)}
+            autoComplete="descripcion"
+            autoFocus
+          />
+            <TextField
+            variant="outlined"
+            margin="normal"
+
+            fullWidth
+            id="descripcion"
             label="Descripción"
             name="descripcion"
             onChange={e => actions.handleChange(e)}
