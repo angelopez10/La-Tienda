@@ -10,7 +10,13 @@ export default function TiendaAdminView(props) {
     const { store, actions } = useContext(Context);
     useEffect(() => {
         actions.setTiendaAdmin();
-      }, [store.productoAgregado, store.productoEliminado]);
+      }, [store.productoAgregado]);
+
+      useEffect(() => {
+        ProductoAdmin();
+      }, [store.productoEliminado]);
+
+
     return (
         <div>
             <NavbarAdmin />

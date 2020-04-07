@@ -89,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			error: null,
 
 			// Alex registro tienda
-			categoria: [],
+		
 			rut: [],
 			errorTienda: null,
 			latitude: [],
@@ -300,7 +300,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						cantidad: 1
 					})
 				}
-				newCarrito.map((item) => {
+				newCarrito.map(item => {
 					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
 				})
 				setStore({
@@ -332,6 +332,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					productos: newProductos
 				})
 				console.log(productos)
+				
 			},
 
 			//////////////////////////////////////////// Alex registro del cliente
@@ -554,7 +555,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().productosAdmin(`/api/admin/${store.currentUser.Tienda.id}`, data, history);
 			},
 
-			productosAdmin: async (url, data) => {
+			productosAdmin: async (url, data, history) => {
 				console.log(data.clave);
 				const store = getStore();
 				const { baseURL } = store;

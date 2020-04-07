@@ -7,6 +7,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import '../Tienda/producto.css';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
     textColor: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export default function ProductoAdmin(props) {
+function ProductoAdmin(props) {
     const { store, actions } = useContext(Context);
     let img = store.baseURL + '/api/producto/' + props.producto.avatar
     const [modalShow, setModalShow] = React.useState(false);
@@ -49,3 +50,6 @@ export default function ProductoAdmin(props) {
         </div>
     );
 }
+
+
+export default withRouter(ProductoAdmin);
