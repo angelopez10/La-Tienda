@@ -75,6 +75,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			stock: '',
 			precio: '',
 			productoAgregado: [],
+			productoEliminado: [],
 
 			// Alex mapa
 			contacts: [],
@@ -544,7 +545,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//////////////// Vista administrados
 			setTiendaAdmin: (e, history) => {
 				const store = getStore();
-				console.log(store.currentUser.Tienda.email)
 				let data = {
 					"clave": store.currentUser.access_token,
 					"email": store.currentUser.Tienda.email,
@@ -579,16 +579,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			deleteProducto: async (e, history) => {
 				const store = getStore();
-				let data = {
-					"clave": store.currentUser.access_token,
-					"email": store.currentUser.Tienda.email,
-				};
 				const { baseURL } = store;
 				const resp = await fetch(baseURL + `/api/admin/${e.target.id}`, {
 					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization': 'Bearer ' + data.clave,
+						'Authorization': 'Bearer ' + store.currentUser.access_token,
 					},
 				})
 				const dato = await resp.json();
@@ -598,7 +594,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						error: dato
 					})
 				} else {
-					getActions().productosAdmin(`/api/admin/${store.currentUser.Tienda.id}`, data, history);
+					setStore({
+						productoEliminado: dato
+					})
 				}
 			},
 
