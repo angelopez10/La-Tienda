@@ -25,7 +25,7 @@ function ProductoAdmin(props) {
             <div className="card card-style mb-2">
                 <img className="card-img-top" src={img} alt="" width='400px' height='200px'/> 
                 <div className="card-body card-bg">
-                    <h4 className="card-title"><a href="product.html" title="View Product">{props.producto.nombre}</a></h4>
+                    <h4 className="card-title">{props.producto.nombre}</h4>
                     <p className="card-text">{props.producto.descripcion}</p>
                     <p className="card-text">Stock: {props.producto.stock}</p>
                     <p className="card-text">Precio: {props.producto.precio}</p>

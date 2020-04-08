@@ -10,34 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuarios: [{
 
 			}],
-			tiendas: [{
-				id: 1,
-				nombre: 'Starbucks',
-				rut: '23232323-3',
-				email: 'starbucks@gmail.com',
-				tipo: 'tienda',
-				tipo2: 'Café',
-				descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
-			},
-			{
-				id: 2,
-				nombre: 'Dunkin Donuts',
-				rut: '23232323-3',
-				email: 'starbucks@gmail.com',
-				tipo: 'tienda',
-				tipo2: 'Café',
-				descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
-			},
-			{
-				id: 3,
-				nombre: 'Burger King',
-				rut: '23232323-3',
-				email: 'starbucks@gmail.com',
-				tipo: 'tienda',
-				tipo2: 'Café',
-				descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
-			}
-			],
+		
 
 			productos: [],
 			//info para carrito de compras
@@ -268,16 +241,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////// Agregando al carro
 
 
-
-
-
-
-
-
-			//////////////////////
 			addToCart: producto => {
 				const store = getStore();
 				let { carrito } = store;
@@ -310,30 +276,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-
-
-
-			///////////////////////////////////// eiliminar productos
-
-			deleteProduct: producto => {
-				const store = getStore();
-				const { productos } = store;
-				let pos = null
-				let newProductos = productos.map((item, i) => {
-					if (JSON.stringify(item) === JSON.stringify(producto)) {
-						pos = i
-					}
-					return item;
-				})
-				if (pos !== null) {
-					newProductos.splice(pos, 1)
-				}
-				setStore({
-					productos: newProductos
-				})
-				console.log(productos)
-				
-			},
+	
 
 			//////////////////////////////////////////// Alex registro del cliente
 
@@ -545,7 +488,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			//////////////// Vista administrados
+//////////////////////////// Vista administrados
+
 			setTiendaAdmin: (e, history) => {
 				const store = getStore();
 				let data = {
@@ -580,8 +524,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+
+//////////////////////////// borrar el producto
+
 			deleteProducto: async (e, history) => {
+			
+			
 				const store = getStore();
+				//console.log(e.target.id)
 				const { baseURL } = store;
 				const resp = await fetch(baseURL + `/api/admin/${e.target.id}`, {
 					method: 'DELETE',
@@ -598,11 +548,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				} else {
 					setStore({
-						productoEliminado: dato
-					})
+						productoAgregado: dato,
+					});
 				}
 			},
-
 
 
 
