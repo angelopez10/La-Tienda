@@ -6,6 +6,8 @@ import DarkMode from "./DarkMode";
 
 
 export default function MapaMapBoxDark(props) {
+  const [selectedTienda, setSelectedTienda] = useState(0);
+  const { store, actions } = useContext(Context);
 
 
   const [viewport, setViewport] = useState({
@@ -15,9 +17,7 @@ export default function MapaMapBoxDark(props) {
     longitude:-70.669266,
     zoom: 12
   });
-  const [selectedTienda, setSelectedTienda] = useState(0);
-  const { store, actions } = useContext(Context);
-
+ 
   useEffect(() => {
     actions.setMapa();
   }, []);

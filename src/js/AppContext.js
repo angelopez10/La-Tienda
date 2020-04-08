@@ -18,6 +18,7 @@ const injectContext = PassedComponent => {
                     })
             })
         );
+        
         useEffect(() => {
             state.actions.isAuthenticated();
         }, []);

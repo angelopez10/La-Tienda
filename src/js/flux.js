@@ -10,34 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuarios: [{
 
 			}],
-			tiendas: [{
-				id: 1,
-				nombre: 'Starbucks',
-				rut: '23232323-3',
-				email: 'starbucks@gmail.com',
-				tipo: 'tienda',
-				tipo2: 'Café',
-				descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
-			},
-			{
-				id: 2,
-				nombre: 'Dunkin Donuts',
-				rut: '23232323-3',
-				email: 'starbucks@gmail.com',
-				tipo: 'tienda',
-				tipo2: 'Café',
-				descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
-			},
-			{
-				id: 3,
-				nombre: 'Burger King',
-				rut: '23232323-3',
-				email: 'starbucks@gmail.com',
-				tipo: 'tienda',
-				tipo2: 'Café',
-				descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
-			}
-			],
+		
 
 			productos: [],
 			//info para carrito de compras
@@ -89,7 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			error: null,
 
 			// Alex registro tienda
-			categoria: [],
+		
 			rut: [],
 			errorTienda: null,
 			latitude: [],
@@ -263,16 +236,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////// Agregando al carro
 
 
-
-
-
-
-
-
-			//////////////////////
 			addToCart: producto => {
 				const store = getStore();
 				let { carrito } = store;
@@ -295,7 +261,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						cantidad: 1
 					})
 				}
-				newCarrito.map((item) => {
+				newCarrito.map(item => {
 					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
 				})
 				setStore({
@@ -304,11 +270,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-
-
-
-
-			///////////////////////////////////// eiliminar productos
 
 			deleteFromCart: producto => {
                 const store = getStore();
@@ -338,6 +299,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     total: newtotalCarrito
                 })
 			},
+
 			//////////////////////////////////////////// Alex registro del cliente
 
 			handleSubmitCliente: (e, history) => {
@@ -595,7 +557,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 				}
 			},
-
 
 
 
