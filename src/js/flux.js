@@ -10,34 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuarios: [{
 
 			}],
-			tiendas: [{
-				id: 1,
-				nombre: 'Starbucks',
-				rut: '23232323-3',
-				email: 'starbucks@gmail.com',
-				tipo: 'tienda',
-				tipo2: 'Café',
-				descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
-			},
-			{
-				id: 2,
-				nombre: 'Dunkin Donuts',
-				rut: '23232323-3',
-				email: 'starbucks@gmail.com',
-				tipo: 'tienda',
-				tipo2: 'Café',
-				descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
-			},
-			{
-				id: 3,
-				nombre: 'Burger King',
-				rut: '23232323-3',
-				email: 'starbucks@gmail.com',
-				tipo: 'tienda',
-				tipo2: 'Café',
-				descripcion: 'Starbucks Corporation es una cadena internacional de café fundada en Washington. Es la compañía de café más grande del mundo, con más de 24 000 locales en 70 países.​',
-			}
-			],
+		
 
 			productos: [],
 			//info para carrito de compras
@@ -89,7 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			error: null,
 
 			// Alex registro tienda
-			categoria: [],
+		
 			rut: [],
 			errorTienda: null,
 			latitude: [],
@@ -263,16 +236,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////// Agregando al carro
 
 
-
-
-
-
-
-
-			//////////////////////
 			addToCart: producto => {
 				const store = getStore();
 				let { carrito } = store;
@@ -295,7 +261,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						cantidad: 1
 					})
 				}
-				newCarrito.map((item) => {
+				newCarrito.map(item => {
 					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
 				})
 				setStore({
@@ -305,29 +271,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-
-
-
-			///////////////////////////////////// eiliminar productos
-
-			deleteProduct: producto => {
-				const store = getStore();
-				const { productos } = store;
-				let pos = null
-				let newProductos = productos.map((item, i) => {
-					if (JSON.stringify(item) === JSON.stringify(producto)) {
-						pos = i
-					}
-					return item;
-				})
-				if (pos !== null) {
-					newProductos.splice(pos, 1)
-				}
-				setStore({
-					productos: newProductos
-				})
-				console.log(productos)
-			},
+	
 
 			//////////////////////////////////////////// Alex registro del cliente
 
@@ -539,9 +483,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+<<<<<<< HEAD
+//////////////////////////// Vista administrados
+
+			setTiendaAdmin: (e, history) => {
+				const store = getStore();
+				let data = {
+					"clave": store.currentUser.access_token,
+					"email": store.currentUser.Tienda.email,
+				};
+				getActions().productosAdmin(`/api/admin/${store.currentUser.Tienda.id}`, data, history);
+			},
+
+			productosAdmin: async (url, data, history) => {
+				console.log(data.clave);
+=======
 			//////////////// Vista administrados
 
 			setTiendaAdmin: async (url) => {
+>>>>>>> upstream/master
 				const store = getStore();
 				let data = JSON.parse(sessionStorage.getItem("currentUser"))
 				
@@ -567,10 +527,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+<<<<<<< HEAD
+
+//////////////////////////// borrar el producto
+
+			deleteProducto: async (e, history) => {
+			
+			
+				const store = getStore();
+				//console.log(e.target.id)
+=======
 			deleteProducto: async (e, id) => {
 				const store = getStore();
 				console.log(id)
 				let data = JSON.parse(sessionStorage.getItem("currentUser"))
+>>>>>>> upstream/master
 				const { baseURL } = store;
 				const resp = await fetch(baseURL + `/api/admin/${id}`, {
 					method: 'DELETE',
@@ -582,11 +553,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const dato = await resp.json();
 				console.log(dato)
 				if (dato.msg) {
+<<<<<<< HEAD
+					setStore({
+						error: dato
+					})
+				} else {
+					setStore({
+						productoAgregado: dato,
+					});
+=======
 					getActions().setTiendaAdmin();
 					
+>>>>>>> upstream/master
 				}
 			},
-
 
 
 
