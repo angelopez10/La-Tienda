@@ -483,25 +483,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-<<<<<<< HEAD
-//////////////////////////// Vista administrados
-
-			setTiendaAdmin: (e, history) => {
-				const store = getStore();
-				let data = {
-					"clave": store.currentUser.access_token,
-					"email": store.currentUser.Tienda.email,
-				};
-				getActions().productosAdmin(`/api/admin/${store.currentUser.Tienda.id}`, data, history);
-			},
-
-			productosAdmin: async (url, data, history) => {
-				console.log(data.clave);
-=======
 			//////////////// Vista administrados
 
 			setTiendaAdmin: async (url) => {
->>>>>>> upstream/master
 				const store = getStore();
 				let data = JSON.parse(sessionStorage.getItem("currentUser"))
 				
@@ -527,21 +511,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-<<<<<<< HEAD
-
-//////////////////////////// borrar el producto
-
-			deleteProducto: async (e, history) => {
-			
-			
-				const store = getStore();
-				//console.log(e.target.id)
-=======
 			deleteProducto: async (e, id) => {
 				const store = getStore();
 				console.log(id)
 				let data = JSON.parse(sessionStorage.getItem("currentUser"))
->>>>>>> upstream/master
 				const { baseURL } = store;
 				const resp = await fetch(baseURL + `/api/admin/${id}`, {
 					method: 'DELETE',
@@ -553,18 +526,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const dato = await resp.json();
 				console.log(dato)
 				if (dato.msg) {
-<<<<<<< HEAD
-					setStore({
-						error: dato
-					})
-				} else {
-					setStore({
-						productoAgregado: dato,
-					});
-=======
 					getActions().setTiendaAdmin();
 					
->>>>>>> upstream/master
 				}
 			},
 
