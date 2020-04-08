@@ -25,6 +25,8 @@ export default function Review() {
   const classes = useStyles();
   const { store } = useContext(Context);
 
+  console.log(store.carrito);
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

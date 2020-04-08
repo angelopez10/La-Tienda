@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuarios: [{
 
 			}],
-		
+
 
 			productos: [],
 			//info para carrito de compras
@@ -62,7 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			error: null,
 
 			// Alex registro tienda
-		
+
 			rut: [],
 			errorTienda: null,
 			latitude: [],
@@ -71,6 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Alex tienda seleccionada
 			tiendaSeleccionada: [],
 			tiendatotal: [],
+			id_tienda_seleccionada: [],
 
 
 
@@ -90,9 +91,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				}
 			},
-
-			/////////////////////////// Agrega productos al carrito y entrega el valor total a pagar
-
 
 
 			////para todo los registros
@@ -129,6 +127,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					[e.target.name]: e.target.files[0]
 				})
 			},
+
 			///////////////////////////////////////// envio de productos
 
 
@@ -144,8 +143,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				formData.append("tienda_id", store.currentUser.Tienda.id);
 				if (store.avatar !== ' ') {
 					formData.append("avatar", store.avatar)
-					
-				}else {setStore({ error: {"msg":"Por favor agregar foto"}})};
+
+				} else { setStore({ error: { "msg": "Por favor agregar foto" } }) };
 				console.log(store.avatar);
 
 
@@ -180,19 +179,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//////////////////////////// Tienda Seleccionada
 
 
-
 			storeSelected: (e, id) => {
 				const store = getStore();
-				console.log(store.currentUser.Usuario.id);
-				console.log(id);
-				
-				
+				setStore({ id_tienda_seleccionada: id });
+
 
 				let data = {
 					"clave": store.currentUser.access_token,
 					"email": store.currentUser.Usuario.email,
 				};
-			
+
 				getActions().selectedTienda(`/api/tienda/${id}`, data);
 			},
 
@@ -222,6 +218,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			//////////////////Filtro de tienda 
+
 			setFilterTienda: (e, contact) => {
 				const store = getStore();
 				console.log(contact);
@@ -236,7 +234,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-///////////////////////////////////////////////////////////////// Agregando al carro
+			/////////////////////////////////////////////////////// Agregando al carro
 
 
 			addToCart: producto => {
@@ -269,11 +267,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 					total: newtotalCarrito
 				})
 			},
+			////////////////////////////////////////////////// Pago y checkout
+			/////////////////////////////////
+
+			productoComprado: (e, id) => {
+				const store = getStore();
+				console.log(store.currentUser.Usuario.id);
+				console.log(id);
+
+				let data = {
+					"total": store.total,
+					"carrito": store.carrito,
+					"tienda_id": id,
+				}
 
 
-	
+				getActions().productosComprados(`/api/checkout/${id}`, data);
+			},
 
-			//////////////////////////////////////////// Alex registro del cliente
+			productosComprados: async (url, data, history) => {
+				const store = getStore();
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				const dato = await resp.json();
+				console.log(dato)
+				if (dato.msg) {
+					setStore({
+						error: dato
+					})
+				} else {
+					setStore({
+						currentUser: dato,
+						isAuthenticated: true,
+						error: null
+					});
+
+				}
+			},
+
+
+
+			////////////////////////////
+			////////////////////////////////////////////////// Alex registro del cliente
 
 			handleSubmitCliente: (e, history) => {
 				e.preventDefault();
@@ -446,11 +487,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			////////////////////////////// Alex Mapa
+			/////////////////////////////////////////////// Alex Mapa
 
 			setMapa: (e, history) => {
 				const store = getStore();
 				console.log(store.currentUser.Usuario.email)
+
 				let data = {
 					"clave": store.currentUser.access_token,
 					"email": store.currentUser.Usuario.email,
@@ -488,7 +530,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setTiendaAdmin: async (url) => {
 				const store = getStore();
 				let data = JSON.parse(sessionStorage.getItem("currentUser"))
-				
+
 				const { baseURL } = store;
 				const resp = await fetch(baseURL + `/api/admin/${data.Tienda.id}`, {
 					method: 'GET',
@@ -506,7 +548,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				} else {
 					setStore({
-					productos: [...dato],
+						productos: [...dato],
 					});
 				}
 			},
@@ -527,7 +569,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(dato)
 				if (dato.msg) {
 					getActions().setTiendaAdmin();
-					
+
 				}
 			},
 
