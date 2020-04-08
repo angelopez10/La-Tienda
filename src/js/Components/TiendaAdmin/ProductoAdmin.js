@@ -41,7 +41,7 @@ function ProductoAdmin(props) {
                             </IconButton>
                             </ButtonToolbar>
                             <IconButton aria-label="delete" id={props.producto.id} className={classes.textColor} >
-                                <DeleteIcon id={props.producto.id} onClick={e => actions.deleteProducto(e)}/>
+                                <DeleteIcon  onClick={e => actions.deleteProducto(e, props.producto.id)}/>
                             </IconButton>
                         </div>
                     </div>

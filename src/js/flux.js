@@ -58,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			// Alex front and Back
 			currentUser: null,
-			IsAuthenticated: false,
+			isAuthenticated: false,
 			error: null,
 
 			// Alex registro tienda
@@ -93,10 +93,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			/////////////////////////// Agrega productos al carrito y entrega el valor total a pagar
 
-
-
-
-			/////////// Guarda la info de los inputs del cliente en el store
 
 
 			////para todo los registros
@@ -175,10 +171,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						error: null,
 						productoAgregado: info,
-						IsAuthenticated: true,
+						isAuthenticated: true,
 					})
-					sessionStorage.setItem('currentUser', JSON.stringify(info))
-					sessionStorage.setItem('isAuthenticated', true)
+					sessionStorage.getItem('isAuthenticated', true)
 				}
 			},
 
@@ -316,7 +311,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					setStore({
 						currentUser: dato,
-						IsAuthenticated: true,
+						isAuthenticated: true,
 						error: null
 					});
 
@@ -357,7 +352,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 
 						currentUser: dato,
-						IsAuthenticated: true,
+						isAuthenticated: true,
 						error: null
 					});
 					sessionStorage.setItem('currentUser', JSON.stringify(dato))
@@ -406,7 +401,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					setStore({
 						currentUser: dato,
-						IsAuthenticated: true,
+						isAuthenticated: true,
 						errorTienda: null
 					});
 				}
@@ -441,7 +436,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					setStore({
 						currentUser: dato,
-						IsAuthenticated: true,
+						isAuthenticated: true,
 						errorTienda: null
 					});
 					sessionStorage.setItem('currentUser', JSON.stringify(dato))
@@ -488,6 +483,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+<<<<<<< HEAD
 //////////////////////////// Vista administrados
 
 			setTiendaAdmin: (e, history) => {
@@ -501,13 +497,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			productosAdmin: async (url, data, history) => {
 				console.log(data.clave);
+=======
+			//////////////// Vista administrados
+
+			setTiendaAdmin: async (url) => {
+>>>>>>> upstream/master
 				const store = getStore();
+				let data = JSON.parse(sessionStorage.getItem("currentUser"))
+				
 				const { baseURL } = store;
-				const resp = await fetch(baseURL + url, {
+				const resp = await fetch(baseURL + `/api/admin/${data.Tienda.id}`, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization': 'Bearer ' + data.clave,
+						'Authorization': 'Bearer ' + data.access_token,
 					},
 
 				})
@@ -519,11 +522,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				} else {
 					setStore({
-						productos: dato,
+					productos: [...dato],
 					});
 				}
 			},
 
+<<<<<<< HEAD
 
 //////////////////////////// borrar el producto
 
@@ -532,17 +536,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 				const store = getStore();
 				//console.log(e.target.id)
+=======
+			deleteProducto: async (e, id) => {
+				const store = getStore();
+				console.log(id)
+				let data = JSON.parse(sessionStorage.getItem("currentUser"))
+>>>>>>> upstream/master
 				const { baseURL } = store;
-				const resp = await fetch(baseURL + `/api/admin/${e.target.id}`, {
+				const resp = await fetch(baseURL + `/api/admin/${id}`, {
 					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization': 'Bearer ' + store.currentUser.access_token,
+						'Authorization': 'Bearer ' + data.access_token,
 					},
 				})
 				const dato = await resp.json();
 				console.log(dato)
 				if (dato.msg) {
+<<<<<<< HEAD
 					setStore({
 						error: dato
 					})
@@ -550,6 +561,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						productoAgregado: dato,
 					});
+=======
+					getActions().setTiendaAdmin();
+					
+>>>>>>> upstream/master
 				}
 			},
 

@@ -10,6 +10,7 @@ export default function TiendaAdminView(props) {
     const { store, actions } = useContext(Context);
     
     useEffect(() => {
+        
         actions.setTiendaAdmin();
       }, [store.productoAgregado]);
 
