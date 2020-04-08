@@ -267,53 +267,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 					total: newtotalCarrito
 				})
 			},
-			////////////////////////////////////////////////// Pago y checkout
-			/////////////////////////////////
-
-			productoComprado: (e, id) => {
-				const store = getStore();
-				console.log(store.currentUser.Usuario.id);
-				console.log(id);
-
-				let data = {
-					"total": store.total,
-					"carrito": store.carrito,
-					"tienda_id": id,
-				}
 
 
-				getActions().productosComprados(`/api/checkout/${id}`, data);
+
+
+			////////////////////////////  para borrar del carro
+
+			deleteFromCart: producto => {
+                const store = getStore();
+                let {carrito} = store;
+                let newtotalCarrito = 0;
+                let pos = null;
+                let newCarrito = carrito.map((item, i) => {
+                    if(JSON.stringify(item.producto) === JSON.stringify(producto)){
+                        if(item.cantidad === 1){
+                            pos = i;
+                            item.cantidad -= 1;
+                        }else{
+                            item.cantidad -= 1;
+                        }
+                        return item;
+                    }
+                    return item;
+                })
+                if(pos !== null){
+                    newCarrito.splice(pos, 1);
+                }
+                newCarrito.map((item) => {
+                    newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+                })
+                setStore({
+                    carrito: newCarrito,
+                    total: newtotalCarrito
+                })
 			},
 
-			productosComprados: async (url, data, history) => {
-				const store = getStore();
-				const { baseURL } = store;
-				const resp = await fetch(baseURL + url, {
-					method: 'POST',
-					body: JSON.stringify(data),
-					headers: {
-						'Content-Type': 'application/json'
-					}
-				})
-				const dato = await resp.json();
-				console.log(dato)
-				if (dato.msg) {
-					setStore({
-						error: dato
-					})
-				} else {
-					setStore({
-						currentUser: dato,
-						isAuthenticated: true,
-						error: null
-					});
-
-				}
-			},
-
-
-
-			////////////////////////////
 			////////////////////////////////////////////////// Alex registro del cliente
 
 			handleSubmitCliente: (e, history) => {
@@ -574,6 +562,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
+			
+
+
 
 			//////////////// Filtro de tiendas para el mapa
 			setFilter: (e, contact) => {
@@ -601,6 +592,57 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const b = (e === true) ? 'mapbox:///styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai' : 'mapbox://styles/jarb29/ck8boany41vwr1ipblccbomnl';
 				setStore({ checked: b })
 			},
+		
+		
+			////////////////////////////////////////////////// Pago y checkout
+			/////////////////////////////////
+
+			productoComprado: (e, id) => {
+				const store = getStore();
+				console.log(store.currentUser.Usuario.id);
+				console.log(id);
+
+				let data = {
+					"total": store.total,
+					"carrito": store.carrito,
+					"tienda_id": id,
+				}
+
+
+				getActions().productosComprados(`/api/checkout/${id}`, data);
+			},
+
+			productosComprados: async (url, data, history) => {
+				const store = getStore();
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + url, {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+				const dato = await resp.json();
+				console.log(dato)
+				if (dato.msg) {
+					setStore({
+						error: dato
+					})
+				} else {
+					setStore({
+						currentUser: dato,
+						isAuthenticated: true,
+						error: null
+					});
+
+				}
+			},
+
+
+
+
+
+
 		},
 
 	}
