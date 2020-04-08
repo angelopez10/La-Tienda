@@ -310,25 +310,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			///////////////////////////////////// eiliminar productos
 
-			deleteProduct: producto => {
-				const store = getStore();
-				const { productos } = store;
-				let pos = null
-				let newProductos = productos.map((item, i) => {
-					if (JSON.stringify(item) === JSON.stringify(producto)) {
-						pos = i
-					}
-					return item;
-				})
-				if (pos !== null) {
-					newProductos.splice(pos, 1)
-				}
-				setStore({
-					productos: newProductos
-				})
-				console.log(productos)
+			deleteFromCart: producto => {
+                const store = getStore();
+                let {carrito} = store;
+                let newtotalCarrito = 0;
+                let pos = null;
+                let newCarrito = carrito.map((item, i) => {
+                    if(JSON.stringify(item.producto) === JSON.stringify(producto)){
+                        if(item.cantidad === 1){
+                            pos = i;
+                            item.cantidad -= 1;
+                        }else{
+                            item.cantidad -= 1;
+                        }
+                        return item;
+                    }
+                    return item;
+                })
+                if(pos !== null){
+                    newCarrito.splice(pos, 1);
+                }
+                newCarrito.map((item) => {
+                    newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+                })
+                setStore({
+                    carrito: newCarrito,
+                    total: newtotalCarrito
+                })
 			},
-
 			//////////////////////////////////////////// Alex registro del cliente
 
 			handleSubmitCliente: (e, history) => {
