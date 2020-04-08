@@ -9,6 +9,7 @@ import ProductoAdmin from '../Components/TiendaAdmin/ProductoAdmin';
 export default function TiendaAdminView(props) {
     const { store, actions } = useContext(Context);
     useEffect(() => {
+        
         actions.setTiendaAdmin();
       }, [store.productoAgregado, store.productoEliminado]);
     return (
