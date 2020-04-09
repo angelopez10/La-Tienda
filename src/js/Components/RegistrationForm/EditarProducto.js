@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegistFormProduct() {
+export default function EditarProducto(props) {
   const classes = useStyles();
   const {actions} = useContext(Context);
   
@@ -67,10 +67,10 @@ export default function RegistFormProduct() {
             variant="outlined"
             margin="normal"
             type="file"
+            value={props.producto.foto}
             required
             fullWidth
             id="Foto"
-            label="Foto"
             name="foto"
             onChange={e => actions.handleChange(e)}
             autoComplete="Foto"
@@ -84,8 +84,33 @@ export default function RegistFormProduct() {
             id="Nombre_Producto"
             label="Nombre del Producto"
             name="nombreProducto"
+            value={props.producto.nombre}
             onChange={e => actions.handleChange(e)}
             autoComplete="NombreProducto"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            value={props.producto.categoria}
+            fullWidth
+            id="descripcion"
+            label="categoria"
+            name="categoria"
+            onChange={e => actions.handleChange(e)}
+            autoComplete="descripcion"
+            autoFocus
+          />
+            <TextField
+            variant="outlined"
+            margin="normal"
+            value={props.producto.descripcion}
+            fullWidth
+            id="descripcion"
+            label="Descripción"
+            name="descripcion"
+            onChange={e => actions.handleChange(e)}
+            autoComplete="descripcion"
             autoFocus
           />
           <TextField
@@ -94,6 +119,7 @@ export default function RegistFormProduct() {
             required
             fullWidth
             id="Cantidad"
+            value={props.producto.stock}
             label="Stock disponible"
             name="stock"
             onChange={e => actions.handleChange(e)}
@@ -107,6 +133,7 @@ export default function RegistFormProduct() {
             fullWidth
             id="Precio"
             label="Precio"
+            value={props.producto.precio}
             name="precio"
             onChange={e => actions.handleChange(e)}
             autoComplete="Precio"
@@ -118,7 +145,7 @@ export default function RegistFormProduct() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={e => actions.handleSubmitProducto(e)}
+            onClick={e => actions.editarProducto(e)}
           >
             Editar
           </Button>

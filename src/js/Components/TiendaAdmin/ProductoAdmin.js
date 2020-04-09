@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Context } from '../../AppContext'
-import ModalIngresoProduct from '../Modales/ModalIngresoProduct'
+import ModalEditarProducto from '../Modales/ModalEditarProducto'
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import EditIcon from '@material-ui/icons/Edit';
@@ -34,9 +34,10 @@ function ProductoAdmin(props) {
                             <ButtonToolbar>
                             <IconButton aria-label="edit" className={classes.textColor} onClick={() => setModalShow(true)}>
                                 <EditIcon />
-                                <ModalIngresoProduct
+                                <ModalEditarProducto
                                     show={modalShow}
                                     onHide={() => setModalShow(false)}
+                                    producto={props.producto}
                                 />
                             </IconButton>
                             </ButtonToolbar>
