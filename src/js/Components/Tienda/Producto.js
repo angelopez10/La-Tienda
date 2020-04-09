@@ -10,7 +10,7 @@ export default function Producto(props) {
 
         <div class="col-3 col-md-4 col-lg-4 ">
             <div class="card card-style mb-2">
-                <img class="card-img-top" src={img}  alt=''/>
+                <img class="card-img-top" src={img}  alt='' width='400px' height='250px'/>
                 <div class="card-body card-bg">
                     <h4 class="card-title"><a href="product.html" title="View Product">{props.producto.nombre}</a></h4>
                     <p class="card-text">{props.producto.description}</p>

@@ -144,11 +144,11 @@ export default function SideNavLeftTwo(props) {
             store.carrito.map((item, index) => (
               <ListItem key={index}>
                 <ListItemIcon>
-                  <img className="card-img-top" width='10px' heigth='10px' src={ store.baseURL + '/api/producto/' + item.producto.avatar} alt="logo" />
+                  <img src={ store.baseURL + '/api/producto/' + item.producto.avatar} alt="logo" width='40px' heigth='40px'/>
                 </ListItemIcon>
                 <div className='row'>
                   <div className='col-12 ml-3 mt-4'>
-                    <h6>{item.producto.nombreProducto} | ${item.producto.precio}</h6>
+                    <h6>{item.producto.nombre} | ${item.producto.precio}</h6>
                     <p>Cantidad: {item.cantidad}</p>
                     <Link onClick={() => actions.deleteFromCart(item.producto)}>Eliminar <DeleteIcon /></Link>
                   </div>
