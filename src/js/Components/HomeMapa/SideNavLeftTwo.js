@@ -84,16 +84,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SideNavLeftTwo() {
+export default function SideNavLeftTwo(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const { store, actions } = useContext(Context);
 
+  console.log(store.carrito);
+
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
+  
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -140,7 +143,9 @@ export default function SideNavLeftTwo() {
           {
             store.carrito.map((item, index) => (
               <ListItem key={index}>
-                <ListItemIcon><img class="card-img-top" src="https://picsum.photos/40/40" alt="logo" /></ListItemIcon>
+                <ListItemIcon>
+                  <img className="card-img-top" width='10px' heigth='10px' src={ store.baseURL + '/api/producto/' + item.producto.avatar} alt="logo" />
+                </ListItemIcon>
                 <div className='row'>
                   <div className='col-12 ml-3 mt-4'>
                     <h6>{item.producto.nombreProducto} | ${item.producto.precio}</h6>
