@@ -599,14 +599,45 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			productoComprado: (e, id) => {
 				const store = getStore();
-				console.log(store.currentUser.Usuario.id);
-				console.log(id);
-
+				//console.log(store.currentUser.Usuario.id);
+				console.log(store.tiendaSeleccionada);	
+				console.log(store.id_tienda_seleccionada);
+				
+		
 				let data = {
 					"total": store.total,
-					"carrito": store.carrito,
-					"tienda_id": id,
-				}
+					"carrito": store.carrito,	
+				};
+
+					
+					store.carrito.map(ItemCarrito => {
+						store.tiendaSeleccionada.map(ItemTienda => {
+						
+							console.log(ItemTienda);
+
+				
+						if (ItemTienda.nombre === ItemCarrito.producto.nombre){
+							console.log(ItemTienda.stock);
+							console.log(ItemCarrito.cantidad);
+
+							let newStok = ItemTienda.stock - ItemCarrito.cantidad;
+							console.log(newStok);
+							ItemTienda['stock'] = newStok;
+
+							let ItemCompradoId = ItemTienda.id;
+							console.log(ItemTienda);
+							console.log(ItemCompradoId);
+
+							
+							
+							}
+					
+					
+					})
+					 
+				})
+
+				
 
 
 				getActions().productosComprados(`/api/checkout/${id}`, data);
