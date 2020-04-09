@@ -40,6 +40,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			numero_tarjeta: '',
 			fecha_vencimiento: '',
 			cvv: '',
+			ItemCompradoId: [],
+			newStockProductoComprado: [],
 
 			//info para agregar producto
 			avatar: '',
@@ -50,6 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			productoAgregado: [],
 			categoria: [],
 			productoEliminado: [],
+
 
 			// Alex mapa
 			contacts: [],
@@ -602,40 +605,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//console.log(store.currentUser.Usuario.id);
 				console.log(store.tiendaSeleccionada);	
 				console.log(store.id_tienda_seleccionada);
-				
-		
-				let data = {
-					"total": store.total,
-					"carrito": store.carrito,	
-				};
+			
 
 					
 					store.carrito.map(ItemCarrito => {
 						store.tiendaSeleccionada.map(ItemTienda => {
-						
-							console.log(ItemTienda);
-
-				
 						if (ItemTienda.nombre === ItemCarrito.producto.nombre){
-							console.log(ItemTienda.stock);
-							console.log(ItemCarrito.cantidad);
-
 							let newStok = ItemTienda.stock - ItemCarrito.cantidad;
-							console.log(newStok);
 							ItemTienda['stock'] = newStok;
+							setStore({ItemCompradoId: ItemTienda.id})
+							setStore({newStockProductoComprado: newStok})
 
-							let ItemCompradoId = ItemTienda.id;
-							console.log(ItemTienda);
-							console.log(ItemCompradoId);
-
-							
-							
 							}
-					
-					
 					})
 					 
-				})
+				});
+				let data = {
+					"ItemCompradoId": store.ItemCompradoId,
+					"newStockproductoComprado": store.newStockProductoComprado,
+					"id_tiendaSeleccionada":store.id_tienda_seleccionada,
+
+
+				}
 
 				
 
