@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {Context} from '../../AppContext';
+import React, { useContext, useEffect, useState } from 'react';
+import { Context } from '../../AppContext';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,17 +14,17 @@ import { Link } from 'react-router-dom'
 
 
 function Copyright() {
-    return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          La tienda
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        La tienda
         </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 
 const useStyles = makeStyles(theme => ({
@@ -49,9 +49,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function EditarProducto(props) {
   const classes = useStyles();
-  const {actions} = useContext(Context);
-  
+  const { actions, store } = useContext(Context);
+  const [ producto, setProducto ] = useState({
+    avatar: '',
+    nombre: '',
+    descripcion: '',
+    stock: '',
+    precio: '',
+    categoria: [],
+  })
 
+  useEffect(() => {
+    setProducto({...producto, ...props.producto})
+  }, [])
+
+  const handleChange = e => {
+		const { name, value } = e.target;
+		setProducto({ ...producto, [name]: value });
+	};
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -63,16 +78,15 @@ export default function EditarProducto(props) {
           Edita tus productos
         </Typography>
         <form className={classes.form} noValidate>
-        <TextField
+          <TextField
             variant="outlined"
             margin="normal"
             type="file"
-            value={props.producto.foto}
             required
             fullWidth
             id="Foto"
             name="foto"
-            onChange={e => actions.handleChange(e)}
+            onChange={e => handleChange(e)}
             autoComplete="Foto"
             autoFocus
           />
@@ -83,33 +97,33 @@ export default function EditarProducto(props) {
             fullWidth
             id="Nombre_Producto"
             label="Nombre del Producto"
-            name="nombreProducto"
-            value={props.producto.nombre}
-            onChange={e => actions.handleChange(e)}
+            value={producto.nombre}
+            name="nombre"
+            onChange={e => handleChange(e)}
             autoComplete="NombreProducto"
             autoFocus
           />
           <TextField
             variant="outlined"
             margin="normal"
-            value={props.producto.categoria}
             fullWidth
             id="descripcion"
             label="categoria"
+            value={producto.categoria}
             name="categoria"
-            onChange={e => actions.handleChange(e)}
+            onChange={e => handleChange(e)}
             autoComplete="descripcion"
             autoFocus
           />
-            <TextField
+          <TextField
             variant="outlined"
             margin="normal"
-            value={props.producto.descripcion}
             fullWidth
             id="descripcion"
             label="Descripción"
+            value={producto.description}
             name="descripcion"
-            onChange={e => actions.handleChange(e)}
+            onChange={e => handleChange(e)}
             autoComplete="descripcion"
             autoFocus
           />
@@ -119,23 +133,23 @@ export default function EditarProducto(props) {
             required
             fullWidth
             id="Cantidad"
-            value={props.producto.stock}
             label="Stock disponible"
+            value={producto.stock}
             name="stock"
-            onChange={e => actions.handleChange(e)}
+            onChange={e => handleChange(e)}
             autoComplete="Cantidad"
             autoFocus
           />
-           <TextField
+          <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="Precio"
             label="Precio"
-            value={props.producto.precio}
+            value={producto.precio}
             name="precio"
-            onChange={e => actions.handleChange(e)}
+            onChange={e => handleChange(e)}
             autoComplete="Precio"
             autoFocus
           />
@@ -145,7 +159,7 @@ export default function EditarProducto(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={e => actions.editarProducto(e)}
+            onClick={e => actions.editarProducto(e, props.producto.id, producto)}
           >
             Editar
           </Button>
