@@ -574,8 +574,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			editarProducto: async (e, id, producto) => {
+				e.preventDefault();
+				const store = getStore();
+				let formData = new FormData();
+				formData.append("nombre", producto.nombre);
+				formData.append("descripcion", producto.descripcion);
+				formData.append("stock", producto.stock);
+				formData.append("precio", producto.precio);
+
+				let data = JSON.parse(sessionStorage.getItem("currentUser"))
+				const { baseURL } = store;
+				const resp = await fetch(baseURL + `/api/editar/producto/${id}`, {
+					method: 'PUT',
+					body: formData,
+					headers: {
+						'Authorization': 'Bearer ' + data.access_token,
+					},
+				})
+				const dato = await resp.json();
+				console.log(dato)
+				if (dato.msg) {
+					getActions().setTiendaAdmin();
 
 
+				}
+			},
+			
 
 
 
