@@ -1,4 +1,4 @@
- import React from 'react';
+ import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressFom';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import {Context} from '../../AppContext';
 
 
 const useStyles = makeStyles(theme => ({
@@ -63,9 +64,10 @@ function getStepContent(step) {
   }
 }
 
-export default function CheckOut() {
+export default function CheckOut(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const {actions} = useContext(Context);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -94,31 +96,49 @@ export default function CheckOut() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Gracias por su compra.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
+                  Su orden es #2001539. Le estremos enviando un email conla orden.
                 </Typography>
               </React.Fragment>
             ) : (
+
+
               <React.Fragment>
                 {getStepContent(activeStep)}
                 <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                {activeStep !== 0 && (
+                <Button onClick={handleBack} className={classes.button}>
+                    Anterior
+                </Button>
+                )}
+
+                  {activeStep === steps.length - 1? (
+                  <Button 
+                  variant="contained"
+                  color="primary"
+                  onClick= { e => {handleNext(e)
+                    actions.productoComprado(e, props.history)}
+                    }
+                  className={classes.button}
+                  > 
+                  Pagar
                   </Button>
-                </div>
+                     ) : (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleNext}
+                      className={classes.button}
+                    >
+                      Siguiente     
+                </Button>
+                )} 
+              </div>
+              
+
+
               </React.Fragment>
             )}
           </React.Fragment>
@@ -128,3 +148,5 @@ export default function CheckOut() {
   
   );
 }
+
+

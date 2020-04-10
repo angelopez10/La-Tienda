@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import clsx from 'clsx';
 import { makeStyles} from '@material-ui/core/styles';
@@ -6,6 +6,7 @@ import logo from '../Home_principal/logo_transparent_background.png';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import {Context} from '../../AppContext'
 
 const drawerWidth = 240;
 
@@ -104,8 +105,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NavbarTienda(props) {
+const {store} = useContext(Context);
   const classes = useStyles();
   const [open] = React.useState(false);
+
+  
+
+
+
+  console.log(store.contacts);
 
     return (
       <div className={classes.root} >
@@ -120,7 +128,7 @@ export default function NavbarTienda(props) {
               <Link to='/' >
                 <img src={logo} alt='' className='logo-principal'/>
               </Link>
-              <h4 className='pl-5'>{props.tienda.nombre}</h4>
+              <h1 className='pl-5'>{store.nombreTiendaSeleccionada}</h1>
           </Toolbar>
       </AppBar>
       </div>
