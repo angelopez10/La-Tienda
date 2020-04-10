@@ -597,10 +597,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (dato.msg) {
 					getActions().setTiendaAdmin();
 
-
 				}
 			},
-			
+
 
 
 
