@@ -40,8 +40,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			numero_tarjeta: '',
 			fecha_vencimiento: '',
 			cvv: '',
-			ItemCompradoId: [],
-			newStockProductoComprado: [],
+			ItemProductoCompradoId: [],
+			CantidaProductoComprado: [],
+			precioProductoSeleccionado: [],
+			productosActualizados: [],
+
 
 			//info para agregar producto
 			avatar: '',
@@ -75,6 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			tiendaSeleccionada: [],
 			tiendatotal: [],
 			id_tienda_seleccionada: [],
+			nombreTiendaSeleccionada: [],
 
 
 
@@ -186,6 +190,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ id_tienda_seleccionada: id });
 
+				store.contacts.map(tienda => {
+					if (tienda.id === id) {
+						return setStore({ nombreTiendaSeleccionada: tienda.nombre });
+					}
+				});
+
 
 				let data = {
 					"clave": store.currentUser.access_token,
@@ -277,32 +287,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 			////////////////////////////  para borrar del carro
 
 			deleteFromCart: producto => {
-                const store = getStore();
-                let {carrito} = store;
-                let newtotalCarrito = 0;
-                let pos = null;
-                let newCarrito = carrito.map((item, i) => {
-                    if(JSON.stringify(item.producto) === JSON.stringify(producto)){
-                        if(item.cantidad === 1){
-                            pos = i;
-                            item.cantidad -= 1;
-                        }else{
-                            item.cantidad -= 1;
-                        }
-                        return item;
-                    }
-                    return item;
-                })
-                if(pos !== null){
-                    newCarrito.splice(pos, 1);
-                }
-                newCarrito.map((item) => {
-                    newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
-                })
-                setStore({
-                    carrito: newCarrito,
-                    total: newtotalCarrito
-                })
+				const store = getStore();
+				let { carrito } = store;
+				let newtotalCarrito = 0;
+				let pos = null;
+				let newCarrito = carrito.map((item, i) => {
+					if (JSON.stringify(item.producto) === JSON.stringify(producto)) {
+						if (item.cantidad === 1) {
+							pos = i;
+							item.cantidad -= 1;
+						} else {
+							item.cantidad -= 1;
+						}
+						return item;
+					}
+					return item;
+				})
+				if (pos !== null) {
+					newCarrito.splice(pos, 1);
+				}
+				newCarrito.map((item) => {
+					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+				})
+				setStore({
+					carrito: newCarrito,
+					total: newtotalCarrito
+				})
 			},
 
 			////////////////////////////////////////////////// Alex registro del cliente
@@ -565,7 +575,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			
+
 
 
 
@@ -595,50 +605,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const b = (e === true) ? 'mapbox:///styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai' : 'mapbox://styles/jarb29/ck8boany41vwr1ipblccbomnl';
 				setStore({ checked: b })
 			},
-		
-		
+
+
 			////////////////////////////////////////////////// Pago y checkout
 			/////////////////////////////////
 
-			productoComprado: (e, id) => {
+			productoComprado: (e) => {
 				const store = getStore();
-				//console.log(store.currentUser.Usuario.id);
-				console.log(store.tiendaSeleccionada);	
-				console.log(store.id_tienda_seleccionada);
-			
 
-					
-					store.carrito.map(ItemCarrito => {
-						store.tiendaSeleccionada.map(ItemTienda => {
-						if (ItemTienda.nombre === ItemCarrito.producto.nombre){
-							let newStok = ItemTienda.stock - ItemCarrito.cantidad;
-							ItemTienda['stock'] = newStok;
-							setStore({ItemCompradoId: ItemTienda.id})
-							setStore({newStockProductoComprado: newStok})
+				store.carrito.map(ItemCarrito => {
+					store.tiendaSeleccionada.map(ItemTienda => {
+						if (ItemTienda.nombre === ItemCarrito.producto.nombre) {
+						console.log(ItemTienda.id, "id producto");
+						console.log(ItemCarrito.cantidad, "cantida prod");
+						console.log(ItemTienda.precio, "precio");
 
-							}
+							store.ItemProductoCompradoId.push(ItemTienda.id);
+							store.CantidaProductoComprado.push(ItemCarrito.cantidad);
+							store.precioProductoSeleccionado.push(ItemTienda.precio);
+						}
 					})
-					 
 				});
-				let data = {
-					"ItemCompradoId": store.ItemCompradoId,
-					"newStockproductoComprado": store.newStockProductoComprado,
-					"id_tiendaSeleccionada":store.id_tienda_seleccionada,
+		
 
+				let data = {
+					"usuario_id": store.currentUser.Usuario.id,
+					"ItemProductoCompradoId": store.ItemProductoCompradoId,
+					"CantidaProductoComprado": store.CantidaProductoComprado,
+					"precioProductoSeleccionado": store.precioProductoSeleccionado,
+					"totalFactura":store.total
 
 				}
+				console.log(store.ItemProductoCompradoId, "comprado")
+				console.log(store.CantidaProductoComprado, "cantidad")
+				console.log(store.precioProductoSeleccionado, "Precio")
 
-				
-
-
-				getActions().productosComprados(`/api/checkout/${id}`, data);
+				getActions().productosComprados(`/api/checkout/${store.id_tienda_seleccionada}`, data);
 			},
 
 			productosComprados: async (url, data, history) => {
 				const store = getStore();
 				const { baseURL } = store;
 				const resp = await fetch(baseURL + url, {
-					method: 'POST',
+					method: 'PUT',
 					body: JSON.stringify(data),
 					headers: {
 						'Content-Type': 'application/json'
@@ -651,20 +660,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						error: dato
 					})
 				} else {
-					setStore({
-						currentUser: dato,
-						isAuthenticated: true,
-						error: null
-					});
+					setStore({productosActualizados: dato})
 
 				}
 			},
-
-
-
-
-
-
 		},
 
 	}

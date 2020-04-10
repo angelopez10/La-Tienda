@@ -67,7 +67,7 @@ function getStepContent(step) {
 export default function CheckOut(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const {actions, store} = useContext(Context);
+  const {actions} = useContext(Context);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -96,11 +96,10 @@ export default function CheckOut(props) {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Gracias por su compra.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
+                  Su orden es #2001539. Le estremos enviando un email conla orden.
                 </Typography>
               </React.Fragment>
             ) : (
@@ -111,7 +110,7 @@ export default function CheckOut(props) {
                 <div className={classes.buttons}>
                 {activeStep !== 0 && (
                 <Button onClick={handleBack} className={classes.button}>
-                    Back
+                    Anterior
                 </Button>
                 )}
 
