@@ -14,7 +14,7 @@ export default function ModalEditarProducto(props) {
 		aria-labelledby="contained-modal-title-vcenter"
 		centered
 	  >
-		<Modal.Header >
+		<Modal.Header closeButton>
 		</Modal.Header>
 		<Modal.Body>
             <p>

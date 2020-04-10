@@ -90,7 +90,7 @@ export default function SideNavLeftTwo(props) {
   const [open, setOpen] = React.useState(false);
   const { store, actions } = useContext(Context);
 
-  console.log(store.carrito);
+ 
 
   
   const handleDrawerOpen = () => {
