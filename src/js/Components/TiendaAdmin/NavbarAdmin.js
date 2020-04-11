@@ -5,6 +5,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import logo from '../Home_principal/logo_transparent_background.png';
 import '../Home_principal/main-home.css';
+import './button-color.css';
 import { Context } from '../../AppContext';
 
 const useStyles = makeStyles({
@@ -57,6 +58,24 @@ const useStyles = makeStyles({
       backgroundColor: '#ff8d1e',
       boxShadow: 'none'
     },
+  },
+  color: {
+    backgroundColor: '#ff8d1e',
+    border: 0,
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+    },
+    '&:focus': {
+      backgroundColor: '#ff8d1e',
+      boxShadow: 'none'
+    },
   }
 
 });
@@ -77,7 +96,7 @@ export default function NavbarAdmin() {
               <img src={logo} alt='' className='logo-principal' />
             </Link>
             
-            <DropdownButton id="dropdown-basic-button" title={`Bienvenido, ${!!currentUser && currentUser['Tienda']['nombre']}`}>
+            <DropdownButton id="dropdown-basic-button" variant='logout' title={`Bienvenido, ${!!currentUser && currentUser['Tienda']['nombre']}`}>
               <Dropdown.Item onClick={e => actions.logout(e)}>Cerrar sesión</Dropdown.Item>
               
             </DropdownButton>
