@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
-import Button from 'react-bootstrap/Button'
-import ButtonToolbar from 'react-bootstrap/Button'
-import ModalIngresoProduct from '../Modales/ModalIngresoProduct'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 import logo from '../Home_principal/logo_transparent_background.png';
 import '../Home_principal/main-home.css';
+import { Context } from '../../AppContext';
 
 const useStyles = makeStyles({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
       width: '120px',
       padding: '0',
-      
+
     },
     color: '#f5f3f3',
     height: 50,
@@ -64,6 +64,9 @@ const useStyles = makeStyles({
 export default function NavbarAdmin() {
   const [modalShow, setModalShow] = React.useState(false);
   const classes = useStyles();
+  const {store, actions} = useContext(Context);
+  const {currentUser} = store;
+  
 
   return (
     <div>
@@ -73,16 +76,11 @@ export default function NavbarAdmin() {
             <Link to='/' >
               <img src={logo} alt='' className='logo-principal' />
             </Link>
-                  <ButtonToolbar className={classes.root} xs={12}>
-                    <Button  className={classes.root} onClick={() => setModalShow(true)} xs={12}>
-                      Agregar productos
-		              </Button>
-
-                    <ModalIngresoProduct
-                      show={modalShow}
-                      onHide={() => setModalShow(false)}
-                    />
-                  </ButtonToolbar>
+            
+            <DropdownButton id="dropdown-basic-button" title={`Bienvenido, ${!!currentUser && currentUser['Tienda']['nombre']}`}>
+              <Dropdown.Item onClick={e => actions.logout(e)}>Cerrar sesión</Dropdown.Item>
+              
+            </DropdownButton>
           </div>
         </nav>
       </div>

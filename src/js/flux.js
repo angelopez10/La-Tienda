@@ -688,6 +688,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				}
 			},
+			logout: e => {
+                sessionStorage.removeItem("currentUser");
+                sessionStorage.removeItem("isAuthenticated");
+                setStore({
+                    currentUser: null,
+                    isAuthenticated: false
+                })
+            },
 		},
 
 	}
