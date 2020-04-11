@@ -57,7 +57,7 @@ export default function MapaMapBoxLigth(props) {
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle='mapbox://styles/angelopez10/ck8uwvhyh09vw1io6cu1quh5j'
+        mapStyle='mapbox://styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai'
         onViewportChange={viewport => {
           setViewport(viewport);
         }}
