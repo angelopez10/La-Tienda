@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Alert from '@material-ui/lab/Alert';
 import { withRouter } from 'react-router-dom';
+import GroupedSelect from './CategoriaProducto';
 
 
 
@@ -95,18 +96,9 @@ function RegistFormProduct(props) {
             autoComplete="NombreProducto"
             autoFocus
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
+          
 
-            fullWidth
-            id="descripcion"
-            label="categoria"
-            name="categoria"
-            onChange={e => actions.handleChange(e)}
-            autoComplete="descripcion"
-            autoFocus
-          />
+          < GroupedSelect />
             <TextField
             variant="outlined"
             margin="normal"
@@ -148,13 +140,11 @@ function RegistFormProduct(props) {
             variant="contained"
             color="primary"
             closeButton
-
             onClick={e =>{actions.handleSubmitProducto(e, props.history)}}
             className={classes.submit}
           >Ingresar
           </Button> 
           :
-
               <Button
                 type="submit"
                 fullWidth
