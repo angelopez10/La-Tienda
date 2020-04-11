@@ -122,7 +122,7 @@ export default function EditarProducto(props) {
             id="descripcion"
             label="Descripción"
             value={producto.description}
-            name="descripcion"
+            name="description"
             onChange={e => handleChange(e)}
             autoComplete="descripcion"
             autoFocus

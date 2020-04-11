@@ -2,6 +2,7 @@ import React, { useContext, useEffect} from 'react'
 import { Context } from '../AppContext'
 import NavbarAdmin from '../Components/TiendaAdmin/NavbarAdmin';
 import ProductoAdmin from '../Components/TiendaAdmin/ProductoAdmin';
+import AgregarProductoBoton from '../Components/TiendaAdmin/AgregarProductoBoton';
 
 
 
@@ -10,9 +11,9 @@ export default function TiendaAdminView(props) {
     const { store, actions } = useContext(Context);
     
     useEffect(() => {
-        
-        actions.setTiendaAdmin();
-      }, [store.productoAgregado]);
+        if(!store.isAuthenticated) props.history.push('/');
+        if(store.isAuthenticated) actions.setTiendaAdmin();
+      },);
 
 
      
@@ -31,6 +32,7 @@ export default function TiendaAdminView(props) {
                             )
                         })
                     }
+                    <AgregarProductoBoton />
                 </div>
             </div>
         </div>
