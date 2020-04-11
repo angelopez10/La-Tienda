@@ -39,6 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			CantidaProductoComprado: [],
 			precioProductoSeleccionado: [],
 			productosActualizados: [],
+			productosComprados:[],
 
 
 			//info para agregar producto
@@ -76,6 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			tiendatotal: [],
 			id_tienda_seleccionada: [],
 			nombreTiendaSeleccionada: [],
+			emailTiendaSeleccionada:[],
 
 
 
@@ -100,6 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			////para todo los registros
 
 			handleChange: e => {
+				console.log(e.target.value)
 				setStore({
 					[e.target.name]: e.target.value
 				})
@@ -119,6 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			handleChangeRegistroTienda: e => {
+				console.log(e.target.value)
 				setStore({
 					[e.target.name]: e.target.value
 				})
@@ -189,7 +193,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				store.contacts.map(tienda => {
 					if (tienda.id === id) {
-						return setStore({ nombreTiendaSeleccionada: tienda.nombre });
+						return setStore({ nombreTiendaSeleccionada: tienda.nombre, emailTiendaSeleccionada:tienda.email });
 					}
 				});
 
@@ -632,8 +636,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			////////////////////////////////////////////////// Pago y checkout
-			/////////////////////////////////
+			////////////////////////////////////// Pago y checkout
+			
 
 			productoComprado: (e) => {
 				const store = getStore();
@@ -644,21 +648,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(ItemTienda.id, "id producto");
 						console.log(ItemCarrito.cantidad, "cantida prod");
 						console.log(ItemTienda.precio, "precio");
+						console.log(ItemTienda, "buscando el email");
 
 							store.ItemProductoCompradoId.push(ItemTienda.id);
 							store.CantidaProductoComprado.push(ItemCarrito.cantidad);
 							store.precioProductoSeleccionado.push(ItemTienda.precio);
+							store.productosComprados.push({nombre:ItemTienda.nombre, precio:ItemTienda.precio, cantidad: ItemCarrito.cantidad, total: store.total, nombreTiendaselec: store.nombreTiendaSeleccionada})
+
+
+
 						}
 					})
 				});
-		
+			
 
 				let data = {
 					"usuario_id": store.currentUser.Usuario.id,
 					"ItemProductoCompradoId": store.ItemProductoCompradoId,
 					"CantidaProductoComprado": store.CantidaProductoComprado,
 					"precioProductoSeleccionado": store.precioProductoSeleccionado,
-					"totalFactura":store.total
+					"totalFactura":store.total,
+					"totalProductosComprados": store.productosComprados,
+					"usuarioActual":store.currentUser,
+					"emailTiendaSeleccionada":store.emailTiendaSeleccionada,
 
 				}
 				console.log(store.ItemProductoCompradoId, "comprado")
