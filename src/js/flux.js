@@ -5,12 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			///// Alex URL
 			baseURL: 'http://127.0.0.1:5000',
-
-
-			usuarios: [{
-
-			}],
-
+			
 
 			productos: [],
 			//info para carrito de compras
@@ -60,6 +55,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Alex mapa
 			contacts: [],
 			filteredTiendas: [],
+			coordenadas: [],
+			latitude: [],
+			longitude: [],
 
 
 			// Alex front and Back
@@ -71,8 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			rut: [],
 			errorTienda: null,
-			latitude: [],
-			longitude: [],
+
 
 			// Alex tienda seleccionada
 			tiendaSeleccionada: [],
@@ -617,10 +614,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			coordenaasMapa: (e, value) => {
-				setStore({ mapLat: e.lat })
-				setStore({ mapLng: e.lng })
-				setStore({ coordenadas: e })
+			coordenaasMapa: (e) => {
+				console.log(e)
+				
+				setStore({coordenadas:e})
+				setStore({latitude: e.lat})
+				setStore({longitude: e.lng})
+
+				
 			},
 			////////////////////////////////// Mapa modo nocturno
 

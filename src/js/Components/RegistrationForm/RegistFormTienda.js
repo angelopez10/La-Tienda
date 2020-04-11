@@ -1,17 +1,19 @@
-import React, {useContext} from 'react';
-import {Context} from '../../AppContext';
+import React, { useContext, useEffect } from 'react';
+import { Context } from '../../AppContext';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { withRouter } from 'react-router-dom';
-
-
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from "react-places-autocomplete";
 
 
 
@@ -40,7 +42,26 @@ const useStyles = makeStyles(theme => ({
 
 function RegistFormCliente(props) {
   const classes = useStyles();
-  const {actions} = useContext(Context);
+  const { actions } = useContext(Context);
+  const [address, setAddress] = React.useState("");
+  const [coordinates, setCoordinates] = React.useState({
+    lat: null,
+    lng: null
+  });
+
+  useEffect(() => {
+    actions.coordenaasMapa(coordinates);
+  }, [coordinates]);
+
+
+  const handleSelect = async value => {
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
+    setAddress(value);
+    setCoordinates(latLng);
+  };
+
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -53,8 +74,8 @@ function RegistFormCliente(props) {
           Formulario de Registro Tienda
         </Typography>
         <form className={classes.form} noValidate>
-      
-        <TextField
+
+          <TextField
             variant="outlined"
             margin="normal"
             required
@@ -102,30 +123,36 @@ function RegistFormCliente(props) {
             autoFocus
             onChange={e => actions.handleChangeRegistroTienda(e)}
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="latitude"
-            label="Latitude"
-            name="latitude"
-            autoComplete="latitude"
-            autoFocus
-            onChange={e => actions.handleChangeRegistroTienda(e)}
-          />
-           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="longitude"
-            label="Longitude"
-            name="longitude"
-            autoComplete="longitude"
-            autoFocus
-            onChange={e => actions.handleChangeRegistroTienda(e)}
-          />
+          <PlacesAutocomplete
+            value={address}
+            onChange={setAddress}
+            onSelect={handleSelect}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <div
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                style={{ paddingTop: '7px', margin: 2 }} >
+                <input {...getInputProps({ placeholder: "Por favor introduzca su direccion completa" })} style={{ width: '390px', heigth:'600px', marginLeft: 0 }} id="input" type="search" />
+                <div>
+                  {loading ? <div>...loading</div> : null}
+
+                  {suggestions.map(suggestion => {
+                    const style = {
+                      backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
+                    };
+                    return (
+                      <div {...getSuggestionItemProps(suggestion, { style })}>
+                        {suggestion.description}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
           <TextField
             variant="outlined"
             margin="normal"
@@ -138,14 +165,8 @@ function RegistFormCliente(props) {
             autoComplete="clave"
             onChange={e => actions.handleChangeRegistroTienda(e)}
           />
-   
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
         </form>
       </div>
-
     </Container>
   );
 }

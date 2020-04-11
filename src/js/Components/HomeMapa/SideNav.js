@@ -19,6 +19,7 @@ import { Link } from 'react-router-dom'
 import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
 import LocalBarOutlinedIcon from '@material-ui/icons/LocalBarOutlined';
 import StorefrontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
+import StoreIcon from '@material-ui/icons/Store';
 import { Context } from "../../AppContext";
 import PlacesAutocomplete, {
     geocodeByAddress,
@@ -124,20 +125,20 @@ const useStyles = makeStyles(theme => ({
 
 
 export const SideNav = props => {
-
-
-
-
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const { store, actions } = useContext(Context);
     const [filterCategory, setFilterCategory] = React.useState(null);
+
     const [address, setAddress] = React.useState("");
     const [coordinates, setCoordinates] = React.useState({
         lat: null,
         lng: null
       });
+
+ 
+
    
 
     const categories = [...new Set(store.contacts.map(tienda => tienda.categoria))]
@@ -153,14 +154,14 @@ export const SideNav = props => {
 
     useEffect(() => {
         actions.coordenaasMapa(coordinates);
-      },[]);
+      },[coordinates]);
+
+    
 
 
     const handleSelect = async value => {
         const results = await geocodeByAddress(value);
-       
         const latLng = await getLatLng(results[0]);
-        
         setAddress(value);
         setCoordinates(latLng);
     };
@@ -264,7 +265,7 @@ export const SideNav = props => {
                                 actions.setFilter(e, contact)
                             }}
                         >
-                            <ListItemIcon>{index % 2 === 0 ? <LocalBarOutlinedIcon /> : <StorefrontOutlinedIcon />}</ListItemIcon>
+                            <ListItemIcon>{index % 2 === 0 ? <StoreIcon /> : <StorefrontOutlinedIcon />}</ListItemIcon>
                             <ListItemText primary={contact} />
                         </ListItem >
                     ))}

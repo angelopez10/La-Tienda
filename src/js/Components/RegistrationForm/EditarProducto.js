@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function EditarProducto(props) {
   const classes = useStyles();
-  const { actions, store } = useContext(Context);
+  const { actions } = useContext(Context);
   const [ producto, setProducto ] = useState({
     avatar: '',
     nombre: '',
