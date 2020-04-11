@@ -120,13 +120,12 @@ function IngresoTiendaModal(props) {
                     Back
                 </Button>
                 )}
-
                   {activeStep === steps.length - 1? (
                   <Button 
                   variant="contained"
                   color="primary"
                   onClick= { 
-                    (store.clave && !store.errorTiend && store.IsAuthenticated)?
+                    (store.clave && !store.errorTiend && !store.coordenadas)?
                       e => {handleNext(e)}
                   :
                     e =>{actions.handleSubmitTienda(e, props.history)}

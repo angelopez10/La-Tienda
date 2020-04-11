@@ -49,20 +49,19 @@ export default function MapaMapBoxLigth(props) {
     };
   });
 
- 
   
 
-
+  console.log(store.contacts)
   return (
     <div>
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle='mapbox://styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai' 
+        mapStyle='mapbox://styles/jarb29/ck8brlfqh2b0n1itm4t8eiqai'
         onViewportChange={viewport => {
           setViewport(viewport);
         }}
-        
+
       >
         <LigthMode />
         {store.contacts.map(tienda => (
@@ -72,18 +71,19 @@ export default function MapaMapBoxLigth(props) {
             longitude={parseFloat(tienda.longitude)}
           >
             <button
-             className="marker-btn"
-             onClick={e => {
-               e.preventDefault();
-               setSelectedTienda(tienda);
-             }}
+              className="marker-btn"
+              onClick={e => {
+                e.preventDefault();
+                setSelectedTienda(tienda);
+              }}
             >
-               <img src="/favicon.ico" alt="crime" />
+              <img src="/favicon.ico" alt="crime" />
             </button>
-            </Marker>
-               ))}
-               {selectedTienda ? (
-            <Popup
+          </Marker>
+        ))}
+
+        {selectedTienda ? (
+          <Popup
             latitude={parseFloat(selectedTienda.latitude)}
             longitude={parseFloat(selectedTienda.longitude)}
             onClose={() => {
