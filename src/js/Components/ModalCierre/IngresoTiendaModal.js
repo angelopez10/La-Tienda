@@ -125,8 +125,9 @@ function IngresoTiendaModal(props) {
                   variant="contained"
                   color="primary"
                   onClick= { 
-                    (store.clave && !store.errorTiend && !store.coordenadas)?
-                      e => {handleNext(e)}
+                    (store.clave && store.coordenadas)?
+                      e => {handleNext(e)
+                      actions.handleSubmitTienda(e, props.history)}
                   :
                     e =>{actions.handleSubmitTienda(e, props.history)}
                     }

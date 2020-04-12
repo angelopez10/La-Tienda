@@ -137,8 +137,9 @@ function IngresoClienteModal(props) {
                       variant="contained"
                       color="primary"
                       onClick={
-                        (store.clave && !store.error && store.IsAuthenticated)?
-                            e => { handleNext(e)}
+                        (store.clave)?
+                            e => { handleNext(e)
+                            actions.handleSubmitCliente(e, props.history)}
                        :
                         e =>{actions.handleSubmitCliente(e, props.history)
                         }
