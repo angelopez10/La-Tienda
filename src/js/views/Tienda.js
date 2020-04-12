@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import {Context} from '../AppContext';
 import NavbarTienda from '../Components/Tienda/NavbarTienda';
 import '../Components/Tienda/producto.css';
@@ -10,8 +10,11 @@ import Pagination from '../Components/Tienda/Pagination';
 
 
 export default function Tienda(props) {
-    const {store} = useContext(Context);
-
+    const { store, actions } = useContext(Context);
+  
+    useEffect(() => {
+        if(!store.isAuthenticated) props.history.push('/');
+    },[]);
 
     return (
         <div>

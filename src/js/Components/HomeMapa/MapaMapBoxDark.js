@@ -18,11 +18,6 @@ export default function MapaMapBoxDark(props) {
     zoom: 12
   });
  
-  useEffect(() => {
-    actions.setMapa();
-  }, []);
-
-
 
   useEffect(() => {
     const listener = e => {

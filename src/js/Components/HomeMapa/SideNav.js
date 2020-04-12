@@ -16,6 +16,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import logo from '../Home_principal/logo_transparent_background.png';
 import { Link } from 'react-router-dom'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
 import LocalBarOutlinedIcon from '@material-ui/icons/LocalBarOutlined';
 import StorefrontOutlinedIcon from '@material-ui/icons/StorefrontOutlined';
@@ -130,6 +132,7 @@ export const SideNav = props => {
     const [open, setOpen] = React.useState(false);
     const { store, actions } = useContext(Context);
     const [filterCategory, setFilterCategory] = React.useState(null);
+    const {currentUser} = store;
 
     const [address, setAddress] = React.useState("");
     const [coordinates, setCoordinates] = React.useState({
@@ -203,14 +206,15 @@ export const SideNav = props => {
                                         onSelect={handleSelect} 
                                     >
                                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                                            <div className="form-control mr-sm-2"  style={{  paddingTop: '3px', margin:0 }} >
-                                                <input {...getInputProps({ placeholder: "Direccion" })}  style={{ width: '360px', marginLeft:0 }} id="input" type="search"/>
+                                            <div className="form-control mr-sm-2"  style={{  padding: 0, margin:0 }} >
+                                                <input {...getInputProps({ placeholder: "Direccion" })}  style={{  marginLeft:0,}} id="input" type="search"/>
                                             <div>
-                                                    {loading ? <div>...loading</div> : null}
+                                                    {loading ? <div style={{backgroundColor: "#fff"}}>...loading</div> : null}
 
                                                     {suggestions.map(suggestion => {
                                                         const style = {
-                                                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff"
+                                                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                                                            maxWidth: '386px'
                                                         };
                                                         return (
                                                             <div {...getSuggestionItemProps(suggestion, { style })}>
@@ -223,6 +227,10 @@ export const SideNav = props => {
                                         )}
                                     </PlacesAutocomplete>
                         </form>
+                        <DropdownButton id="dropdown-basic-button" variant='logout' title={`Bienvenido, ${!!currentUser && currentUser['Usuario']['nombre']}`}>
+                            <Dropdown.Item onClick={e => actions.logout(e)}>Cerrar sesión</Dropdown.Item>
+              
+                        </DropdownButton>
                     </nav>
                 </Toolbar>
             </AppBar>

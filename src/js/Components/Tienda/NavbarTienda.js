@@ -7,6 +7,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {Context} from '../../AppContext'
+import { DropdownButton } from 'react-bootstrap';
+import { Dropdown } from 'materialize-css';
 
 const drawerWidth = 240;
 
@@ -105,15 +107,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NavbarTienda(props) {
-const {store} = useContext(Context);
-  const classes = useStyles();
-  const [open] = React.useState(false);
-
-  
-
-
-
-  console.log(store.contacts);
+    const {store, actions} = useContext(Context);
+    const {currentUser} = store;
+    const classes = useStyles();
+    const [open] = React.useState(false);
+    console.log(store.contacts);
 
     return (
       <div className={classes.root} >
@@ -129,6 +127,10 @@ const {store} = useContext(Context);
                 <img src={logo} alt='' className='logo-principal'/>
               </Link>
               <h1 className='pl-5'>{store.nombreTiendaSeleccionada}</h1>
+              <DropdownButton id="dropdown-basic-button" variant='logout' title={`Bienvenido, ${!!currentUser && currentUser['Tienda']['nombre']}`}>
+              <Dropdown.Item onClick={e => actions.logout(e)}>Cerrar sesión</Dropdown.Item>
+              
+            </DropdownButton>
           </Toolbar>
       </AppBar>
       </div>

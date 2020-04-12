@@ -7,8 +7,8 @@ import { Context } from '../AppContext';
 export default function Home(props) {
   const {store, actions} = useContext(Context);
   useEffect(() => {
-    if(store.isAuthenticated) props.history.push('/admin');
-    
+    if(store.isAuthenticated && store.currentUser.hasOwnProperty('Tienda')) props.history.push('/admin');
+    if(store.isAuthenticated && store.currentUser.hasOwnProperty('Usuario')) props.history.push('/mapaLigth');
   }, []);
     return (
         <div>

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './js/views/Home';
 import HomeMap from './js/views/HomeMap';
 import Tienda from './js/views/Tienda';
 import TiendaAdminView from './js/views/TiendaAdminView';
-import injectContext from './js/AppContext';
+import injectContext, { Context } from './js/AppContext';
 import MapaMapBoxDark from './js/Components/HomeMapa/MapaMapBoxDark';
 import MapaMapBoxLigth from './js/Components/HomeMapa/MapaMapBoxLigth';
 
@@ -13,7 +13,13 @@ import MapaMapBoxLigth from './js/Components/HomeMapa/MapaMapBoxLigth';
 
 
 
-function MapaLigth() {
+function MapaLigth(props) {
+  const { store, actions } = useContext(Context);
+  
+  useEffect(() => {
+    if(!store.isAuthenticated) props.history.push('/');
+    if(store.isAuthenticated) actions.setMapa();
+  },[]);
   return (
     <div>
         <HomeMap />
@@ -22,7 +28,14 @@ function MapaLigth() {
   );
 }
 
-function MapaDark() {
+function MapaDark(props) {
+  const { store, actions } = useContext(Context);
+
+  useEffect(() => {
+    if(!store.isAuthenticated) props.history.push('/');
+    if(store.isAuthenticated) actions.setMapa();
+  },[]);
+
   return (
     <div>
         <HomeMap />

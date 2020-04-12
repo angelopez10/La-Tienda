@@ -493,24 +493,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setMapa: (e, history) => {
 				const store = getStore();
-				console.log(store.currentUser.Usuario.email)
-
-				let data = {
-					"clave": store.currentUser.access_token,
-					"email": store.currentUser.Usuario.email,
-				};
+		
+				let data = JSON.parse(sessionStorage.getItem("currentUser"))
 				getActions().mapaTiendas('/api/mapa', data, history);
 			},
 
 			mapaTiendas: async (url, data, history) => {
-				console.log(data.clave);
+				console.log(data.access_token);
 				const store = getStore();
 				const { baseURL } = store;
 				const resp = await fetch(baseURL + url, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization': 'Bearer ' + data.clave,
+						'Authorization': 'Bearer ' + data.access_token,
 					},
 				})
 				const dato = await resp.json();
