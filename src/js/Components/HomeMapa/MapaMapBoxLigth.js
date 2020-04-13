@@ -92,7 +92,7 @@ export default function MapaMapBoxLigth(props) {
             }}
           >
             <div>
-              <h2>Nombre: {selectedTienda.nombre}</h2>
+              <h3>{selectedTienda.nombre}</h3>
               <p>Categoria: {selectedTienda.categoria}</p>
             </div>
           </Popup>

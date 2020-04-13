@@ -87,7 +87,7 @@ export default function MapaMapBoxDark(props) {
             }}
           >
             <div>
-              <h2>Nombre: {selectedTienda.nombre}</h2>
+              <h2>{selectedTienda.nombre}</h2>
               <p>Categoria: {selectedTienda.categoria}</p>
             </div>
           </Popup>

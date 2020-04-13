@@ -7,8 +7,12 @@
     background-color: #55595c;
 }
 
-.categories-list a {
+.categories-list-color {
     color: #fefef6;
+}
+
+.categories-list-color2 {
+    color: #ff8d1e;
 }
 
 .card-bg {
@@ -37,4 +41,9 @@
     background-color: #ff8d1e;
 }
 
+.nombre-tienda {
+    padding-left: 50px;
+    padding-top: 8px;
+    padding-right: 680px;
+}
 

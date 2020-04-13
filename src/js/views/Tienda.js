@@ -14,7 +14,7 @@ export default function Tienda(props) {
   
     useEffect(() => {
         if(!store.isAuthenticated) props.history.push('/');
-    },[]);
+    });
 
     return (
         <div>

@@ -45,8 +45,8 @@ export default function Categories() {
                                 actions.setFilterTienda(e, contact)
                             }}
                         >
-                            <ListItemIcon>{index % 2 === 0 ? <StorefrontOutlinedIcon  /> : <StorefrontOutlinedIcon />}</ListItemIcon>
-                            <ListItemText primary={contact} />
+                            <ListItemIcon >{index % 2 === 0 ? <StorefrontOutlinedIcon  className='categories-list-color2'/> : <StorefrontOutlinedIcon className='categories-list-color2' />}</ListItemIcon>
+                            <ListItemText primary={contact} className='categories-list-color' />
                         </ListItem >
                     ))}
                    
