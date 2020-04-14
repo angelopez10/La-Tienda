@@ -1,3 +1,6 @@
+body{
+    overflow-x: hidden;
+}
 .categories {
     background-color: #252525;
     color: #ff8d1e;
