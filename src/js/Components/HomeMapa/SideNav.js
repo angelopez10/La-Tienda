@@ -204,10 +204,11 @@ export const SideNav = props => {
                                         value={address}
                                         onChange={setAddress}
                                         onSelect={handleSelect} 
+                                        
                                     >
                                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                                            <div className="form-control mr-sm-2"  style={{  padding: 0, margin:0 }} >
-                                                <input {...getInputProps({ placeholder: "Direccion" })}  style={{  marginLeft:0,}} id="input" type="search"/>
+                                            <div className="form-control mr-sm-2"  style={{  padding: 0, margin:0, border: '1px solid #c1c2c2'}} >
+                                                <input {...getInputProps({ placeholder: "Direccion" })} className='buscador-mapa'  style={{  marginLeft:0, height: '38px', width:'406px', border: 'none'}} id="input" type="search"/>
                                             <div>
                                                     {loading ? <div style={{backgroundColor: "#fff"}}>...loading</div> : null}
 

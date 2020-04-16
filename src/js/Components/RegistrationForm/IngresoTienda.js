@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import {Context} from '../../AppContext';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -25,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#ff8d1e',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -33,7 +31,16 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#ff8d1e',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
   },
+  },
+  space: {
+    marginBottom: '30px'
+  }
 }));
 
 function IngresoCliente(props) {
@@ -47,7 +54,7 @@ function IngresoCliente(props) {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" className={classes.space}>
           Ingreso Tienda
         </Typography>
         <form className={classes.form} noValidate>
@@ -75,10 +82,6 @@ function IngresoCliente(props) {
             autoComplete="current-password"
             onChange={e => actions.handleChangeTienda(e)}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -91,13 +94,6 @@ function IngresoCliente(props) {
           </Button>
         </form>
       </div>
-      <Button 
-      href="#" 
-      color="primary"
-      className={classes.button}
-      >
-       {"Olvido Su clave"}
-       </Button>
 
     </Container>
   );

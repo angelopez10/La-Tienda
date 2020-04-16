@@ -48,9 +48,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			descripcion: '',
 			stock: '',
 			precio: '',
-			productoAgregado: [],
+			productoAgregado: null,
 			categoria: [],
+			deletedProduct: null,
 			productoEliminado: [],
+			productoEditado: null,
 
 
 			// Alex mapa
@@ -128,8 +130,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-
-
 			handleChangeFile: e => {
 				setStore({
 					[e.target.name]: e.target.files[0]
@@ -172,18 +172,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				if (info.msg) {
 					setStore({
-						error: info
-					})
-				} else {
-					setStore({
 						error: null,
-						productoAgregado: info,
+						productoAgregado: info.msg,
 						isAuthenticated: true,
 					})
 					sessionStorage.getItem('isAuthenticated', true)
 				}
+				console.log(store.productoAgregado)
 			},
 
+			deleteErrors: (e) => {
+				const store = getStore();
+				setStore({ 
+					error: null,
+					productoAgregado: null,
+					deletedProduct: null,
+					productoEditado: null
+				 });
+			},
 			//////////////////////////// Tienda Seleccionada
 
 
@@ -539,7 +545,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				})
 				const dato = await resp.json();
-				console.log(dato)
 				if (dato.msg) {
 					setStore({
 						error: dato
@@ -567,7 +572,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(dato)
 				if (dato.msg) {
 					getActions().setTiendaAdmin();
-
+					setStore({
+						deletedProduct: dato.msg
+					})
 				}
 			},
 
@@ -593,7 +600,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(dato)
 				if (dato.msg) {
 					getActions().setTiendaAdmin();
-
+					setStore({
+						productoEditado: dato.msg
+					})
 				}
 			},
 

@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#ff8d1e',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -44,6 +44,12 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#ff8d1e',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
+  },
   },
 }));
 
@@ -78,18 +84,6 @@ export default function EditarProducto(props) {
           Edita tus productos
         </Typography>
         <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            type="file"
-            required
-            fullWidth
-            id="Foto"
-            name="foto"
-            onChange={e => handleChange(e)}
-            autoComplete="Foto"
-            autoFocus
-          />
           <TextField
             variant="outlined"
             margin="normal"

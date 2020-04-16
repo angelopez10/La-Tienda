@@ -71,9 +71,8 @@ function Autocomplete(props) {
                 variant="outlined"
                 margin="normal"
                 required
-                fullWidth
-                style={{ paddingTop: '7px', margin: 2, fontsize: '24px' }} >
-                <input {...getInputProps({ placeholder: "Por favor introduzca su direccion completa" })} style={{ width: '390px', heigth:'600px', marginLeft: 0 }} id="input" type="search" />
+                style={{ paddingTop: '7px', margin: 2, fontsize: '24px', heigth:'600px' }} >
+                <input {...getInputProps({ placeholder: "Direccion*" })} style={{ marginLeft: 0 }} id="input" type="search" />
                 <div>
                   {loading ? <div>...loading</div> : null}
 
