@@ -35,7 +35,6 @@ export default function GroupedSelect() {
             <option value='Charcuteria'>Charcuteria</option>
             <option value='Verduras'>Verduras</option>
             <option value='Frutas'>Frutas</option>
-            <option value='Harina'>Harina</option>
             <option value='Varios'>Varios</option>
         </Select>
       </FormControl>

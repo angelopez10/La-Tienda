@@ -24,3 +24,24 @@ body {
     width: 20px;
     height: 20px;
   }
+
+  .mapboxgl-popup {
+    max-width: 300px;
+    max-height: 200px;
+  }
+  
+  .mapboxgl-popup-content {
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid #bbb9b9;
+  }
+
+  .mapboxgl-popup-content h3{
+    margin-top: 5px;
+  }
+
+  .mapboxgl-popup-close-button {
+    color: orange;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }

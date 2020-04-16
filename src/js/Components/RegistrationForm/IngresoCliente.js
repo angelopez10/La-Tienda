@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -12,6 +11,7 @@ import { withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Context } from '../../AppContext';
 import { makeStyles } from '@material-ui/core/styles';
+
 
 
 
@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#ff8d1e',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -46,17 +46,21 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#ff8d1e',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
   },
+  },
+  space: {
+    marginBottom: '30px'
+  }
 }));
 
 function IngresoCliente(props) {
 
-  
-  const { actions } = useContext(Context);
-
-
-
-
+  const {actions} = useContext(Context);
   const classes = useStyles();
 
   return (
@@ -66,8 +70,8 @@ function IngresoCliente(props) {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Ingreso Cliente
+        <Typography component="h1" variant="h5" className={classes.space}>
+          Inicia sesión
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -88,15 +92,11 @@ function IngresoCliente(props) {
             required
             fullWidth
             name="clave"
-            label="clave"
+            label="Contraseña"
             type="password"
             id="password"
             autoComplete="current-password"
             onChange={e => actions.handleChange(e)}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
           />
           <Button
             type="submit"
@@ -109,15 +109,6 @@ function IngresoCliente(props) {
             Ingresa
           </Button>
         </form>
-      </div>
-      <div>
-        <Button
-          href="#"
-          color="primary"
-          className={classes.button}
-        >
-          {"Olvido su Clave"}
-        </Button>
       </div>
     </Container>
   );

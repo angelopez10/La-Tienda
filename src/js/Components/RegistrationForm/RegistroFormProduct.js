@@ -47,6 +47,12 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#ff8d1e',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
+  },
   },
 }));
 
@@ -57,12 +63,6 @@ function RegistFormProduct(props) {
 
   return (
     <Container component="main" maxWidth="xs">
-      {
-          !!store.error  && (
-            <div className={classes.root}>
-              <Alert severity="error">{store.error.msg}</Alert>
-            </div>)
-          }
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

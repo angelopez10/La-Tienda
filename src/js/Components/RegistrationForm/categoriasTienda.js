@@ -31,9 +31,9 @@ export default function GroupedSelect() {
         >
           <option aria-label="None" value="" />
             <option value="viveres">Viveres</option>
-            <option value='fruteria'>Fruteria</option>
+            <option value='fruteria'>Frutas</option>
             <option value='abarrotes'>Abarrotes</option>
-            <option value='verduderia'>Verduderia</option>
+            <option value='verduderia'>Varios</option>
         </Select>
       </FormControl>
     </div>

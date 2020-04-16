@@ -48,9 +48,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			descripcion: '',
 			stock: '',
 			precio: '',
-			productoAgregado: [],
+			productoAgregado: null,
 			categoria: [],
+			deletedProduct: null,
 			productoEliminado: [],
+			productoEditado: null,
 
 
 			// Alex mapa
@@ -128,8 +130,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 			},
 
-
-
 			handleChangeFile: e => {
 				setStore({
 					[e.target.name]: e.target.files[0]
@@ -172,18 +172,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				if (info.msg) {
 					setStore({
-						error: info
-					})
-				} else {
-					setStore({
 						error: null,
-						productoAgregado: info,
+						productoAgregado: info.msg,
 						isAuthenticated: true,
 					})
 					sessionStorage.getItem('isAuthenticated', true)
 				}
+				console.log(store.productoAgregado)
 			},
 
+			deleteErrors: (e) => {
+				const store = getStore();
+				setStore({ 
+					error: null,
+					productoAgregado: null,
+					deletedProduct: null,
+					productoEditado: null
+				 });
+			},
 			//////////////////////////// Tienda Seleccionada
 
 
@@ -493,24 +499,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			setMapa: (e, history) => {
 				const store = getStore();
-				console.log(store.currentUser.Usuario.email)
-
-				let data = {
-					"clave": store.currentUser.access_token,
-					"email": store.currentUser.Usuario.email,
-				};
+		
+				let data = JSON.parse(sessionStorage.getItem("currentUser"))
 				getActions().mapaTiendas('/api/mapa', data, history);
 			},
 
 			mapaTiendas: async (url, data, history) => {
-				console.log(data.clave);
+				console.log(data.access_token);
 				const store = getStore();
 				const { baseURL } = store;
 				const resp = await fetch(baseURL + url, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization': 'Bearer ' + data.clave,
+						'Authorization': 'Bearer ' + data.access_token,
 					},
 				})
 				const dato = await resp.json();
@@ -543,7 +545,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				})
 				const dato = await resp.json();
-				console.log(dato)
 				if (dato.msg) {
 					setStore({
 						error: dato
@@ -571,7 +572,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(dato)
 				if (dato.msg) {
 					getActions().setTiendaAdmin();
-
+					setStore({
+						deletedProduct: dato.msg
+					})
 				}
 			},
 
@@ -597,7 +600,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(dato)
 				if (dato.msg) {
 					getActions().setTiendaAdmin();
-
+					setStore({
+						productoEditado: dato.msg
+					})
 				}
 			},
 

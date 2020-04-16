@@ -24,8 +24,8 @@ const useStyles = makeStyles(theme => ({
     borderBottom: 'none',
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    margin: theme.spacing(1), 
+    backgroundColor: '#ff8d1e',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -54,10 +54,9 @@ function RegistFormCliente(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Formulario de Registro Tienda
+          Registrate
         </Typography>
         <form className={classes.form} noValidate>
-
           <TextField
             variant="outlined"
             margin="normal"

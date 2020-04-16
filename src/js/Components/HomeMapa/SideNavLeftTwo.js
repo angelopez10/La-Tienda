@@ -81,7 +81,71 @@ const useStyles = makeStyles(theme => ({
   bgColor: {
     backgroundColor: '#252525',
     color: '#ff8d1e'
-  }
+  },
+  button: {
+    display: 'flex',
+    backgroundColor: '#ff8d1e',
+    border: 0,
+    borderRadius: 50,
+    ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+      width: '80px',
+      padding: '0'
+    },
+    ['@media (max-width:1000px)']: { // eslint-disable-line no-useless-computed-key
+      
+    },
+    color: '#f5f3f3',
+    height: 40,
+    padding: '0 30px',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+    },
+    '&:focus': {
+      backgroundColor: '#ff8d1e',
+      boxShadow: 'none'
+    },
+  },
+    button2: {
+      display: 'flex',
+      backgroundColor: '#ff8d1e',
+      border: 0,
+      borderRadius: 50,
+      ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+        width: '80px',
+        padding: '0'
+      },
+      ['@media (max-width:1000px)']: { // eslint-disable-line no-useless-computed-key
+        
+      },
+      color: '#f5f3f3',
+      height: 40,
+      alignItems: 'center',
+      padding: '0 30px',
+      position: 'fixed',
+      bottom: '10px',
+      right: '20px',
+      '&:hover': {
+        backgroundColor: '#ff8d1e',
+        borderColor: 'none',
+        boxShadow: 'none',
+      },
+      '&:active': {
+        boxShadow: 'none',
+        backgroundColor: '#ff8d1e',
+        borderColor: 'none',
+      },
+      '&:focus': {
+        backgroundColor: '#ff8d1e',
+        boxShadow: 'none'
+      },
+    },
 }));
 
 export default function SideNavLeftTwo(props) {
@@ -105,7 +169,7 @@ export default function SideNavLeftTwo(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{ width: "7%", transform: 'translateY(169px)' }}
+        style={{ width: "7%", transform: 'translateY(169px)', overflowX: 'hidden' }}
 
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -142,12 +206,12 @@ export default function SideNavLeftTwo(props) {
         <List>
           {
             store.carrito.map((item, index) => (
-              <ListItem key={index}>
+              <ListItem key={index} style={{borderTop: '1px solid #b9bbbb', paddingBottom: '30px'}}>
                 <ListItemIcon>
                   <img src={ store.baseURL + '/api/producto/' + item.producto.avatar} alt="logo" width='40px' heigth='40px'/>
                 </ListItemIcon>
                 <div className='row'>
-                  <div className='col-12 ml-3 mt-4'>
+                  <div className='col-12 ml-3 mt-4' >
                     <h6>{item.producto.nombre} | ${item.producto.precio}</h6>
                     <p>Cantidad: {item.cantidad}</p>
                     <Link onClick={() => actions.deleteFromCart(item.producto)}>Eliminar <DeleteIcon /></Link>
@@ -156,9 +220,8 @@ export default function SideNavLeftTwo(props) {
                 <Divider />
               </ListItem>
             ))}
-        </List>
-        <ButtonToolbar className={classes.position}>
-          <Button className={classes.root} onClick={() => setModalShow(true)}>
+          <ButtonToolbar className={classes.button2}>
+          <Button className={classes.button} onClick={() => setModalShow(true)}>
             Pagar (Total: ${store.total})
 		      </Button>
           <ModalCheckOut
@@ -166,6 +229,8 @@ export default function SideNavLeftTwo(props) {
             onHide={() => setModalShow(false)}
           />
         </ButtonToolbar>
+        </List>
+        
       </Drawer>
     </div>
   );

@@ -19,8 +19,9 @@ export default function MapaMapBoxLigth(props) {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.setMapa();
-  }, []);
+    if(!store.isAuthenticated) props.history.push('/');
+    if(store.isAuthenticated) actions.setMapa();
+  },[]);
 
   useEffect(() => {
     const listener = e => {
@@ -91,7 +92,7 @@ export default function MapaMapBoxLigth(props) {
             }}
           >
             <div>
-              <h2>Nombre: {selectedTienda.nombre}</h2>
+              <h3>{selectedTienda.nombre}</h3>
               <p>Categoria: {selectedTienda.categoria}</p>
             </div>
           </Popup>

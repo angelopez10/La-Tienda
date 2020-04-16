@@ -1,4 +1,4 @@
-import React, {useContext}  from 'react';
+import React, {useContext, useEffect}  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -7,8 +7,10 @@ import IngresoTienda from '../RegistrationForm/IngresoTienda';
 import RegistFormTienda from '../RegistrationForm/RegistFormTienda';
 import Box from '@material-ui/core/Box';
 import {Context} from '../../AppContext';
-import Alert from '@material-ui/lab/Alert';
+import Link from '@material-ui/core/Link';
 import { withRouter } from 'react-router-dom';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 
 
@@ -61,6 +63,22 @@ const useStyles = makeStyles(theme => ({
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
+    backgroundColor: '#ff8d1e',
+    color: '#f5f3f3',
+    '&:hover': {
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#ff8d1e',
+      borderColor: 'none',
+    },
+    '&:focus': {
+      backgroundColor: '#ff8d1e',
+      boxShadow: 'none'
+    },
   },
 }));
 
@@ -81,6 +99,7 @@ function IngresoTiendaModal(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const {actions, store} = useContext(Context);
+  const [open, setOpen] = React.useState(false);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -90,19 +109,34 @@ function IngresoTiendaModal(props) {
     setActiveStep(activeStep - 1);
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return ;
+    }
+    actions.deleteErrors();
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if(!!store.errorTienda) setOpen(true);
+
+  });
+
   
 
   return (
       <main >
         <Paper >
         {
-          !!store.errorTienda  && (
-            <div className={classes.root}>
-              
-              <Alert severity="error">{store.errorTienda.msg}</Alert>
-    
-            </div>)
-          }
+          !!store.errorTienda && (
+            
+              <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical:'top', horizontal:'center' }}> 
+                <Alert onClose={handleClose} severity="error">
+                    {store.errorTienda.msg}
+                </Alert>
+              </Snackbar>
+            )
+        }
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
@@ -136,14 +170,15 @@ function IngresoTiendaModal(props) {
                   Registrate
                   </Button>
                      ) : (
-                    <Button
-                      variant="contained"
+                      <Typography
+                      variant="button"
                       color="primary"
                       onClick={handleNext}
-                      className={classes.button}
                     >
-                      "No tienes una cuenta? Registrate"     
-                </Button>
+                      <Link href="#" style={{marginTop: '20px', marginBottom:'10px'}}>
+                        No tienes una cuenta? Registrate
+                      </Link>
+                    </Typography>
                 )} 
               </div>
               </React.Fragment>

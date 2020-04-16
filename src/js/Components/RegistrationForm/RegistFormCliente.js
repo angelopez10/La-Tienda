@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#ff8d1e',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -50,7 +50,7 @@ export default function RegistFormCliente(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Formulario de Registro Cliente
+          Registrate
         </Typography>
         <form className={classes.form} noValidate>
         <TextField
@@ -109,7 +109,7 @@ export default function RegistFormCliente(props) {
             required
             fullWidth
             name="telefono"
-            label="telefono"
+            label="Telefono"
             type="telefono"
             id="telefono"
             autoComplete="Telefono"
@@ -121,16 +121,11 @@ export default function RegistFormCliente(props) {
             required
             fullWidth
             name="clave"
-            label="Clave"
+            label="Contraseña"
             type="password"
             id="password"
             autoComplete="current-password"
             onChange={e => actions.handleChange(e)}
-          />
-        
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
           />
         </form>
       </div>

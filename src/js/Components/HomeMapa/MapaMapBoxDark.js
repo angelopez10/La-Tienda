@@ -18,11 +18,6 @@ export default function MapaMapBoxDark(props) {
     zoom: 12
   });
  
-  useEffect(() => {
-    actions.setMapa();
-  }, []);
-
-
 
   useEffect(() => {
     const listener = e => {
@@ -92,7 +87,7 @@ export default function MapaMapBoxDark(props) {
             }}
           >
             <div>
-              <h2>Nombre: {selectedTienda.nombre}</h2>
+              <h2>{selectedTienda.nombre}</h2>
               <p>Categoria: {selectedTienda.categoria}</p>
             </div>
           </Popup>
