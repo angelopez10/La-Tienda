@@ -62,7 +62,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			latitude: [],
 			longitude: [],
 
-
 			// Alex front and Back
 			currentUser: null,
 			isAuthenticated: false,

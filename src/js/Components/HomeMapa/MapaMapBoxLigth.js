@@ -7,7 +7,7 @@ import LigthMode from './LigthMode';
 
 export default function MapaMapBoxLigth(props) {
 
-
+  const { store, actions } = useContext(Context);
   const [viewport, setViewport] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -16,7 +16,7 @@ export default function MapaMapBoxLigth(props) {
     zoom: 12
   });
   const [selectedTienda, setSelectedTienda] = useState(0);
-  const { store, actions } = useContext(Context);
+  
 
   useEffect(() => {
     if(!store.isAuthenticated) props.history.push('/');
