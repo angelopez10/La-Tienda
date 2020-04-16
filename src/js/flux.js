@@ -279,7 +279,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				}
 				newCarrito.map(item => {
-					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+					return newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
 				})
 				setStore({
 					carrito: newCarrito,
@@ -313,7 +313,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					newCarrito.splice(pos, 1);
 				}
 				newCarrito.map((item) => {
-					newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
+					return newtotalCarrito = newtotalCarrito + (item.cantidad * item.producto.precio);
 				})
 				setStore({
 					carrito: newCarrito,
@@ -649,10 +649,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.carrito.map(ItemCarrito => {
 					store.tiendaSeleccionada.map(ItemTienda => {
 						if (ItemTienda.nombre === ItemCarrito.producto.nombre) {
-						console.log(ItemTienda.id, "id producto");
-						console.log(ItemCarrito.cantidad, "cantida prod");
-						console.log(ItemTienda.precio, "precio");
-						console.log(ItemTienda, "buscando el email");
+						
 
 							store.ItemProductoCompradoId.push(ItemTienda.id);
 							store.CantidaProductoComprado.push(ItemCarrito.cantidad);
