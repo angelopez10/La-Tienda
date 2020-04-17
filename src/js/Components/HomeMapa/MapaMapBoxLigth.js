@@ -18,10 +18,7 @@ export default function MapaMapBoxLigth(props) {
   const [selectedTienda, setSelectedTienda] = useState(0);
   
 
-  useEffect(() => {
-    if(!store.isAuthenticated) props.history.push('/');
-    if(store.isAuthenticated) actions.setMapa();
-  },[]);
+  
 
   useEffect(() => {
     const listener = e => {
