@@ -123,7 +123,7 @@ export default function NavbarTienda(props) {
           })}
       >
           <Toolbar className={classes.root}>
-              <Link to='/' >
+              <Link to='/mapaLigth' >
                 <img src={logo} alt='' className='logo-principal pr-5'/>
               </Link>
               <h3 className='nombre-tienda'>{store.nombreTiendaSeleccionada.toUpperCase()}</h3>

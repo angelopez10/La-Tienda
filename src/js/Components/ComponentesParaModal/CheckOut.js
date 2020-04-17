@@ -1,5 +1,6 @@
  import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -49,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Dirección de envio', 'Detalles del pago', 'Resumen de la orden'];
 
 function getStepContent(step) {
   switch (step) {
@@ -99,8 +100,11 @@ export default function CheckOut(props) {
                   Gracias por su compra.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Su orden es #2001539. Le estremos enviando un email conla orden.
+                  Su orden es #2001539. Le estaremos enviando un email con la orden.
                 </Typography>
+                <Link to='/mapaLigth' >
+                  Continua comprando en La Tienda!
+                </Link>
               </React.Fragment>
             ) : (
 
