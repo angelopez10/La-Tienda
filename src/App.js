@@ -19,7 +19,7 @@ function MapaLigth(props) {
   useEffect(() => {
     if(!store.isAuthenticated) props.history.push('/');
     if(store.isAuthenticated) actions.setMapa();
-  });
+  },[]);
   return (
     <div>
         <HomeMap />
@@ -34,7 +34,7 @@ function MapaDark(props) {
   useEffect(() => {
     if(!store.isAuthenticated) props.history.push('/');
     if(store.isAuthenticated) actions.setMapa();
-  });
+  },[]);
 
   return (
     <div>
