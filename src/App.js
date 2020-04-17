@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './js/views/Home';
@@ -15,11 +16,12 @@ import MapaMapBoxLigth from './js/Components/HomeMapa/MapaMapBoxLigth';
 
 function MapaLigth(props) {
   const { store, actions } = useContext(Context);
-  
   useEffect(() => {
     if(!store.isAuthenticated) props.history.push('/');
     if(store.isAuthenticated) actions.setMapa();
   },[]);
+  
+ 
   return (
     <div>
         <HomeMap />
@@ -30,11 +32,12 @@ function MapaLigth(props) {
 
 function MapaDark(props) {
   const { store, actions } = useContext(Context);
-
   useEffect(() => {
     if(!store.isAuthenticated) props.history.push('/');
     if(store.isAuthenticated) actions.setMapa();
   },[]);
+
+ 
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Context } from '../../AppContext';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -21,11 +21,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Review() {
+export default function Review(props) {
   const classes = useStyles();
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-  console.log(store.carrito);
+  useEffect(() => {
+    if(!store.isAuthenticated) props.history.push('/');
+    if(store.isAuthenticated) actions.setMapa();
+  },[]);
 
   return (
     <React.Fragment>
