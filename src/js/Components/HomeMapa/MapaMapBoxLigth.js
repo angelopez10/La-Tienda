@@ -47,9 +47,9 @@ export default function MapaMapBoxLigth(props) {
     };
   });
 
-  
+ 
 
-  console.log(store.contacts)
+ 
   return (
     <div>
       <ReactMapGL

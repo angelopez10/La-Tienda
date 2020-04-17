@@ -200,6 +200,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (tienda.id === id) {
 						return setStore({ nombreTiendaSeleccionada: tienda.nombre, emailTiendaSeleccionada:tienda.email });
 					}
+					return ' '
 				});
 
 
@@ -497,6 +498,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			/////////////////////////////////////////////// Alex Mapa
 
 			setMapa: (e, history) => {
+
 				const store = getStore();
 		
 				let data = JSON.parse(sessionStorage.getItem("currentUser"))
@@ -659,7 +661,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 						}
+						return ' '
 					})
+					return ' '
 				});
 			
 
