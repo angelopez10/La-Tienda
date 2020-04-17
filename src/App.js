@@ -18,7 +18,7 @@ function MapaLigth(props) {
   const { store, actions } = useContext(Context);
   useEffect(() => {
     if(!store.isAuthenticated) props.history.push('/');
-    if(store.isAuthenticated) actions.setMapa();
+    actions.setMapa();
   },[]);
   
  
@@ -34,7 +34,7 @@ function MapaDark(props) {
   const { store, actions } = useContext(Context);
   useEffect(() => {
     if(!store.isAuthenticated) props.history.push('/');
-    if(store.isAuthenticated) actions.setMapa();
+    actions.setMapa();
   },[]);
 
  

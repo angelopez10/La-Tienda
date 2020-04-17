@@ -15,7 +15,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import logo from '../Home_principal/logo_transparent_background.png';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import LocalGroceryStoreIcon from '@material-ui/icons/LocalGroceryStore';
@@ -126,7 +126,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export const SideNav = props => {
+const SideNav = props => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -156,6 +156,7 @@ export const SideNav = props => {
     };
 
     useEffect(() => {
+        if(!store.isAuthenticated) props.history.push('/');
         actions.coordenaasMapa(coordinates);
       },[coordinates]);
 
@@ -229,7 +230,7 @@ export const SideNav = props => {
                                     </PlacesAutocomplete>
                         </form>
                         <DropdownButton id="dropdown-basic-button" variant='logout' title={`Bienvenido, ${!!currentUser && currentUser['Usuario']['nombre']}`}>
-                            <Dropdown.Item onClick={e => actions.logout(e)}>Cerrar sesión</Dropdown.Item>
+                            <Dropdown.Item onClick={e => actions.logout(e, props.history)}>Cerrar sesión</Dropdown.Item>
               
                         </DropdownButton>
                     </nav>
@@ -285,6 +286,6 @@ export const SideNav = props => {
     );
 }
 
-
+export default withRouter(SideNav);
 
 

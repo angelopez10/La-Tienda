@@ -140,8 +140,11 @@ function IngresoTiendaModal(props) {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="h5" >
                  Gracias por registrar su Tienda con nosotros
+                </Typography>
+                <Typography variant="h5" >
+                  Inicia sesión para agregar tus productos
                 </Typography>
               </React.Fragment>
             ) : (

@@ -184,6 +184,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ 
 					error: null,
+					errorTienda: null,
 					productoAgregado: null,
 					deletedProduct: null,
 					productoEditado: null
@@ -706,13 +707,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				}
 			},
-			logout: e => {
+			logout: (e, history) => {
                 sessionStorage.removeItem("currentUser");
                 sessionStorage.removeItem("isAuthenticated");
                 setStore({
                     currentUser: null,
                     isAuthenticated: false
-                })
+				})
+				history.push('/')
             },
 		},
 

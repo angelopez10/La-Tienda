@@ -141,6 +141,9 @@ function IngresoClienteModal(props) {
               <Typography variant="h5" gutterBottom>
                 Gracias por registrarse con nosotros
                 </Typography>
+                <Typography variant="h5" >
+                  Inicia sesión para comenzar a comprar
+                </Typography>
             </React.Fragment>
           ) : (
 

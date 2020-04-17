@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import clsx from 'clsx';
 import { makeStyles} from '@material-ui/core/styles';
 import logo from '../Home_principal/logo_transparent_background.png';
@@ -106,7 +106,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function NavbarTienda(props) {
+function NavbarTienda(props) {
     const {store, actions} = useContext(Context);
     const {currentUser} = store;
     const classes = useStyles();
@@ -128,7 +128,7 @@ export default function NavbarTienda(props) {
               </Link>
               <h3 className='nombre-tienda'>{store.nombreTiendaSeleccionada.toUpperCase()}</h3>
               <DropdownButton id="dropdown-basic-button" variant='logout' title={`Bienvenido, ${!!currentUser && currentUser['Usuario']['nombre']}`}>
-              <Dropdown.Item onClick={e => actions.logout(e)}>Cerrar sesión</Dropdown.Item>
+              <Dropdown.Item onClick={e => actions.logout(e, props.history)}>Cerrar sesión</Dropdown.Item>
               
             </DropdownButton>
           </Toolbar>
@@ -136,3 +136,5 @@ export default function NavbarTienda(props) {
       </div>
     )
 }
+
+export default withRouter(NavbarTienda);

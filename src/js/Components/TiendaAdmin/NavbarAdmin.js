@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -80,7 +80,7 @@ const useStyles = makeStyles({
 
 });
 
-export default function NavbarAdmin() {
+function NavbarAdmin(props) {
   const [modalShow, setModalShow] = React.useState(false);
   const classes = useStyles();
   const {store, actions} = useContext(Context);
@@ -97,7 +97,7 @@ export default function NavbarAdmin() {
             </Link>
             
             <DropdownButton id="dropdown-basic-button" variant='logout' title={`Bienvenido, ${!!currentUser && currentUser['Tienda']['nombre']}`}>
-              <Dropdown.Item onClick={e => actions.logout(e)}>Cerrar sesión</Dropdown.Item>
+              <Dropdown.Item onClick={e => actions.logout(e, props.history)}>Cerrar sesión</Dropdown.Item>
               
             </DropdownButton>
           </div>
@@ -106,3 +106,5 @@ export default function NavbarAdmin() {
     </div>
   )
 }
+
+export default withRouter(NavbarAdmin);
